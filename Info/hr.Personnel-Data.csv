@@ -1,0 +1,4 @@
+﻿emp_id,emp_fname,emp_lname,emp_email,emp_dob,emp_age,emp_h_education,emp_start_date,emp_type,emp_work_type,emp_pos,emp_dept_id,emp_department,emp_faculty_id,emp_faculty,emp_office_id,emp_office,emp_academic_pos,emp_line_work
+1000001,ปรัชญา,ฟูสิริพงษ์,prashaya.f@rsu.ac.th,2019-05-03,50,PHD,2025-05-05,L,teach,HOD,-,-,-,-,10001,International,-,1000001
+1000002,Prashaya,Fusiripong,prashaya.f@uni.edu,1985-05-15,40,Ph.D.,2015-08-01,L,Teaching,Lecturer,D01,Computer Engineering,F01,Engineering,O01,Main Office,Assistant Professor,Acad
+1000003,John,Doe,john.doe@uni.edu,1990-01-01,35,Master,2020-01-01,S,Research,Researcher,D02,Science,F02,Science,O02,Lab A,Researcher,-
