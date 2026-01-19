@@ -648,6 +648,9 @@ public partial class EvDbContext : DbContext
             entity.Property(e => e.EmpWorkType)
                 .HasMaxLength(50)
                 .HasColumnName("emp_work_type");
+            entity.Property(e => e.ResearchApprovedYearAcademic)
+                .HasMaxLength(10)
+                .HasColumnName("research_approved_year_academic");
         });
 
         modelBuilder.Entity<PersonnelAcadResearchScore>(entity =>

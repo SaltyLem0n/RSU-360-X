@@ -97,5 +97,7 @@ public partial class Personnel
 
     public virtual ICollection<Textbook22> Textbook22s { get; set; } = new List<Textbook22>();
 
+    public string? ResearchApprovedYearAcademic { get; set; }
+
     public virtual ICollection<VisaTransactionStatus> VisaTransactionStatuses { get; set; } = new List<VisaTransactionStatus>();
 }

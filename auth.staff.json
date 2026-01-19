@@ -1,20 +1,26 @@
 [
-    {
-        "Id": "1000001",
-        "Password": "1",
-        "PasswordIterations": 50000,
-        "PasswordAlgo": "pbkdf2-sha256"
-    },
-    {
-        "Id": "1000002",
-        "Password": "password",
-        "PasswordIterations": 50000,
-        "PasswordAlgo": "pbkdf2-sha256"
-    },
-    {
-        "Id": "1000003",
-        "Password": "password",
-        "PasswordIterations": 50000,
-        "PasswordAlgo": "pbkdf2-sha256"
-    }
+  {
+    "Id": "1000001",
+    "Password": null,
+    "PasswordHash": "nIS5yX5KY5lsqZZr4yMGj2RERFSsz7gLQB/tHRf8m9I=",
+    "PasswordSalt": "2PsCrbX/eF4eDzoPVRfyTg==",
+    "PasswordIterations": 50000,
+    "PasswordAlgo": "pbkdf2-sha256"
+  },
+  {
+    "Id": "1000002",
+    "Password": null,
+    "PasswordHash": "HHe5\u002BTDA4b65Bx5Xz7dDXRCWFK1kA3csvxpXvD5RU7o=",
+    "PasswordSalt": "m/HfE1Twd3Jl2J02AlJ4ng==",
+    "PasswordIterations": 50000,
+    "PasswordAlgo": "pbkdf2-sha256"
+  },
+  {
+    "Id": "1000003",
+    "Password": null,
+    "PasswordHash": "17dBjbjL8SrGUTg5LgAXO/Dvch3COCCO7mltnhqopLY=",
+    "PasswordSalt": "6pFwPZNghFTQBAh7feTw9w==",
+    "PasswordIterations": 50000,
+    "PasswordAlgo": "pbkdf2-sha256"
+  }
 ]

@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<RSU_360_X.Models_Db.EvDbContext>();
 builder.Services.AddScoped<RSU_360_X.Services.JsonStorage>();
 builder.Services.AddScoped<RSU_360_X.Services.IHybridAuthService, RSU_360_X.Services.HybridAuthService>();
+builder.Services.AddHostedService<RSU_360_X.Services.SecurityMigrationService>();
 
 // 2. Configure Session
 builder.Services.AddSession(options =>
