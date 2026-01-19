@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RSU_360_X.Controllers
 {
-    public class HomeController : Controller
+    public class EmployeeController : Controller
     {
         public IActionResult Index()
         {
@@ -12,11 +12,6 @@ namespace RSU_360_X.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
     }

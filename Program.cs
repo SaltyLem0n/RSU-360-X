@@ -1,7 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// 1. Add Services
+builder.Services.AddDbContext<RSU_360_X.Models_Db.EvDbContext>();
+builder.Services.AddScoped<RSU_360_X.Services.JsonStorage>();
+builder.Services.AddScoped<RSU_360_X.Services.IHybridAuthService, RSU_360_X.Services.HybridAuthService>();
+
+// 2. Configure Session
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -16,12 +32,14 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// 3. Activate Middleware
+app.UseSession(); // <--- Important: Must be before UseRouting
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

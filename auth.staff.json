@@ -1,0 +1,20 @@
+[
+    {
+        "Id": "1000001",
+        "Password": "1",
+        "PasswordIterations": 50000,
+        "PasswordAlgo": "pbkdf2-sha256"
+    },
+    {
+        "Id": "1000002",
+        "Password": "password",
+        "PasswordIterations": 50000,
+        "PasswordAlgo": "pbkdf2-sha256"
+    },
+    {
+        "Id": "1000003",
+        "Password": "password",
+        "PasswordIterations": 50000,
+        "PasswordAlgo": "pbkdf2-sha256"
+    }
+]
