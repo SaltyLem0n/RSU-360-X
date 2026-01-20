@@ -12,12 +12,8 @@
     <title>RSUX - Login</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;family=Prompt:wght@300;400;500;600&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;family=Prompt:wght@300;400;500;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script>
         tailwind.config = {
@@ -51,87 +47,105 @@
     </script>
 </head>
 
-<body
-    class="bg-hero-gradient h-screen w-full flex items-center justify-center font-sans overflow-hidden relative selection:bg-pink-500 selection:text-white">
+<body class="bg-hero-gradient h-screen w-full flex flex-col items-center justify-center font-sans overflow-hidden relative selection:bg-pink-500 selection:text-white">
+
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div class="absolute bottom-0 -left-24 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse-slow"
-            style="animation-delay: 1s;"></div>
-        <div
-            class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light">
-        </div>
+        <div class="absolute bottom-0 -left-24 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
     </div>
-    <div
-        class="relative z-10 w-full max-w-md mx-4 bg-white rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:shadow-blue-900/20">
+
+    <div class="relative z-10 w-full max-w-md mx-4 bg-white rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:shadow-blue-900/20">
+
         <div class="bg-surface-dark py-8 px-8 flex flex-col items-center justify-center relative overflow-hidden">
-            <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-400/20 blur-2xl rounded-full">
-            </div>
-            <img alt="RSU Logo" class="h-10 w-auto object-contain relative z-10" src="/assets/img/rsu_logo.png" />
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-400/20 blur-2xl rounded-full"></div>
+
+            <img alt="RSU Logo" class="h-10 w-auto object-contain relative z-10 translate-x-3" src="/assets/img/rsu_logo.png" />
+
             <div class="h-px w-12 bg-white/20 my-3 relative z-10"></div>
             <span class="text-white/90 font-display font-light text-sm tracking-widest relative z-10">
                 ฝ่ายบริหาร
             </span>
         </div>
+
         <div class="p-8 pt-10">
             <div class="text-center mb-10 relative group cursor-default">
-                <h1
-                    class="text-6xl font-black font-display tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-blue-600 to-cyan-400 select-none relative z-10">
+                <h1 class="text-6xl font-black font-display tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-blue-600 to-cyan-400 select-none relative z-10">
                     RSUX
                 </h1>
-                <h1
-                    class="text-6xl font-black font-display tracking-tighter text-pink-500/30 absolute top-0 left-0 w-full h-full -translate-x-0.5 translate-y-0.5 select-none blur-[1px]">
+                <h1 class="text-6xl font-black font-display tracking-tighter text-pink-500/30 absolute top-0 left-0 w-full h-full -translate-x-0.5 translate-y-0.5 select-none blur-[1px]">
                     RSUX
                 </h1>
-                <h1
-                    class="text-6xl font-black font-display tracking-tighter text-cyan-500/30 absolute top-0 left-0 w-full h-full translate-x-0.5 -translate-y-0.5 select-none blur-[1px]">
+                <h1 class="text-6xl font-black font-display tracking-tighter text-cyan-500/30 absolute top-0 left-0 w-full h-full translate-x-0.5 -translate-y-0.5 select-none blur-[1px]">
                     RSUX
                 </h1>
             </div>
 
             @if (ViewBag.Error != null)
             {
-                <div class="mb-4 p-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
-                    role="alert">
+                <div class="mb-4 p-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
                     <span class="font-medium">Error!</span> @ViewBag.Error
                 </div>
             }
 
-            <form class="space-y-5" asp-action="Index" method="post">
+            <form class="space-y-6" asp-action="Index" method="post">
                 @Html.AntiForgeryToken()
+
                 <div class="relative group">
-                    <div
-                        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-600 text-slate-400">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-600 text-slate-400 z-10">
                         <span class="material-symbols-outlined text-[20px]">person</span>
                     </div>
                     <input name="username"
-                        class="block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-sans text-sm"
-                        placeholder="Username" type="text" required autofocus />
+                           id="username"
+                           class="peer block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-transparent focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-sans text-sm"
+                           placeholder=" "
+                           type="text"
+                           required
+                           autofocus />
+                    <label for="username"
+                           class="absolute left-11 -top-2.5 text-xs text-blue-500 bg-white px-1 transition-all duration-200
+                                  peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-placeholder-shown:bg-transparent
+                                  peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-blue-500 peer-focus:bg-white peer-focus:px-1">
+                        Username
+                    </label>
                 </div>
+
                 <div class="relative group">
-                    <div
-                        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-600 text-slate-400">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-600 text-slate-400 z-10">
                         <span class="material-symbols-outlined text-[20px]">lock</span>
                     </div>
                     <input name="password"
-                        class="block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-sans text-sm"
-                        placeholder="Password" type="password" required />
+                           id="password"
+                           class="peer block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-transparent focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-sans text-sm"
+                           placeholder=" "
+                           type="password"
+                           required />
+                    <label for="password"
+                           class="absolute left-11 -top-2.5 text-xs text-blue-500 bg-white px-1 transition-all duration-200
+                                  peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3.5 peer-placeholder-shown:bg-transparent
+                                  peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-blue-500 peer-focus:bg-white peer-focus:px-1">
+                        Password
+                    </label>
                 </div>
-                <button
-                    class="w-full mt-2 bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-600/40 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 group"
-                    type="submit">
+
+                <button class="w-full mt-2 bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-600/40 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 group" type="submit">
                     <span>Sign In</span>
-                    <span
-                        class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+                    <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
                 </button>
             </form>
-            <div class="flex items-center justify-between mt-8 text-sm font-medium">
-                <a class="text-slate-400 hover:text-blue-600 transition-colors" href="#">Forgot Password?</a>
-                <a class="text-slate-400 hover:text-blue-600 transition-colors" href="#">Request Access</a>
-            </div>
+
         </div>
         <div class="h-1.5 w-full bg-gradient-to-r from-pink-500 via-blue-500 to-cyan-400"></div>
     </div>
+
+    <div class="mt-8 relative z-10">
+        <a asp-controller="Home" asp-action="Hr"
+           class="group flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 border border-blue-500 rounded-full text-white transition-all duration-300 hover:scale-105 shadow-xl shadow-black/20">
+            <span class="material-symbols-outlined text-3xl group-hover:-translate-x-1 transition-transform duration-300">arrow_back</span>
+            <span class="text-xl font-bold tracking-wide">Back to HR Office</span>
+        </a>
+    </div>
+
     <div class="absolute bottom-6 w-full text-center">
         <p class="text-white/30 text-xs font-light tracking-wide">
             © 2024 Rangsit University. Digital Transformation Platform.
