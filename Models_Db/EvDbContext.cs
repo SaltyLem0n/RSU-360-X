@@ -65,6 +65,8 @@ public partial class EvDbContext : DbContext
 
     public virtual DbSet<ResearchGrant23> ResearchGrant23s { get; set; }
 
+    public virtual DbSet<Section3Summary> Section3Summaries { get; set; }
+
     public virtual DbSet<SupportTask7> SupportTask7s { get; set; }
 
     public virtual DbSet<TeachingDocument21> TeachingDocument21s { get; set; }
@@ -1062,6 +1064,9 @@ public partial class EvDbContext : DbContext
             entity.Property(e => e.DocumentNo)
                 .HasMaxLength(45)
                 .HasColumnName("document_no");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+
             entity.Property(e => e.PersonnelEmpId)
                 .HasMaxLength(7)
                 .HasColumnName("personnel_emp_id");
@@ -1449,6 +1454,28 @@ public partial class EvDbContext : DbContext
                 .HasForeignKey(d => d.TrId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_visa_transaction_status_visa_transaction");
+        });
+
+        modelBuilder.Entity<Section3Summary>(entity =>
+        {
+            entity.ToTable("section3_summary", "ev");
+
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AcadYear).HasColumnName("acad_year");
+            entity.Property(e => e.PersonnelEmpId)
+                .HasMaxLength(7)
+                .HasColumnName("personnel_emp_id");
+            entity.Property(e => e.SummaryComments)
+                .HasColumnType("nvarchar(max)")
+                .HasColumnName("summary_comments");
+
+            entity.HasOne(d => d.PersonnelEmp)
+                .WithMany() // No navigation property back for now unless needed
+                .HasForeignKey(d => d.PersonnelEmpId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_section3_summary_personnel");
         });
 
         OnModelCreatingPartial(modelBuilder);

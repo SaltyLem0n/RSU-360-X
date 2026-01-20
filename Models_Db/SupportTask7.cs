@@ -5,6 +5,8 @@ namespace RSU_360_X.Models_Db;
 
 public partial class SupportTask7
 {
+    public int Id { get; set; }
+
     public string DocumentNo { get; set; } = null!;
 
     public string DocumentName { get; set; } = null!;
