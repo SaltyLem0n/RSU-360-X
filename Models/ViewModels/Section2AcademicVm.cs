@@ -55,22 +55,28 @@ namespace RSU_360_X.Models.ViewModels
     public class ConferenceItem
     {
         public int Id { get; set; }
-        public string? Title { get; set; }
-        public string? Role { get; set; }
-        public string? Place { get; set; }
+        public string? MeetingName { get; set; }
+        public string? ArticleTitle { get; set; }
+        public string? Authors { get; set; }
         public string? DayMonthYear { get; set; }
+        public int PublishYear { get; set; }
+        public string? Country { get; set; }
         public string? Status { get; set; }
     }
+
 
     public class JournalItem
     {
         public int Id { get; set; }
-        public string? JournalName { get; set; }
         public string? ArticleTitle { get; set; }
-        public string? Level { get; set; }
-        public string? DayMonthYear { get; set; }
+        public string? Author { get; set; }
+        public string? Publisher { get; set; }
+        public int YearPublication { get; set; }
+        public int MonthPublication { get; set; }
+        public string? Doi { get; set; }
         public string? Status { get; set; }
     }
+
     public class PatentItem
     {
         public int Id { get; set; }

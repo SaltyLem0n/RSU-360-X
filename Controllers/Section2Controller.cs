@@ -83,10 +83,40 @@ namespace RSU_360_X.Controllers
                 .ToListAsync();
 
 
-            vm.Conferences = new List<ConferenceItem>();
+            vm.Conferences = await _db.AcademicArticle24s
+                .AsNoTracking()
+                .Where(x => x.PersonnelEmpId == empId && x.AcadYear == acadYear && x.Status == "A")
+                .OrderByDescending(x => x.Id)
+                .Select(x => new ConferenceItem
+                {
+                    Id = x.Id,
+                    MeetingName = x.MeetingName,
+                    ArticleTitle = x.ArticleTitle,
+                    Authors = x.Authors,
+                    DayMonthYear = x.DayMonthYear.ToString("yyyy-MM-dd"),
+                    PublishYear = x.PublishYear,
+                    Country = x.Country,
+                    Status = x.Status
+                })
+                .ToListAsync();
 
+            vm.Journals = await _db.AcademicArticle25s
+                .AsNoTracking()
+                .Where(x => x.PersonnelEmpId == empId && x.AcadYear == acadYear && x.Status == "A")
+                .OrderByDescending(x => x.Id)
+                .Select(x => new JournalItem
+                {
+                    Id = x.Id,
+                    ArticleTitle = x.ArticleTitle,
+                    Author = x.Author,
+                    Publisher = x.Publisher,
+                    YearPublication = x.YearPublication,
+                    MonthPublication = x.MonthPublication,
+                    Doi = x.Doi,
+                    Status = x.Status
+                })
+                .ToListAsync();
 
-            vm.Journals = new List<JournalItem>();
 
             vm.Patents = await _db.Patent26s
                 .AsNoTracking()

@@ -320,10 +320,12 @@
                             <table class="w-full text-left min-w-[900px]">
                                 <thead>
                                     <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
-                                        <th class="px-6 py-4 font-semibold">Title</th>
-                                        <th class="px-6 py-4 font-semibold">Role</th>
-                                        <th class="px-6 py-4 font-semibold">Place</th>
+                                        <th class="px-6 py-4 font-semibold">Meeting</th>
+                                        <th class="px-6 py-4 font-semibold">Article Title</th>
+                                        <th class="px-6 py-4 font-semibold">Authors</th>
                                         <th class="px-6 py-4 font-semibold">Date</th>
+                                        <th class="px-6 py-4 font-semibold">Publish Year</th>
+                                        <th class="px-6 py-4 font-semibold">Country</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-white/5">
@@ -332,16 +334,18 @@
                                         foreach (var x in Model.Conferences)
                                         {
                                             <tr class="hover:bg-white/5 transition-colors">
-                                                <td class="px-6 py-4 font-medium">@x.Title</td>
-                                                <td class="px-6 py-4 text-slate-300">@x.Role</td>
-                                                <td class="px-6 py-4">@x.Place</td>
+                                                <td class="px-6 py-4 font-medium">@x.MeetingName</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.ArticleTitle</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.Authors</td>
                                                 <td class="px-6 py-4 font-mono text-sm">@x.DayMonthYear</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.PublishYear</td>
+                                                <td class="px-6 py-4">@x.Country</td>
                                             </tr>
                                         }
                                     }
                                     else
                                     {
-                                        <tr><td colspan="4" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                        <tr><td colspan="6" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
                                     }
                                 </tbody>
                             </table>
@@ -361,10 +365,11 @@
                             <table class="w-full text-left min-w-[950px]">
                                 <thead>
                                     <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
-                                        <th class="px-6 py-4 font-semibold">Journal Name</th>
                                         <th class="px-6 py-4 font-semibold">Article Title</th>
-                                        <th class="px-6 py-4 font-semibold">Level</th>
-                                        <th class="px-6 py-4 font-semibold">Date</th>
+                                        <th class="px-6 py-4 font-semibold">Author</th>
+                                        <th class="px-6 py-4 font-semibold">Publisher</th>
+                                        <th class="px-6 py-4 font-semibold">Year-Month</th>
+                                        <th class="px-6 py-4 font-semibold">DOI</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-white/5">
@@ -373,18 +378,20 @@
                                         foreach (var x in Model.Journals)
                                         {
                                             <tr class="hover:bg-white/5 transition-colors">
-                                                <td class="px-6 py-4 font-medium">@x.JournalName</td>
-                                                <td class="px-6 py-4 text-slate-300">@x.ArticleTitle</td>
-                                                <td class="px-6 py-4">@x.Level</td>
-                                                <td class="px-6 py-4 font-mono text-sm">@x.DayMonthYear</td>
+                                                <td class="px-6 py-4 font-medium">@x.ArticleTitle</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.Author</td>
+                                                <td class="px-6 py-4">@x.Publisher</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@($"{x.YearPublication:0000}-{x.MonthPublication:00}")</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.Doi</td>
                                             </tr>
                                         }
                                     }
                                     else
                                     {
-                                        <tr><td colspan="4" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                        <tr><td colspan="5" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
                                     }
                                 </tbody>
+
                             </table>
                         </div>
                     </section>
