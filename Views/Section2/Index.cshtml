@@ -1,4 +1,4 @@
-@model RSU_360_X.Models.ViewModels.Section2Vm
+@model RSU_360_X.Models.ViewModels.Section2AcademicVm
 @{
     Layout = null;
 }
@@ -8,14 +8,14 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>RSUX - Personal Information</title>
+    <title>RSUX - Section 2: Academic Resources</title>
+
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Prompt:wght@300;400;500;600&amp;display=swap"
-          rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-          rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -29,175 +29,456 @@
                         "surface-dark": "#1e293b",
                         "surface-light": "#ffffff",
                         "card-header": "#172554",
+                        "table-bg": "#1e293b",
                     },
                     fontFamily: {
                         display: ["Prompt", "sans-serif"],
                         sans: ["Inter", "sans-serif"],
                     },
+                    borderRadius: { DEFAULT: "0.75rem" },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%)',
+                        'btn-gradient': 'linear-gradient(90deg, #22d3ee 0%, #3b82f6 100%)',
+                        'nav-active-gradient': 'linear-gradient(90deg, #22d3ee 0%, #ec4899 100%)',
+                    }
                 },
             },
         };
     </script>
+
+    <style type="text/tailwindcss">
+        @@layer utilities {
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-sans">
-    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-white/10 shadow-sm">
-        <div class="flex items-center justify-between max-w-7xl mx-auto">
-            <div class="flex items-center gap-4">
-                <a href="/Employee" class="flex items-center gap-2 text-slate-500 hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined">arrow_back</span>
-                    <span>Back to Dashboard</span>
-                </a>
+<body class="bg-background-dark text-white font-sans min-h-screen flex flex-col overflow-hidden">
+
+    <!-- TOP NAV (same style as Section 3) -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-4 md:px-6 py-4 bg-[#0f172a]/95 backdrop-blur-md border-b border-white/10 shadow-lg">
+        <div class="flex items-center justify-between max-w-[1600px] mx-auto">
+            <div class="flex items-center gap-4 md:gap-8">
+                <label class="lg:hidden p-1 -ml-1 text-white/80 hover:text-primary transition-colors cursor-pointer rounded-lg hover:bg-white/5"
+                       for="mobile-menu-toggle">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </label>
+
+                <div class="flex items-center">
+                    <a href="/">
+                        <img alt="RSU Logo" class="h-8 md:h-10 w-auto object-contain" src="/assets/img/rsu_logo.png" />
+                    </a>
+                </div>
+
+                <div class="h-8 w-px bg-white/20 hidden md:block"></div>
+
+                <div class="hidden md:block">
+                    <h2 class="text-lg font-display font-semibold tracking-tight">Staff Evaluation System</h2>
+                </div>
             </div>
-            <div class="font-display font-semibold text-lg">Section 1: Personal Information</div>
-            <div class="w-24"></div> <!-- Spacer -->
+
+            <div class="flex items-center gap-4">
+                <div class="flex flex-col items-end mr-2 hidden sm:flex">
+                    <span class="text-sm font-display font-medium">@Model.EmpFname @Model.EmpLname</span>
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest">
+                        @(string.IsNullOrEmpty(Model.EmpFaculty) ? "Faculty Member" : Model.EmpFaculty)
+                    </span>
+                </div>
+
+                <div class="h-9 w-9 md:h-10 md:w-10 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-white/10">
+                    @(Model.EmpFname?.FirstOrDefault())@(Model.EmpLname?.FirstOrDefault())
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main class="pt-24 pb-12 px-6 lg:px-12 max-w-5xl mx-auto">
+    <div class="flex flex-1 pt-[73px] relative">
+        <input class="peer hidden" id="mobile-menu-toggle" type="checkbox" />
+        <label class="fixed inset-0 bg-background-dark/80 backdrop-blur-sm z-30 lg:hidden hidden peer-checked:block transition-opacity duration-300"
+               for="mobile-menu-toggle"></label>
 
-        @if (TempData["Success"] != null)
-        {
-            <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center gap-2">
-                <span class="material-symbols-outlined">check_circle</span>
-                @TempData["Success"]
+        <!-- LEFT SIDEBAR (same style as Section 3) -->
+        <aside class="fixed left-0 top-[73px] w-64 h-[calc(100vh-73px)] bg-[#0f172a] border-r border-white/10 z-40 overflow-y-auto transform -translate-x-full lg:translate-x-0 peer-checked:translate-x-0 transition-transform duration-300 ease-out shadow-2xl lg:shadow-none">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6 lg:hidden border-b border-white/5 pb-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Menu</span>
+                    <label class="text-slate-400 hover:text-white cursor-pointer transition-colors p-1 rounded-md hover:bg-white/5"
+                           for="mobile-menu-toggle">
+                        <span class="material-symbols-outlined">close</span>
+                    </label>
+                </div>
+
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6 hidden lg:block">
+                    Evaluation Sections
+                </p>
+
+                <nav class="space-y-2">
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
+                       href="/staff/evaluationform/section-1">
+                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">person_outline</span>
+                        <span class="text-sm font-medium">Section 1: General Info</span>
+                    </a>
+
+                    <!-- ACTIVE: Section 2 -->
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-nav-active-gradient text-white shadow-lg shadow-primary/20"
+                       href="/staff/evaluationform/section-2">
+                        <span class="material-symbols-outlined">school</span>
+                        <span class="text-sm font-bold">Section 2: Teaching</span>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
+                       href="/staff/evaluationform/section-3">
+                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">diversity_3</span>
+                        <span class="text-sm font-medium">Section 3: Services &amp; Duties</span>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
+                       href="/staff/evaluationform/section-4">
+                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">biotech</span>
+                        <span class="text-sm font-medium">Section 4: Research</span>
+                    </a>
+
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
+                       href="/staff/evaluationform/summary">
+                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">summarize</span>
+                        <span class="text-sm font-medium">Summary &amp; Submit</span>
+                    </a>
+                </nav>
+
+                <div class="mt-12 p-4 rounded-2xl bg-white/5 border border-white/10">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs text-slate-400">Section 2 Progress</span>
+                        <span class="text-xs font-bold text-primary">--%</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                        <div class="w-1/3 h-full bg-gradient-to-r from-primary to-secondary"></div>
+                    </div>
+                </div>
             </div>
-        }
+        </aside>
 
-        <div class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-white/10 overflow-hidden">
-            <div class="p-6 md:p-8">
-                <h2 class="text-xl font-display font-semibold mb-6 pb-4 border-b border-slate-200 dark:border-white/10">
-                    Personal Profile
-                </h2>
+        <!-- MAIN -->
+        <main class="flex-1 h-[calc(100vh-73px)] overflow-y-auto scrollbar-hide bg-background-dark ml-0 lg:ml-64 transition-[margin] duration-300">
+            <div class="max-w-6xl mx-auto p-4 md:p-8 lg:p-12">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <!-- Read Only Fields -->
+                <!-- Page Header -->
+                <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">
-                            Full
-                            Name
-                        </label>
-                        <div class="text-lg font-medium">@Model.EmpFname @Model.EmpLname</div>
+                        <h1 class="text-2xl md:text-3xl font-display font-bold text-white mb-2">Section 2: Academic Resources</h1>
+                        <p class="text-sm md:text-base text-slate-400">
+                            Teaching materials, books, research grants, conferences, journals, patents, and creative works.
+                        </p>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">
-                            Employee
-                            ID
-                        </label>
-                        <div class="text-lg font-medium font-mono">@Model.EmpId</div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Department</label>
-                        <div class="text-base text-slate-700 dark:text-slate-300">@Model.EmpDepartment</div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Faculty</label>
-                        <div class="text-base text-slate-700 dark:text-slate-300">@Model.EmpFaculty</div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">
-                            Academic
-                            Rank
-                        </label>
-                        <div class="text-base text-slate-700 dark:text-slate-300">@Model.EmpAcademicPos</div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">
-                            Highest
-                            Degree
-                        </label>
-                        <div class="text-base text-slate-700 dark:text-slate-300">@Model.EmpHEducation</div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Age</label>
-                        <div class="text-base text-slate-700 dark:text-slate-300">@Model.EmpAge Years</div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">
-                            Start
-                            Date
-                        </label>
-                        <div class="text-base text-slate-700 dark:text-slate-300">
-                            @Model.EmpStartDate.ToString("dd/MM/yyyy")
-                        </div>
+                    <div class="text-xs text-slate-500 font-mono bg-white/5 px-4 py-2 rounded-lg border border-white/5 w-fit">
+                        ACAD YEAR: @Model.AcadYear • UPDATED: @DateTime.Now.ToString("dd MMM")
                     </div>
                 </div>
 
-                <h2 class="text-xl font-display font-semibold mb-6 pb-4 border-b border-slate-200 dark:border-white/10 mt-10">
-                    Work Focus Configuration
-                </h2>
+                <div class="space-y-8 pb-12">
 
-                <form method="post" class="space-y-6">
-                    @Html.AntiForgeryToken()
-
-                    <!-- Hidden fields to preserve VM state if needed, but mostly read-only on display -->
-
-                    <div class="space-y-4">
-                        <label class="flex items-start gap-3 p-4 rounded-xl border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 cursor-pointer transition-colors">
-                            <input type="checkbox" asp-for="IsTeachingFocused"
-                                   class="mt-1 rounded border-slate-300 text-primary focus:ring-primary w-5 h-5" />
-                            <div>
-                                <span class="block font-medium">Teaching Focused</span>
-                                <span class="text-sm text-slate-500 dark:text-slate-400">
-                                    Primary responsibility is
-                                    instruction and student mentorship.
-                                </span>
-                            </div>
-                        </label>
-
-                        <label class="flex items-start gap-3 p-4 rounded-xl border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 cursor-pointer transition-colors">
-                            <input type="checkbox" asp-for="IsAdministrationFocused"
-                                   class="mt-1 rounded border-slate-300 text-primary focus:ring-primary w-5 h-5" />
-                            <div>
-                                <span class="block font-medium">Administration Focused</span>
-                                <span class="text-sm text-slate-500 dark:text-slate-400">
-                                    Primary responsibility is
-                                    departmental or university management.
-                                </span>
-                            </div>
-                        </label>
-
-                        <div class="border border-slate-200 dark:border-white/10 rounded-xl p-4 space-y-4 bg-slate-50/50 dark:bg-white/5">
-                            <label class="flex items-start gap-3 cursor-pointer">
-                                <input type="checkbox" asp-for="IsResearchFocused"
-                                       class="mt-1 rounded border-slate-300 text-primary focus:ring-primary w-5 h-5" />
-                                <div>
-                                    <span class="block font-medium">Research Focused</span>
-                                    <span class="text-sm text-slate-500 dark:text-slate-400">
-                                        Primary responsibility is
-                                        academic research and publication.
-                                    </span>
-                                </div>
-                            </label>
-
-                            <!-- Conditional Input visible via logic or always visible but relevant only if Checked -->
-                            <div class="ml-8">
-                                <label class="block text-sm font-medium mb-1">
-                                    Approved Academic Year for Research
-                                    Track
-                                </label>
-                                <input asp-for="ResearchApprovedYearAcademic"
-                                       class="block w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-black/20 text-sm py-2 px-3 focus:ring-2 focus:ring-primary focus:border-transparent"
-                                       placeholder="e.g. 2567" />
-                                <span class="text-xs text-slate-400 mt-1">
-                                    Leave empty if not applicable or not yet
-                                    approved.
-                                </span>
+                    <!-- 1) Teaching Materials (Approved only - filtered in Controller) -->
+                    <section class="bg-surface-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="bg-card-header px-6 py-4 flex items-center justify-between border-b border-white/10">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">menu_book</span>
+                                <h2 class="text-lg font-semibold tracking-wide">1) Teaching Materials</h2>
                             </div>
                         </div>
-                    </div>
+                        <div class="p-0 overflow-x-auto">
+                            <table class="w-full text-left min-w-[900px]">
+                                <thead>
+                                    <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
+                                        <th class="px-6 py-4 font-semibold">Subject</th>
+                                        <th class="px-6 py-4 font-semibold">Material</th>
+                                        <th class="px-6 py-4 font-semibold">Type</th>
+                                        <th class="px-6 py-4 font-semibold">Co-Producer</th>
+                                        <th class="px-6 py-4 font-semibold">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    @if (Model.TeachingMaterials.Any())
+                                    {
+                                        foreach (var x in Model.TeachingMaterials)
+                                        {
+                                            <tr class="hover:bg-white/5 transition-colors">
+                                                <td class="px-6 py-4 font-medium">@x.Subject</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.TeachingMaterial</td>
+                                                <td class="px-6 py-4">@x.Type</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.CoProducer</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.DayMonthYear</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="5" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
 
-                    <div class="pt-6 flex justify-end">
-                        <button type="submit"
-                                class="bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 text-white font-semibold py-2.5 px-6 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-600/40 active:scale-[0.98] transition-all">
-                            Save Changes
-                        </button>
-                    </div>
-                </form>
+                    <!-- 2) Books -->
+                    <section class="bg-surface-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="bg-card-header px-6 py-4 flex items-center justify-between border-b border-white/10">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">auto_stories</span>
+                                <h2 class="text-lg font-semibold tracking-wide">2) Books</h2>
+                            </div>
+                        </div>
+                        <div class="p-0 overflow-x-auto">
+                            <table class="w-full text-left min-w-[900px]">
+                                <thead>
+                                    <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
+                                        <th class="px-6 py-4 font-semibold">Name of Work</th>
+                                        <th class="px-6 py-4 font-semibold">Teaching Book</th>
+                                        <th class="px-6 py-4 font-semibold">Type</th>
+                                        <th class="px-6 py-4 font-semibold">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    @if (Model.Books.Any())
+                                    {
+                                        foreach (var x in Model.Books)
+                                        {
+                                            <tr class="hover:bg-white/5 transition-colors">
+                                                <td class="px-6 py-4 font-medium">@x.NameOfWork</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.TeachingBook</td>
+                                                <td class="px-6 py-4">@x.Type</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.DayMonthYear</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="4" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
 
+                    <!-- 3) Research Grant -->
+                    <section class="bg-surface-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="bg-card-header px-6 py-4 flex items-center justify-between border-b border-white/10">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">analytics</span>
+                                <h2 class="text-lg font-semibold tracking-wide">3) Research Grant</h2>
+                            </div>
+                        </div>
+                        <div class="p-0 overflow-x-auto">
+                            <table class="w-full text-left min-w-[1100px]">
+                                <thead>
+                                    <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
+                                        <th class="px-6 py-4 font-semibold">Topic</th>
+                                        <th class="px-6 py-4 font-semibold">Position</th>
+                                        <th class="px-6 py-4 font-semibold">Sponsor</th>
+                                        <th class="px-6 py-4 font-semibold">Years</th>
+                                        <th class="px-6 py-4 font-semibold">Contact Period</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    @if (Model.ResearchGrants.Any())
+                                    {
+                                        foreach (var x in Model.ResearchGrants)
+                                        {
+                                            <tr class="hover:bg-white/5 transition-colors">
+                                                <td class="px-6 py-4 font-medium">@x.ResearchTopic</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.Position</td>
+                                                <td class="px-6 py-4">@x.Sponsor</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.NumberOfYear</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.ContactPeriod</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="5" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- 4) Conference -->
+                    <section class="bg-surface-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="bg-card-header px-6 py-4 flex items-center justify-between border-b border-white/10">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">groups</span>
+                                <h2 class="text-lg font-semibold tracking-wide">4) Conference</h2>
+                            </div>
+                        </div>
+
+                        <div class="p-0 overflow-x-auto">
+                            <table class="w-full text-left min-w-[900px]">
+                                <thead>
+                                    <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
+                                        <th class="px-6 py-4 font-semibold">Title</th>
+                                        <th class="px-6 py-4 font-semibold">Role</th>
+                                        <th class="px-6 py-4 font-semibold">Place</th>
+                                        <th class="px-6 py-4 font-semibold">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    @if (Model.Conferences.Any())
+                                    {
+                                        foreach (var x in Model.Conferences)
+                                        {
+                                            <tr class="hover:bg-white/5 transition-colors">
+                                                <td class="px-6 py-4 font-medium">@x.Title</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.Role</td>
+                                                <td class="px-6 py-4">@x.Place</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.DayMonthYear</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="4" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- 5) Journal -->
+                    <section class="bg-surface-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="bg-card-header px-6 py-4 flex items-center justify-between border-b border-white/10">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">newspaper</span>
+                                <h2 class="text-lg font-semibold tracking-wide">5) Journal</h2>
+                            </div>
+                        </div>
+
+                        <div class="p-0 overflow-x-auto">
+                            <table class="w-full text-left min-w-[950px]">
+                                <thead>
+                                    <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
+                                        <th class="px-6 py-4 font-semibold">Journal Name</th>
+                                        <th class="px-6 py-4 font-semibold">Article Title</th>
+                                        <th class="px-6 py-4 font-semibold">Level</th>
+                                        <th class="px-6 py-4 font-semibold">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    @if (Model.Journals.Any())
+                                    {
+                                        foreach (var x in Model.Journals)
+                                        {
+                                            <tr class="hover:bg-white/5 transition-colors">
+                                                <td class="px-6 py-4 font-medium">@x.JournalName</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.ArticleTitle</td>
+                                                <td class="px-6 py-4">@x.Level</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.DayMonthYear</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="4" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- 6) Patents -->
+                    <section class="bg-surface-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="bg-card-header px-6 py-4 flex items-center justify-between border-b border-white/10">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">verified</span>
+                                <h2 class="text-lg font-semibold tracking-wide">6) Patents</h2>
+                            </div>
+                        </div>
+                        <div class="p-0 overflow-x-auto">
+                            <table class="w-full text-left min-w-[900px]">
+                                <thead>
+                                    <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
+                                        <th class="px-6 py-4 font-semibold">Name of Work</th>
+                                        <th class="px-6 py-4 font-semibold">Copyright No.</th>
+                                        <th class="px-6 py-4 font-semibold">Type</th>
+                                        <th class="px-6 py-4 font-semibold">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    @if (Model.Patents.Any())
+                                    {
+                                        foreach (var x in Model.Patents)
+                                        {
+                                            <tr class="hover:bg-white/5 transition-colors">
+                                                <td class="px-6 py-4 font-medium">@x.NameOfWork</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.CopyrightNumber</td>
+                                                <td class="px-6 py-4">@x.Type</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.DayMonthYear</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="4" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- 7) Creation -->
+                    <section class="bg-surface-dark/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="bg-card-header px-6 py-4 flex items-center justify-between border-b border-white/10">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">palette</span>
+                                <h2 class="text-lg font-semibold tracking-wide">7) Creation</h2>
+                            </div>
+                        </div>
+                        <div class="p-0 overflow-x-auto">
+                            <table class="w-full text-left min-w-[1000px]">
+                                <thead>
+                                    <tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-400 border-b border-white/10">
+                                        <th class="px-6 py-4 font-semibold">Quality Level</th>
+                                        <th class="px-6 py-4 font-semibold">Type</th>
+                                        <th class="px-6 py-4 font-semibold">Description</th>
+                                        <th class="px-6 py-4 font-semibold">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    @if (Model.Creations.Any())
+                                    {
+                                        foreach (var x in Model.Creations)
+                                        {
+                                            <tr class="hover:bg-white/5 transition-colors">
+                                                <td class="px-6 py-4 font-medium">@x.QualityLevel</td>
+                                                <td class="px-6 py-4 text-slate-300">@x.Type</td>
+                                                <td class="px-6 py-4">@x.Description</td>
+                                                <td class="px-6 py-4 font-mono text-sm">@x.DayMonthYear</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="4" class="px-6 py-6 text-center text-slate-500">No data available</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
             </div>
-        </div>
-    </main>
-</body>
 
+            <footer class="py-12 px-8 border-t border-white/10 bg-[#0f172a] text-center mt-auto">
+                <div class="flex flex-col items-center gap-4">
+                    <img alt="RSU Logo Small" class="h-6 w-auto opacity-50 grayscale" src="/assets/img/rsu_logo.png" />
+                    <p class="text-slate-500 text-sm">© 2024 Rangsit University. All academic rights reserved.</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+</body>
 </html>

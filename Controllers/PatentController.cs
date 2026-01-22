@@ -2,14 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using RSU_360_X.Models_Db;
 using RSU_360_X.ViewModels;
+using System.Globalization;
 
 namespace RSU_360_X.Controllers
 {
-    public class ResearchGrantController : Controller
+    public class PatentController : Controller
     {
         private readonly EvDbContext _db;
 
-        public ResearchGrantController(EvDbContext db)
+        public PatentController(EvDbContext db)
         {
             _db = db;
         }
@@ -20,29 +21,28 @@ namespace RSU_360_X.Controllers
             if (HttpContext.Session.GetString("UserId") == null)
                 return RedirectToAction("Index", "Login");
 
-            return View(); // Views/ResearchGrant/Index.cshtml
+            return View(); // Views/Patent/Index.cshtml
         }
 
-        // ✅ List stored records for current EmpId
+        // ✅ List (for Stored Submissions table)
         [HttpGet]
-        [Route("staff/research-grant/list", Name = "Staff_ResearchGrant_List")]
+        [Route("staff/patent/list", Name = "Staff_Patent_List")]
         public async Task<IActionResult> List()
         {
             var empId = HttpContext.Session.GetString("EmpId");
             if (string.IsNullOrWhiteSpace(empId))
                 return Unauthorized("EmpId missing in session.");
 
-            var items = await _db.ResearchGrant23s
+            var items = await _db.Patent26s
                 .AsNoTracking()
                 .Where(x => x.PersonnelEmpId == empId)
                 .OrderByDescending(x => x.Id)
                 .Select(x => new
                 {
-                    research_topic = x.ResearchTopic,
-                    position = x.Position,
-                    sponsor = x.Sponsor,
-                    number_of_year = x.NumberOfYear,
-                    contact_period = x.ContactPeriod,
+                    name_of_work = x.NameOfWork,
+                    copyright_number = x.CopyrightNumber,
+                    type = x.Type,
+                    day_month_year = x.DayMonthYear.ToString("yyyy-MM-dd"),
                     status = x.Status
                 })
                 .ToListAsync();
@@ -50,10 +50,10 @@ namespace RSU_360_X.Controllers
             return Json(items);
         }
 
-        // ✅ Submit (ONLY ONE)
+        // ✅ Submit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Submit([FromForm] ResearchGrantVm vm)
+        public async Task<IActionResult> Submit([FromForm] PatentVm vm)
         {
             if (HttpContext.Session.GetString("UserId") == null)
                 return Unauthorized("Not logged in.");
@@ -65,7 +65,12 @@ namespace RSU_360_X.Controllers
             if (string.IsNullOrWhiteSpace(empId))
                 return Unauthorized("EmpId missing in session.");
 
-            // FK check
+            // ✅ Parse exact yyyy-MM-dd (prevents Buddhist calendar -> 1483)
+            if (!DateOnly.TryParseExact(vm.DayMonthYear, "yyyy-MM-dd",
+                    CultureInfo.InvariantCulture, DateTimeStyles.None, out var day))
+                return BadRequest($"Invalid date: {vm.DayMonthYear}");
+
+            // ✅ Ensure FK exists
             var empExists = await _db.Personnel.AsNoTracking().AnyAsync(p => p.EmpId == empId);
             if (!empExists)
                 return BadRequest($"EmpId '{empId}' not found in hr.personnel.");
@@ -78,13 +83,12 @@ namespace RSU_360_X.Controllers
 
             try
             {
-                var entity = new ResearchGrant23
+                var entity = new Patent26
                 {
-                    ResearchTopic = Cut(vm.ResearchTopic, 45),
-                    Position = Cut(vm.Position, 45),
-                    Sponsor = Cut(vm.Sponsor, 45),
-                    NumberOfYear = Cut(vm.NumberOfYear, 45),
-                    ContactPeriod = Cut(vm.ContactPeriod, 45),
+                    NameOfWork = Cut(vm.NameOfWork, 45),
+                    CopyrightNumber = Cut(vm.CopyrightNumber, 45),
+                    Type = Cut(vm.Type, 45),
+                    DayMonthYear = day,
 
                     AcadYear = DateTime.Now.Year,
                     Reason = "-",
@@ -93,7 +97,7 @@ namespace RSU_360_X.Controllers
                     PersonnelEmpId = empId
                 };
 
-                _db.ResearchGrant23s.Add(entity);
+                _db.Patent26s.Add(entity);
                 await _db.SaveChangesAsync();
 
                 return Ok("Saved");
@@ -105,7 +109,7 @@ namespace RSU_360_X.Controllers
             }
         }
 
-        // optional debug
+        // Optional debug
         [HttpGet]
         public IActionResult TestSession()
         {

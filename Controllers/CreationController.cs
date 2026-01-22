@@ -5,11 +5,11 @@ using RSU_360_X.ViewModels;
 
 namespace RSU_360_X.Controllers
 {
-    public class ResearchGrantController : Controller
+    public class CreationController : Controller
     {
         private readonly EvDbContext _db;
 
-        public ResearchGrantController(EvDbContext db)
+        public CreationController(EvDbContext db)
         {
             _db = db;
         }
@@ -20,29 +20,28 @@ namespace RSU_360_X.Controllers
             if (HttpContext.Session.GetString("UserId") == null)
                 return RedirectToAction("Index", "Login");
 
-            return View(); // Views/ResearchGrant/Index.cshtml
+            return View(); // Views/Creation/Index.cshtml
         }
 
-        // ✅ List stored records for current EmpId
+        // ✅ Used by JS: @Url.RouteUrl("Staff_Academic_Creation_List")
         [HttpGet]
-        [Route("staff/research-grant/list", Name = "Staff_ResearchGrant_List")]
+        [Route("staff/creation/list", Name = "Staff_Academic_Creation_List")]
         public async Task<IActionResult> List()
         {
             var empId = HttpContext.Session.GetString("EmpId");
             if (string.IsNullOrWhiteSpace(empId))
                 return Unauthorized("EmpId missing in session.");
 
-            var items = await _db.ResearchGrant23s
+            var items = await _db.CreativeWork27s
                 .AsNoTracking()
                 .Where(x => x.PersonnelEmpId == empId)
                 .OrderByDescending(x => x.Id)
                 .Select(x => new
                 {
-                    research_topic = x.ResearchTopic,
-                    position = x.Position,
-                    sponsor = x.Sponsor,
-                    number_of_year = x.NumberOfYear,
-                    contact_period = x.ContactPeriod,
+                    qualityLevel = x.QualityLevel,
+                    type = x.Type,
+                    day_month_year = x.DayMonthYear.ToString("yyyy-MM-dd"),
+                    description = x.Description,
                     status = x.Status
                 })
                 .ToListAsync();
@@ -50,10 +49,9 @@ namespace RSU_360_X.Controllers
             return Json(items);
         }
 
-        // ✅ Submit (ONLY ONE)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Submit([FromForm] ResearchGrantVm vm)
+        public async Task<IActionResult> SubmitCreation([FromForm] CreativeWorkVm vm)
         {
             if (HttpContext.Session.GetString("UserId") == null)
                 return Unauthorized("Not logged in.");
@@ -66,7 +64,10 @@ namespace RSU_360_X.Controllers
                 return Unauthorized("EmpId missing in session.");
 
             // FK check
-            var empExists = await _db.Personnel.AsNoTracking().AnyAsync(p => p.EmpId == empId);
+            var empExists = await _db.Personnel
+                .AsNoTracking()
+                .AnyAsync(p => p.EmpId == empId);
+
             if (!empExists)
                 return BadRequest($"EmpId '{empId}' not found in hr.personnel.");
 
@@ -78,22 +79,21 @@ namespace RSU_360_X.Controllers
 
             try
             {
-                var entity = new ResearchGrant23
+                var entity = new CreativeWork27
                 {
-                    ResearchTopic = Cut(vm.ResearchTopic, 45),
-                    Position = Cut(vm.Position, 45),
-                    Sponsor = Cut(vm.Sponsor, 45),
-                    NumberOfYear = Cut(vm.NumberOfYear, 45),
-                    ContactPeriod = Cut(vm.ContactPeriod, 45),
+                    QualityLevel = Cut(vm.QualityLevel, 45),
+                    Type = Cut(vm.Type, 45),
+                    DayMonthYear = vm.DayMonthYear,
+                    Description = Cut(vm.Description, 45),
 
                     AcadYear = DateTime.Now.Year,
                     Reason = "-",
-                    Status = "W",
+                    Status = "W",          // Pending by default
                     ApprovedEmpId = "-",
                     PersonnelEmpId = empId
                 };
 
-                _db.ResearchGrant23s.Add(entity);
+                _db.CreativeWork27s.Add(entity);
                 await _db.SaveChangesAsync();
 
                 return Ok("Saved");

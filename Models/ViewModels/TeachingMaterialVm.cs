@@ -12,7 +12,7 @@ namespace RSU_360_X.ViewModels
         public string TeachingMaterial { get; set; } = string.Empty;
 
         [Required]
-        public DateOnly DayMonthYear { get; set; }
+        public DateTime DayMonthYear { get; set; }
 
         [Required, MaxLength(45)]
         public string Type { get; set; } = string.Empty;
