@@ -11,6 +11,9 @@ builder.Services.AddDbContext<RSU_360_X.Models_Db.EvDbContext>();
 builder.Services.AddScoped<RSU_360_X.Services.JsonStorage>();
 builder.Services.AddScoped<RSU_360_X.Services.IHybridAuthService, RSU_360_X.Services.HybridAuthService>();
 builder.Services.AddHostedService<RSU_360_X.Services.SecurityMigrationService>();
+builder.Services.AddScoped<RSU_360_X.Services.IVisaRepository, RSU_360_X.Services.VisaRepository>();
+builder.Services.AddScoped<RSU_360_X.Services.IContactRepository, RSU_360_X.Services.ContactRepository>();
+builder.Services.AddScoped<RSU_360_X.Services.IStudentProfileRepository, RSU_360_X.Services.StudentProfileRepository>();
 
 // 2. Configure Session
 builder.Services.AddSession(options =>

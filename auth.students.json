@@ -16,8 +16,8 @@
   {
     "Id": "6704920",
     "Password": null,
-    "PasswordHash": "h\u002B2X7Nq1C5s/FpZoYFAJrk8KFsDJ27sTu8PF1bsS69E=",
-    "PasswordSalt": "NnZr8tUvzQlGbN0NN7\u002BuiQ==",
+    "PasswordHash": "B/uLpB/sG65pyzmo5kb0Nmx9GskTGVeSRQYraOJfZc0=",
+    "PasswordSalt": "35i4dcMiTn6swdw7INVOUQ==",
     "PasswordIterations": 50000,
     "PasswordAlgo": "pbkdf2-sha256",
     "DisplayName": "Liang Wei",
