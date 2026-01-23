@@ -101,5 +101,5 @@ public partial class Personnel
 
 
 
-    public virtual ICollection<VisaTransactionStatus> VisaTransactionStatuses { get; set; } = new List<VisaTransactionStatus>();
+
 }
