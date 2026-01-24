@@ -1,0 +1,348 @@
+﻿/* =========================================
+   1. Variables & Global Reset
+   ========================================= */
+:root {
+    --primary-teal: #008080;
+    --primary-blue: #0a3cff;
+    --deep-blue: #2B3380;
+    --accent-pink: #CC3772;
+    --light-bg: #f5f7fa;
+    --text-dark: #333;
+    --white: #ffffff;
+    --font-main: 'IBM Plex Sans Thai', Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--light-bg);
+    color: var(--text-dark);
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+/* =========================================
+   2. Typography Utilities
+   ========================================= */
+.ibm {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-weight: 500;
+}
+
+.text-rsu-blue {
+    color: var(--deep-blue);
+}
+
+/* =========================================
+   3. Navigation Bar
+   ========================================= */
+.navbar {
+    background-color: var(--primary-teal);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .navbar img {
+        margin-right: 15px;
+        transition: transform 0.3s ease;
+    }
+
+        .navbar img:hover {
+            transform: scale(1.05);
+        }
+
+    .navbar h1 {
+        font-size: 24px;
+        color: var(--white);
+        margin: 0;
+        line-height: 1;
+    }
+
+/* =========================================
+   4. Hero Section
+   ========================================= */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--primary-teal);
+    padding: 140px 10% 80px; /* Top padding clears fixed navbar */
+    min-height: 80vh; /* Ensures it takes up mostly full screen */
+    gap: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+    /* Decorative Circle (Optional subtle detail) */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+.hero-text {
+    max-width: 600px;
+    color: var(--white);
+    z-index: 1;
+}
+
+    .hero-text h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .hero-text p {
+        font-size: 1.25rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .hero-text .btn {
+        padding: 12px 30px;
+        font-size: 18px;
+        border-radius: 50px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        background-color: var(--primary-blue) !important; /* Bootstrap override */
+    }
+
+        .hero-text .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+/* Floating Image Animation */
+.hero-image {
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+    .hero-image img {
+        width: 100%;
+        max-width: 450px;
+        animation: float 4s ease-in-out infinite;
+    }
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* =========================================
+   5. Services / Units Section
+   ========================================= */
+.services {
+    padding: 80px 8%;
+    text-align: center;
+    background: var(--white);
+}
+
+.image-container {
+    gap: 30px; /* Space between cards */
+}
+
+.image-box {
+    width: 300px;
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+
+    .image-box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-box h3 {
+        font-size: 1.2rem;
+        margin: 15px 0;
+        color: var(--text-dark);
+    }
+
+/* Image Overlay Effect */
+.container-img {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+    .container-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+/* Zoom effect on hover */
+.image-box:hover .container-img img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    bottom: -100%; /* Start strictly hidden */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 128, 128, 0.9); /* Teal with transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: bottom 0.4s ease-in-out;
+}
+
+.container-img:hover .overlay {
+    bottom: 0;
+}
+
+.text {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+}
+
+/* =========================================
+   6. Footer
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: var(--accent-pink);
+    color: var(--white);
+    font-weight: 500;
+    margin-top: auto; /* Pushes footer to bottom if content is short */
+}
+
+/* =========================================
+   7. Responsive Adjustments
+   ========================================= */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 120px 5% 60px;
+        gap: 40px;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-image img {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 0 15px;
+    }
+
+        .navbar h1 {
+            font-size: 1.2rem;
+        }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .image-box {
+        width: 100%; /* Full width cards on mobile */
+    }
+}
+
+.hero-logo {
+    width: 250px;
+    height: auto; /* Keeps the aspect ratio correct */
+}
+
+/* Optional: Make it smaller again on mobile phones */
+@media (max-width: 768px) {
+    .hero-logo {
+        width: 180px;
+    }
+}
+
+/* =========================================
+   8. Side Menu (HR Page)
+   ========================================= */
+.side-menu {
+    padding: 20px;
+    width: 100%;
+    max-width: 350px; /* Limits width for better look */
+    margin: 0 auto; /* Centers it */
+}
+
+.menu-title {
+    color: var(--primary-teal);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-menu li {
+    margin-bottom: 15px;
+}
+
+.side-menu a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    color: var(--text-dark);
+    background: var(--white);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+}
+
+    .side-menu a:hover {
+        background: var(--deep-blue);
+        color: var(--white);
+        transform: translateX(10px); /* Slide effect */
+        box-shadow: 0 8px 20px rgba(43, 51, 128, 0.2);
+    }

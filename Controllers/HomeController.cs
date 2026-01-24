@@ -1,30 +1,29 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http; // <--- REQUIRED for Session.GetString()
+using Microsoft.AspNetCore.Http; // Required for Session
 
 namespace RSU_360_X.Controllers
 {
     public class HomeController : Controller
     {
-        // 1. PUBLIC LANDING PAGE (New Index)
+        // 1. PUBLIC LANDING PAGE (The new RSUX Design)
         public IActionResult Index()
         {
             return View();
         }
 
-        // 2. HR PAGE (Public)
+        // 2. HR PAGE (The new RSUX Design)
         public IActionResult Hr()
         {
             return View();
         }
 
-        // 3. STUDENT DASHBOARD (Protected - Old Index)
+        // 3. STUDENT DASHBOARD (Protected - Old Bootstrap Design)
+        // You must rename your old 'Index.cshtml' to 'Dashboard.cshtml'
         public IActionResult Dashboard()
         {
-            // Security check: Ensure user is logged in
-            // Requires "using Microsoft.AspNetCore.Http;" at the top
+            // Security Check
             if (HttpContext.Session.GetString("UserId") == null)
             {
-                // Ensure you have a LoginController with an Index action
                 return RedirectToAction("Index", "Login");
             }
 
