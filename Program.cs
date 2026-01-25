@@ -7,10 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // 1. Add Services
-builder.Services.AddDbContext<RSU_360_X.Models_Db.EvDbContext>();
+builder.Services.AddDbContext<RSU_360_X.Models_Db.EvDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
+builder.Services.AddDbContext<RSU_360_X.Models_Db.DbContexts.VisaDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
 builder.Services.AddScoped<RSU_360_X.Services.JsonStorage>();
 builder.Services.AddScoped<RSU_360_X.Services.IHybridAuthService, RSU_360_X.Services.HybridAuthService>();
 builder.Services.AddHostedService<RSU_360_X.Services.SecurityMigrationService>();
+builder.Services.AddScoped<RSU_360_X.Services.IVisaRepository, RSU_360_X.Services.VisaRepository>();
+builder.Services.AddScoped<RSU_360_X.Services.IContactRepository, RSU_360_X.Services.ContactRepository>();
+builder.Services.AddScoped<RSU_360_X.Services.IStudentProfileRepository, RSU_360_X.Services.StudentProfileRepository>();
 
 // 2. Configure Session
 builder.Services.AddSession(options =>

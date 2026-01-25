@@ -1,0 +1,355 @@
+@model RSU_360_X.Models.VisaIndexVm
+@{
+    ViewData["Title"] = "Visa Application";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    var isEditable = (bool)ViewBag.AllowEdit;
+
+    // Helper functions to filter files
+    var passportFiles = Model.Files.Where(f => f.Category == "passport" || f.Category == "general").ToList();
+    var stampFiles = Model.Files.Where(f => f.Category == "stamp").ToList();
+    var tm30Files = Model.Files.Where(f => f.Category == "tm30").ToList();
+    var receiptFiles = Model.Files.Where(f => f.Category == "receipt").ToList();
+}
+
+<div class="container mx-auto p-6 max-w-4xl pt-28">
+    <h2 class="text-3xl font-bold mb-8 text-slate-800 dark:text-white">Visa Application</h2>
+
+
+
+    <div class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-white/10 p-6 mb-8">
+        <h3 class="text-lg font-semibold mb-4 text-slate-700 dark:text-slate-300">Application Status</h3>
+        
+        <div class="mb-5 position-relative">
+            <div class="position-absolute top-50 start-0 translate-middle-y w-100" style="z-index: 0;">
+                <div class="progress" style="height: 4px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: @((Model.CurrentStep - 1) * 25)%;"></div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between position-relative w-100" style="z-index: 1;">
+                
+                <div class="d-flex flex-column align-items-center bg-body px-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 1 ? "bg-primary" : "bg-secondary")" 
+                         style="width: 40px; height: 40px; transition: all 0.3s;">
+                        1
+                    </div>
+                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 1 ? "text-primary" : "text-muted")">Submitted</span>
+                </div>
+
+                <div class="d-flex flex-column align-items-center bg-body px-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 2 ? "bg-primary" : "bg-secondary")" 
+                         style="width: 40px; height: 40px; transition: all 0.3s;">
+                        2
+                    </div>
+                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 2 ? "text-primary" : "text-muted")">Under Review</span>
+                </div>
+
+                <div class="d-flex flex-column align-items-center bg-body px-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 3 ? "bg-primary" : "bg-secondary")" 
+                         style="width: 40px; height: 40px; transition: all 0.3s;">
+                        3
+                    </div>
+                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 3 ? "text-primary" : "text-muted")">Approved</span>
+                </div>
+
+                <div class="d-flex flex-column align-items-center bg-body px-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 4 ? "bg-primary" : "bg-secondary")" 
+                         style="width: 40px; height: 40px; transition: all 0.3s;">
+                        4
+                    </div>
+                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 4 ? "text-primary" : "text-muted")">Pickup</span>
+                </div>
+
+                <div class="d-flex flex-column align-items-center bg-body px-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 5 ? "bg-success" : "bg-secondary")" 
+                         style="width: 40px; height: 40px; transition: all 0.3s;">
+                        <i class="bi bi-flag-fill"></i>
+                    </div>
+                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 5 ? "text-success" : "text-muted")">Completed</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            @if(!string.IsNullOrEmpty(Model.StaffNotes)) {
+                <div class="text-red-500 text-sm mt-2 p-3 bg-red-50 rounded-lg">
+                    <strong>Note:</strong> @Model.StaffNotes
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (isEditable)
+    {
+        <form action="/visa" method="post" enctype="multipart/form-data" class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-white/10 p-8">
+            @Html.AntiForgeryToken()
+            
+            <h4 class="text-xl font-bold text-primary mb-4 border-b pb-2">1. Visa Information</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                        Passport Number <span class="text-xs text-slate-400">(Auto-filled)</span>
+                    </label>
+                    <div class="relative">
+                        <input type="text" name="passportNumber" value="@Model.Passport" 
+                               class="w-full rounded-lg border-slate-200 bg-slate-100 text-slate-500 cursor-not-allowed focus:border-slate-200 focus:ring-0 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" 
+                               readonly required />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
+                            <span class="material-symbols-outlined text-sm">lock</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                        Nationality <span class="text-xs text-slate-400">(Auto-filled)</span>
+                    </label>
+                    <div class="relative">
+                        <input type="text" name="country" value="@Model.Country" 
+                               class="w-full rounded-lg border-slate-200 bg-slate-100 text-slate-500 cursor-not-allowed focus:border-slate-200 focus:ring-0 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" 
+                               readonly required />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
+                            <span class="material-symbols-outlined text-sm">lock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Current Visa Type</label>
+                    <select name="visaType" class="form-select rounded-lg">
+                        <option value="Non-Ed">Non-Immigrant ED</option>
+                        <option value="Non-B">Non-Immigrant B</option>
+                        <option value="Tourist">Tourist (TR)</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Issue Date</label>
+                        <input type="date" name="issueDate" class="form-control rounded-lg" required />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Expiry Date</label>
+                        <input type="date" name="expiryDate" class="form-control rounded-lg" required />
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="text-xl font-bold text-primary mb-4 border-b pb-2">2. Required Documents</h4>
+            
+            <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
+                <label class="block font-semibold text-slate-700 dark:text-slate-200 mb-2">
+                    A. Passport Pages <span class="text-red-500">*</span>
+                    <span class="text-xs font-normal text-slate-500 block">(Upload photo page and current visa page)</span>
+                </label>
+                <input type="file" name="passportPages" multiple class="form-control" />
+                @if(passportFiles.Any()) { <div class="mt-2 text-sm text-green-600">✓ @passportFiles.Count files uploaded</div> }
+            </div>
+
+            <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
+                <label class="block font-semibold text-slate-700 dark:text-slate-200 mb-2">
+                    B. Visa Stamp Pages <span class="text-red-500">*</span>
+                    <span class="text-xs font-normal text-slate-500 block">(Upload all pages with previous Thai immigration stamps)</span>
+                </label>
+                <input type="file" name="visaStamps" multiple class="form-control" />
+                @if(stampFiles.Any()) { <div class="mt-2 text-sm text-green-600">✓ @stampFiles.Count files uploaded</div> }
+            </div>
+
+            <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
+                <label class="block font-semibold text-slate-700 dark:text-slate-200 mb-2">
+                    C. TM.30 Document <span class="text-red-500">*</span>
+                    <span class="text-xs font-normal text-slate-500 block">(Notification of Residence for Foreigners)</span>
+                </label>
+                <input type="file" name="tm30" class="form-control" />
+                @if(tm30Files.Any()) { <div class="mt-2 text-sm text-green-600">✓ File uploaded</div> }
+            </div>
+
+            <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
+                <label class="block font-semibold text-slate-700 dark:text-slate-200 mb-2">
+                    D. Tuition Fee Receipt <span class="text-red-500">*</span>
+                    <span class="text-xs font-normal text-slate-500 block">(Proof of registration for the current semester)</span>
+                </label>
+                <input type="file" name="tuitionReceipt" class="form-control" />
+                @if(receiptFiles.Any()) { <div class="mt-2 text-sm text-green-600">✓ File uploaded</div> }
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-cyan-500/30 transition-all transform hover:-translate-y-1">
+                Submit Complete Application
+            </button>
+        </form>
+    }
+    else
+    {
+        <div class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-white/10 p-8">
+            <h4 class="font-bold mb-4">Submitted Documents:</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 border rounded-lg">
+                    <h5 class="font-semibold text-blue-600 mb-2">Passport Pages</h5>
+                    <ul class="list-disc pl-5 text-sm">
+                        @foreach(var f in passportFiles) { <li><a href="@f.Url" target="_blank" class="hover:underline">@f.Name</a></li> }
+                    </ul>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <h5 class="font-semibold text-blue-600 mb-2">Visa Stamps</h5>
+                    <ul class="list-disc pl-5 text-sm">
+                        @foreach(var f in stampFiles) { <li><a href="@f.Url" target="_blank" class="hover:underline">@f.Name</a></li> }
+                    </ul>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <h5 class="font-semibold text-blue-600 mb-2">TM.30</h5>
+                    <ul class="list-disc pl-5 text-sm">
+                        @foreach(var f in tm30Files) { <li><a href="@f.Url" target="_blank" class="hover:underline">@f.Name</a></li> }
+                    </ul>
+                </div>
+                <div class="p-4 border rounded-lg">
+                    <h5 class="font-semibold text-blue-600 mb-2">Tuition Receipt</h5>
+                    <ul class="list-disc pl-5 text-sm">
+                        @foreach(var f in receiptFiles) { <li><a href="@f.Url" target="_blank" class="hover:underline">@f.Name</a></li> }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+    
+    <div class="mt-12">
+        <h3 class="text-xl font-bold mb-4 text-slate-700 dark:text-slate-300 border-l-4 border-blue-500 pl-3">
+            Visa History
+        </h3>
+        
+        <div class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-slate-200 dark:border-white/10 overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-50 dark:bg-white/5">
+                    <tr>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase">Submission Date</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase">Visa Type</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase">Expiry Date</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/10">
+                    @if (Model.HistoryList.Any())
+                    {
+                        @foreach (var item in Model.HistoryList)
+                        {
+                            <tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                                <td class="p-4 text-sm">@item.SubmittedAt.ToString("dd MMM yyyy")</td>
+                                <td class="p-4 text-sm font-medium">@item.VisaType</td>
+                                <td class="p-4 text-sm">
+                                    @(item.ExpiryDate.HasValue ? item.ExpiryDate.Value.ToString("dd MMM yyyy") : "-")
+                                </td>
+                                <td class="p-4">
+                                    <span class="px-2 py-1 rounded text-xs font-bold
+                                        @(item.Status == "approved" ? "bg-green-100 text-green-700" : 
+                                          item.Status == "rejected" ? "bg-red-100 text-red-700" : 
+                                          "bg-gray-100 text-gray-700")">
+                                        @item.Status.ToUpper()
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="p-8 text-center text-slate-400 text-sm">
+                                No history available.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 
+
+@if (ViewBag.ShowEmailModal == true)
+{
+    <div class="modal fade" id="emailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold text-primary" id="emailModalLabel">
+                        <i class="bi bi-person-lines-fill me-2"></i>Contact Information
+                    </h5>
+                </div>
+
+                <div class="modal-body p-4 pt-3">
+                    <p class="text-muted mb-4">
+                        Please provide your email address for important visa status updates. 
+                        <br><small class="text-secondary">(We will ask for this confirmation only once a year)</small>
+                    </p>
+
+                    <form action="@Url.Action("UpdateEmail", "Visa")" method="post" id="emailForm">
+                        @Html.AntiForgeryToken()
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="studentEmail" name="email" placeholder="name@rsu.ac.th" required>
+                            <label for="studentEmail">Email address</label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-3 fw-bold shadow-sm">
+                                Save & Continue
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if Bootstrap is loaded
+            if (typeof bootstrap !== 'undefined') {
+                var myModal = new bootstrap.Modal(document.getElementById('emailModal'));
+                myModal.show();
+            } else {
+                console.error("Bootstrap JS is not loaded. Please ensure bootstrap.bundle.min.js is included in _Layout.cshtml");
+            }
+        });
+    </script>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[action="/visa"]');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    let isValid = true;
+                    let errorMsg = [];
+
+                    // 1. Validate Passport Pages
+                    const passportInput = document.querySelector('input[name="passportPages"]');
+                    const hasPassportFiles = @(passportFiles.Any() ? "true" : "false");
+                    
+                    if (!hasPassportFiles && (!passportInput.files || passportInput.files.length === 0)) {
+                        isValid = false;
+                        errorMsg.push("Please upload your Passport info page.");
+                    }
+
+                    // 2. Validate Visa Stamps (if applicable, but let's enforce at least one)
+                    const stampsInput = document.querySelector('input[name="visaStamps"]');
+                    const hasStampFiles = @(stampFiles.Any() ? "true" : "false");
+
+                    if (!hasStampFiles && (!stampsInput.files || stampsInput.files.length === 0)) {
+                        isValid = false;
+                        errorMsg.push("Please upload at least one Visa Stamp page.");
+                    }
+
+                    if (!isValid) {
+                        e.preventDefault();
+                        alert("Please fix the following errors:\n\n- " + errorMsg.join("\n- "));
+                    }
+                });
+            }
+        });
+    </script>
+}
