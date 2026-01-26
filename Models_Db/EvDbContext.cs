@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using RSU_360_X.Models.Evaluation;
 
 namespace RSU_360_X.Models_Db;
 
@@ -68,6 +69,8 @@ public partial class EvDbContext : DbContext
     public virtual DbSet<Section3Summary> Section3Summaries { get; set; }
 
     public virtual DbSet<SupportTask7> SupportTask7s { get; set; }
+
+    public virtual DbSet<PersonnelDevelopment8> PersonnelDevelopment8s { get; set; }
 
     public virtual DbSet<TeachingDocument21> TeachingDocument21s { get; set; }
 
@@ -1387,6 +1390,46 @@ public partial class EvDbContext : DbContext
                 .HasForeignKey(d => d.PersonnelEmpId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_section3_summary_personnel");
+        });
+
+        modelBuilder.Entity<PersonnelDevelopment8>(entity =>
+        {
+            entity.ToTable("personnel_development_8", "ev");
+
+            entity.HasIndex(e => e.PersonnelEmpId, "IX_personnel_development_8_personnel_emp_id");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.PersonnelEmpId)
+                .HasMaxLength(7)
+                .HasColumnName("personnel_emp_id");
+            entity.Property(e => e.AcadYear).HasColumnName("acad_year");
+            entity.Property(e => e.TopicName)
+                .HasMaxLength(45)
+                .HasColumnName("topic_name");
+            entity.Property(e => e.Type)
+                .HasMaxLength(45)
+                .HasComment("seminar(สัมมนา), training(อบรม)")
+                .HasColumnName("type");
+            entity.Property(e => e.StartDate).HasColumnName("start_date");
+            entity.Property(e => e.EndDate).HasColumnName("end_date");
+            entity.Property(e => e.Organizers)
+                .HasMaxLength(45)
+                .HasColumnName("organizers");
+            entity.Property(e => e.Status)
+                .HasMaxLength(1)
+                .HasDefaultValue("A")
+                .HasComment("A = Active, N = Non active")
+                .HasColumnName("status");
+            entity.Property(e => e.ApprovedEmpId)
+                .HasMaxLength(7)
+                .HasDefaultValue("-")
+                .HasColumnName("approved_emp_id");
+
+            entity.HasOne<Personnel>()
+                .WithMany()
+                .HasForeignKey(d => d.PersonnelEmpId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_personnel_development_8_personnel");
         });
 
         OnModelCreatingPartial(modelBuilder);

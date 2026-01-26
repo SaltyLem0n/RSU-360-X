@@ -18,6 +18,7 @@ namespace RSU_360_X.Models.ViewModels
         public List<OtherTask> OtherTasks { get; set; } = new();
         public List<AdminWork> AdminWork { get; set; } = new();
         public List<SupportTask> SupportTasks { get; set; } = new();
+        public List<PersonnelDevelopmentItem> PersonnelDevelopments { get; set; } = new();
     }
 
     public class ProjectWithIncome
@@ -92,5 +93,16 @@ namespace RSU_360_X.Models.ViewModels
     {
         public string? Id { get; set; }
         public string? TaskName { get; set; } // Map to TaskName? 7 has TaskName? DB 7 has nothing? Check SupportTask7 in DB.
+    }
+
+    public class PersonnelDevelopmentItem
+    {
+        public string? Id { get; set; }
+        public string? TopicName { get; set; }
+        public string? Type { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
+        public string? Organizers { get; set; }
+        public string? Status { get; set; }
     }
 }

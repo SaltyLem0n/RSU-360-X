@@ -139,6 +139,20 @@ namespace RSU_360_X.Controllers
                         Id = x.Id.ToString(),
                         TaskName = x.DocumentName ?? ""
                     }).ToListAsync(),
+
+                // --- 8. Personnel Development ---
+                PersonnelDevelopments = await _context.PersonnelDevelopment8s
+                    .Where(x => x.PersonnelEmpId == id && x.AcadYear == int.Parse(acadYear))
+                    .Select(x => new PersonnelDevelopmentItem
+                    {
+                        Id = x.Id.ToString(),
+                        TopicName = x.TopicName ?? "",
+                        Type = x.Type ?? "",
+                        StartDate = x.StartDate != DateOnly.MinValue ? x.StartDate.ToString("yyyy-MM-dd") : "",
+                        EndDate = x.EndDate != DateOnly.MinValue ? x.EndDate.ToString("yyyy-MM-dd") : "",
+                        Organizers = x.Organizers ?? "",
+                        Status = x.Status ?? "A"
+                    }).ToListAsync(),
             };
 
             return vm;

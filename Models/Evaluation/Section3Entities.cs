@@ -123,4 +123,21 @@ namespace RSU_360_X.Models.Evaluation
 
         [Column("task_name")] public string? TaskName { get; set; }
     }
+
+    // 8. Personnel Development
+    [Table("personnel_development_8", Schema = "ev")]
+    public class PersonnelDevelopment8
+    {
+        [Key][Column("id")] public int Id { get; set; }
+        [Column("personnel_emp_id")] public string PersonnelEmpId { get; set; } = "";
+        [Column("acad_year")] public int AcadYear { get; set; }
+
+        [Column("topic_name")] public string? TopicName { get; set; }
+        [Column("type")] public string? Type { get; set; }
+        [Column("start_date")] public DateOnly StartDate { get; set; }
+        [Column("end_date")] public DateOnly EndDate { get; set; }
+        [Column("organizers")] public string? Organizers { get; set; }
+        [Column("status")] public string Status { get; set; } = "A";
+        [Column("approved_emp_id")] public string ApprovedEmpId { get; set; } = "-";
+    }
 }
