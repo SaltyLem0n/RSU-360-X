@@ -1,0 +1,90 @@
+@model RSU_360_X.Models.VisaReviewIndexVm
+@{
+    ViewData["Title"] = "Visa Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mx-auto p-6 pt-28">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-bold text-slate-800 dark:text-white">Visa Applications Review</h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-white/10">
+            <div class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Total Requests</div>
+            <div class="text-3xl font-bold text-slate-800 dark:text-white">@Model.TotalCount</div>
+        </div>
+
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl border border-blue-100 dark:border-blue-800">
+            <div class="text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">Pending</div>
+            <div class="text-3xl font-bold text-blue-700 dark:text-blue-300">@Model.PendingCount</div>
+        </div>
+
+        <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-xl border border-green-100 dark:border-green-800">
+            <div class="text-green-600 dark:text-green-400 text-xs font-bold uppercase tracking-wider mb-1">Approved</div>
+            <div class="text-3xl font-bold text-green-700 dark:text-green-300">@Model.ApprovedCount</div>
+        </div>
+
+        <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-xl border border-purple-100 dark:border-purple-800">
+            <div class="text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-wider mb-1">Completed</div>
+            <div class="text-3xl font-bold text-purple-700 dark:text-purple-300">@Model.CompletedCount</div>
+        </div>
+
+        <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-xl border border-red-100 dark:border-red-800">
+            <div class="text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider mb-1">Rejected</div>
+            <div class="text-3xl font-bold text-red-700 dark:text-red-300">@Model.RejectedCount</div>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-white/10 overflow-hidden">
+        <table class="w-full text-left border-collapse">
+            <thead class="bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300">
+                <tr>
+                    <th class="p-4 font-semibold">Submitted Date</th>
+                    <th class="p-4 font-semibold">Student ID</th>
+                    <th class="p-4 font-semibold">Name</th>
+                    <th class="p-4 font-semibold">Visa Type</th>
+                    <th class="p-4 font-semibold">Status</th>
+                    <th class="p-4 font-semibold text-right">Action</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-white/5">
+                @foreach (var item in Model.Applications)
+                {
+                    <tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                        <td class="p-4 text-sm">@item.SubmittedAt.ToString("dd MMM yyyy HH:mm")</td>
+                        <td class="p-4 font-mono text-sm">@item.StudentId</td>
+                        <td class="p-4 font-medium text-slate-900 dark:text-white">@item.StudentName</td>
+                        <td class="p-4">
+                            <span class="bg-slate-100 text-slate-600 py-1 px-3 rounded-full text-xs font-bold">
+                                @item.VisaType
+                            </span>
+                        </td>
+                        <td class="p-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold 
+                                @(item.Status == "submitted" ? "bg-blue-100 text-blue-700" : 
+                                  item.Status == "approved" ? "bg-green-100 text-green-700" : 
+                                  item.Status == "rejected" ? "bg-red-100 text-red-700" : 
+                                  "bg-gray-100 text-gray-700")">
+                                @item.Status.ToUpper()
+                            </span>
+                        </td>
+                        <td class="p-4 text-right">
+                            <a href="@Url.Action("Details", "VisaStaff", new { id = item.Id })" 
+                               class="text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                                Review >
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+        @if (Model.Applications.Count == 0)
+        {
+            <div class="p-8 text-center text-slate-500">
+                No applications found.
+            </div>
+        }
+    </div>
+</div>
