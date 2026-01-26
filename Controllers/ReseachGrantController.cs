@@ -7,11 +7,11 @@ using System.Globalization;
 
 namespace RSU_360_X.Controllers
 {
-    public class TeachingMaterialController : Controller
+    public class ReseachGrantController : Controller
     {
         private readonly EvDbContext _db;
 
-        public TeachingMaterialController(EvDbContext db)
+        public ReseachGrantController(EvDbContext db)
         {
             _db = db;
         }
