@@ -15,6 +15,7 @@ namespace RSU_360_X.Models.Auth
         public string EmpType { get; set; } = string.Empty;
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
+        public string Department { get; set; } = string.Empty;
 
         // Authorization
         public string Role { get; set; } = "Guest";
