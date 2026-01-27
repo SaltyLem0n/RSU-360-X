@@ -45,6 +45,7 @@ namespace RSU_360_X.Controllers
             HttpContext.Session.SetString("Role", user.Role);
             HttpContext.Session.SetString("DisplayName", user.GetDisplayName());
             if (!string.IsNullOrEmpty(user.EmpId)) HttpContext.Session.SetString("EmpId", user.EmpId);
+            if (!string.IsNullOrEmpty(user.Department)) HttpContext.Session.SetString("Department", user.Department);
 
             return RedirectBasedOnRole(user.Role);
         }

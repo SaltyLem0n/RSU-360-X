@@ -1,0 +1,330 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Teaching Document";
+}
+
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>RSUX - Teaching Document</title>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#38bdf8",
+                        secondary: "#ec4899",
+                        "background-light": "#f1f5f9",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b",
+                        "surface-light": "#ffffff",
+                        "card-header": "#172554",
+                    },
+                    fontFamily: {
+                        display: ["Prompt", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: { DEFAULT: "0.75rem" },
+                    backgroundImage: {
+                        'btn-gradient': 'linear-gradient(90deg, #22d3ee 0%, #3b82f6 100%)',
+                    }
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-sans transition-colors duration-500 overflow-x-hidden min-h-screen flex flex-col">
+
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-white/10 shadow-sm">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+            <div class="flex items-center gap-4">
+                <a href="/Academic" class="flex items-center gap-2 text-slate-500 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    <span>Back to Academic Resources</span>
+                </a>
+            </div>
+            <div class="font-display font-semibold text-lg">Teaching Document</div>
+            <div class="w-24"></div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-28 pb-12 px-6 lg:px-12 w-full">
+        <div class="max-w-7xl mx-auto space-y-8">
+
+            <!-- STORED -->
+            <section class="overflow-hidden bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-2xl shadow-sm">
+                <header class="p-5 bg-card-header flex items-center gap-3">
+                    <span class="material-symbols-outlined text-2xl text-secondary">inventory_2</span>
+                    <div>
+                        <h2 class="text-lg font-semibold text-white tracking-wide">Stored Submissions</h2>
+                        <p class="text-white/70 text-sm">Your saved teaching document records</p>
+                    </div>
+                </header>
+
+                <div class="p-6 overflow-x-auto">
+                    <table class="min-w-full text-sm">
+                        <thead class="text-left">
+                            <tr class="border-b border-slate-200 dark:border-white/10">
+                                <th class="py-3 pr-4 font-semibold">Subject</th>
+                                <th class="py-3 pr-4 font-semibold">Teaching Material</th>
+                                <th class="py-3 pr-4 font-semibold">Date</th>
+                                <th class="py-3 pr-4 font-semibold">Type</th>
+                                <th class="py-3 pr-4 font-semibold">Co-Producer</th>
+                                <th class="py-3 pr-4 font-semibold">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="storedBody">
+                            <tr>
+                                <td colspan="6" class="py-6 text-slate-500 dark:text-slate-300">Loading…</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- FORM -->
+            <form id="teachDocForm"
+                  method="post"
+                  asp-controller="TeachingMaterial"
+                  asp-action="Submit"
+                  class="space-y-6"
+                  novalidate>
+                @Html.AntiForgeryToken()
+
+                <section class="overflow-hidden bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-2xl shadow-sm">
+                    <header class="p-5 bg-card-header flex items-center gap-3">
+                        <span class="material-symbols-outlined text-2xl text-primary">edit_document</span>
+                        <div>
+                            <h2 class="text-lg font-semibold text-white tracking-wide">Details</h2>
+                            <p class="text-white/70 text-sm">Fill only the required fields</p>
+                        </div>
+                    </header>
+
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium mb-2" for="subject">Subject <span class="text-secondary">*</span></label>
+                            <input id="subject" name="Subject" type="text" required
+                                   class="w-full rounded-xl border-slate-200 dark:border-white/10 dark:bg-[#0b1220] focus:ring-primary focus:border-primary"
+                                   maxlength="45"
+                                   placeholder="e.g., Data Structures" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2" for="teaching_material">Teaching Material <span class="text-secondary">*</span></label>
+                            <input id="teaching_material" name="TeachingMaterial" type="text" required
+                                   class="w-full rounded-xl border-slate-200 dark:border-white/10 dark:bg-[#0b1220] focus:ring-primary focus:border-primary"
+                                   maxlength="45"
+                                   placeholder="e.g., Lesson plan / Slides / Worksheet" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2" for="day_month_year">Date (Day/Month/Year) <span class="text-secondary">*</span></label>
+                            <input id="day_month_year" name="DayMonthYear" type="date" required
+                                   class="w-full rounded-xl border-slate-200 dark:border-white/10 dark:bg-[#0b1220] focus:ring-primary focus:border-primary" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2" for="type">Type <span class="text-secondary">*</span></label>
+                            <select id="type" name="Type" required
+                                    class="w-full rounded-xl border-slate-200 dark:border-white/10 dark:bg-[#0b1220] focus:ring-primary focus:border-primary">
+                                <option value="">-- Select Type --</option>
+                                <option value="new">New</option>
+                                <option value="modify">Modify</option>
+                            </select>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-2" for="co_producer">Co-Producer</label>
+                            <input id="co_producer" name="CoProducer" type="text"
+                                   class="w-full rounded-xl border-slate-200 dark:border-white/10 dark:bg-[#0b1220] focus:ring-primary focus:border-primary"
+                                   maxlength="45"
+                                   placeholder="Optional (comma separated if multiple)" />
+                            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">Example: John Doe, Jane Smith</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="flex flex-col sm:flex-row gap-3 justify-end">
+                    <button type="submit"
+                            class="py-2.5 px-5 rounded-xl bg-btn-gradient text-white font-medium shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:brightness-110 transition-all">
+                        Submit
+                    </button>
+                    <button type="reset" id="resetBtn"
+                            class="py-2.5 px-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-transparent hover:bg-slate-50 dark:hover:bg-white/5 transition-all">
+                        Clear
+                    </button>
+                </section>
+            </form>
+
+        </div>
+    </main>
+
+    <footer class="py-8 px-6 text-center border-t border-slate-200 dark:border-white/10 bg-white dark:bg-background-dark mt-auto">
+        <div class="flex flex-col items-center justify-center gap-2">
+            <p class="text-slate-500 dark:text-slate-400 text-sm">
+                © 2024 Rangsit University. Intelligent Experience.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <style>
+        .toast {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 9999;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(15,23,42,.92);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,.12);
+            box-shadow: 0 10px 30px rgba(0,0,0,.25);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: .2s ease;
+            max-width: 460px;
+        }
+
+            .toast.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+    </style>
+
+    <script>
+        const $ = (s, r = document) => r.querySelector(s);
+        const form = $("#teachDocForm");
+        const storedBody = $("#storedBody");
+
+        const toastEl = document.createElement("div");
+        toastEl.className = "toast";
+        document.body.appendChild(toastEl);
+
+        function toast(msg, ms = 3500) {
+            toastEl.textContent = msg;
+            toastEl.classList.add("show");
+            setTimeout(() => toastEl.classList.remove("show"), ms);
+        }
+
+        function escapeHtml(input) {
+            return String(input ?? "").replace(/[&<>"']/g, m => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+            }[m]));
+        }
+
+        function formatDate(value) {
+            if (!value) return "—";
+            const d = new Date(value);
+            if (!Number.isNaN(d.valueOf())) return d.toLocaleDateString();
+            return String(value);
+        }
+
+        function getStatusText(code) {
+            switch (code) {
+                case "W": return "Pending";
+                case "A": return "Approved";
+                case "R": return "Rejected";
+                default: return code || "—";
+            }
+        }
+
+        function getStatusBadge(code) {
+            const text = getStatusText(code);
+
+            if (code === "A") {
+                return `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-500/15 text-green-400 border border-green-500/30">${text}</span>`;
+            }
+            if (code === "R") {
+                return `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-red-500/15 text-red-400 border border-red-500/30">${text}</span>`;
+            }
+            return `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-yellow-500/15 text-yellow-300 border border-yellow-500/30">${text}</span>`;
+        }
+
+        async function loadStored() {
+            const url = "@Url.RouteUrl("Staff_TeachingMaterial_List")";
+
+            try {
+                const resp = await fetch(url, { headers: { "Accept": "application/json" } });
+                if (!resp.ok) throw new Error(await resp.text());
+                const data = await resp.json();
+                renderStored(Array.isArray(data) ? data : []);
+            } catch {
+                storedBody.innerHTML = `<tr><td colspan="6" class="py-6 text-slate-500 dark:text-slate-300">Failed to load submissions.</td></tr>`;
+            }
+        }
+
+        function renderStored(items) {
+            if (!items.length) {
+                storedBody.innerHTML = `<tr><td colspan="6" class="py-6 text-slate-500 dark:text-slate-300">No submissions yet.</td></tr>`;
+                return;
+            }
+
+            storedBody.innerHTML = items.map(x => `
+                <tr class="border-b border-slate-200 dark:border-white/10">
+                    <td class="py-3 pr-4">${escapeHtml(x.subject ?? "—")}</td>
+                    <td class="py-3 pr-4">${escapeHtml(x.teaching_material ?? "—")}</td>
+                    <td class="py-3 pr-4">${escapeHtml(formatDate(x.day_month_year))}</td>
+                    <td class="py-3 pr-4">${escapeHtml(x.type ?? "—")}</td>
+                    <td class="py-3 pr-4">${escapeHtml(x.co_producer ?? "—")}</td>
+                    <td class="py-3 pr-4">${getStatusBadge(x.status)}</td>
+                </tr>
+            `).join("");
+        }
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const subject = $("#subject").value.trim();
+            const teaching_material = $("#teaching_material").value.trim();
+            const day_month_year = $("#day_month_year").value;
+            const type = $("#type").value;
+
+            if (!subject || !teaching_material || !day_month_year || !type) {
+                toast("⚠️ Please complete all required fields.");
+                return;
+            }
+
+            if (!confirm("Submit this teaching document record?")) return;
+
+            const fd = new FormData(form);
+
+            try {
+                const token = form.querySelector('input[name="__RequestVerificationToken"]')?.value;
+
+                const resp = await fetch("@Url.Action("Submit", "TeachingMaterial")", {
+                    method: "POST",
+                    headers: token ? { "RequestVerificationToken": token } : {},
+                    body: fd
+                });
+
+                if (resp.ok) {
+                    toast("✅ Saved successfully!");
+                    form.reset();
+                    loadStored();
+                } else {
+                    const msg = await resp.text();
+                    toast(`❌ ${resp.status}: ${msg}`);
+                }
+            } catch {
+                toast("❌ Network error while saving.");
+            }
+        });
+
+        $("#resetBtn").addEventListener("click", () => toast("Form cleared."));
+        loadStored();
+    </script>
+</body>
+</html>

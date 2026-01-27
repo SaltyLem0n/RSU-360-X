@@ -99,5 +99,7 @@ public partial class Personnel
 
     public string? ResearchApprovedYearAcademic { get; set; }
 
-    public virtual ICollection<VisaTransactionStatus> VisaTransactionStatuses { get; set; } = new List<VisaTransactionStatus>();
+
+
+
 }
