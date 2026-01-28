@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Title.AcademicServicesSection3" xml:space="preserve">
+    <value>งานบริการวิชาการ — หมวดที่ 3</value>
+  </data>
+  <data name="Nav.Personal" xml:space="preserve">
+    <value>ข้อมูลส่วนบุคคล</value>
+  </data>
+  <data name="Nav.TeachingSoon" xml:space="preserve">
+    <value>งานสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="Nav.ServicesDuties" xml:space="preserve">
+    <value>บริการและหน้าที่</value>
+  </data>
+  <data name="Nav.PerformanceEvaluation" xml:space="preserve">
+    <value>การประเมินผลงาน</value>
+  </data>
+  <data name="Nav.Part1Teaching" xml:space="preserve">
+    <value>ส่วนที่ 1: การสอน</value>
+  </data>
+  <data name="Nav.Part2Advisor" xml:space="preserve">
+    <value>ส่วนที่ 2: อาจารย์ที่ปรึกษา</value>
+  </data>
+  <data name="Nav.Part3Responsibilities" xml:space="preserve">
+    <value>ส่วนที่ 3: หน้าที่รับผิดชอบ</value>
+  </data>
+  <data name="Nav.Part4Ethics" xml:space="preserve">
+    <value>ส่วนที่ 4: จรรยาบรรณวิชาชีพ</value>
+  </data>
+  <data name="Nav.Part5CoreCompetencies" xml:space="preserve">
+    <value>ส่วนที่ 5: สมรรถนะหลัก</value>
+  </data>
+  <data name="Nav.Part6Managerial" xml:space="preserve">
+    <value>ส่วนที่ 6: สมรรถนะด้านการบริหาร</value>
+  </data>
+  <data name="Nav.OverallSummary" xml:space="preserve">
+    <value>สรุปภาพรวม</value>
+  </data>
+  <data name="Page.ReportEvalForm" xml:space="preserve">
+    <value>การประเมินผลงาน</value>
+  </data>
+  <data name="Page.Section3Subtitle" xml:space="preserve">
+    <value>หมวดที่ 3 — งานบริการวิชาการและงานอื่น ๆ</value>
+  </data>
+  <data name="Common.Actions" xml:space="preserve">
+    <value>การทำงาน</value>
+  </data>
+  <data name="Common.AddNew" xml:space="preserve">
+    <value>เพิ่มรายการ</value>
+  </data>
+  <data name="Common.DeleteSelected" xml:space="preserve">
+    <value>ลบที่เลือก</value>
+  </data>
+  <data name="Common.NoData" xml:space="preserve">
+    <value>ไม่พบข้อมูล</value>
+  </data>
+  <data name="Common.SaveAllChanges" xml:space="preserve">
+    <value>บันทึกการเปลี่ยนแปลงทั้งหมด</value>
+  </data>
+  <data name="Common.Close" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="Common.Save" xml:space="preserve">
+    <value>บันทึก</value>
+  </data>
+  <data name="S31.Title" xml:space="preserve">
+    <value>3.1 โครงการบริการวิชาการแบบมีรายได้ (ศูนย์บริการทางวิชาการเป็นผู้กรอกข้อมูลและยืนยันคะแนน)</value>
+  </data>
+  <data name="S31.ProjectName" xml:space="preserve">
+    <value>ชื่อโครงการ/หน่วยบริการ</value>
+  </data>
+  <data name="S31.RecipientAgency" xml:space="preserve">
+    <value>ผู้ขอรับบริการ/หน่วยงาน</value>
+  </data>
+  <data name="S31.ServiceType" xml:space="preserve">
+    <value>ประเภทงานบริการ</value>
+  </data>
+  <data name="S31.StartDate" xml:space="preserve">
+    <value>วันที่เริ่มโครงการ</value>
+  </data>
+  <data name="S31.Allocation" xml:space="preserve">
+    <value>เงินจัดสรรให้มหาวิทยาลัย</value>
+  </data>
+  <data name="S31.Remarks" xml:space="preserve">
+    <value>หมายเหตุ</value>
+  </data>
+  <data name="S31.ModalTitle" xml:space="preserve">
+    <value>เพิ่มโครงการที่มีรายได้</value>
+  </data>
+  <data name="S31.UnitNameLabel" xml:space="preserve">
+    <value>ชื่อโครงการ/หน่วยบริการ</value>
+  </data>
+  <data name="S31.RoleInProject" xml:space="preserve">
+    <value>บทบาทในโครงการ</value>
+  </data>
+  <data name="S31.UniversityAllocation" xml:space="preserve">
+    <value>งบประมาณที่จัดสรร (บาท)</value>
+  </data>
+  <data name="S31.PaymentDate" xml:space="preserve">
+    <value>วันรับชำระ</value>
+  </data>
+  <data name="S31.SaveBtn" xml:space="preserve">
+    <value>บันทึกโครงการ</value>
+  </data>
+  <data name="S32.Title" xml:space="preserve">
+    <value>3.2 โครงการบริการวิชาการเพื่อสนับสนุนงานประกันคุณภาพ
+(ศูนย์บริการทางวิชาการเป็นผู้กรอกข้อมูลและร่วมพิจารณาคะแนนร่วมกับคณะ/วิทยาลัย)</value>
+  </data>
+  <data name="S32.Headers.Summary" xml:space="preserve">
+    <value>ผลการดำเนินงาน</value>
+  </data>
+  <data name="S32.ModalTitle" xml:space="preserve">
+    <value>เพิ่มโครงการประกันคุณภาพ</value>
+  </data>
+  <data name="S32.RoleInProject" xml:space="preserve">
+    <value>บทบาทในโครงการ</value>
+  </data>
+  <data name="S32.Duty" xml:space="preserve">
+    <value>หน้าที่</value>
+  </data>
+  <data name="S32.EndDate" xml:space="preserve">
+    <value>วันสิ้นสุด</value>
+  </data>
+  <data name="S32.SaveBtn" xml:space="preserve">
+    <value>บันทึกโครงการ</value>
+  </data>
+  <data name="S33.Title" xml:space="preserve">
+    <value>3.3 ได้รับเชิญเป็นวิทยากร อาจารย์พิเศษ กรรมการ อนุกรรมการ ผู้ทรงคุณวุฒิ
+(บุคลากรเป็นผู้กรอกข้อมูลโดยคณะ/วิทยาลัย เป็นผู้ตรวจสอบและยืนยันคะแนน)</value>
+  </data>
+  <data name="S33.Headers.ActivityName" xml:space="preserve">
+    <value>ชื่อโครงการ/กิจกรรม</value>
+  </data>
+  <data name="S33.Headers.Role" xml:space="preserve">
+    <value>บทบาท/หน้าที่</value>
+  </data>
+  <data name="S33.Headers.Agency" xml:space="preserve">
+    <value>หน่วยงานผู้รับบริการ</value>
+  </data>
+  <data name="S33.Headers.StartDate" xml:space="preserve">
+    <value>วันที่เริ่ม</value>
+  </data>
+  <data name="S33.ModalTitle" xml:space="preserve">
+    <value>เพิ่มกิจกรรมวิทยากร/กรรมการ</value>
+  </data>
+  <data name="S33.Type" xml:space="preserve">
+    <value>ภายใน/ภายนอก</value>
+  </data>
+  <data name="S33.EndDate" xml:space="preserve">
+    <value>วันสิ้นสุด</value>
+  </data>
+  <data name="S33.SaveBtn" xml:space="preserve">
+    <value>บันทึกกิจกรรม</value>
+  </data>
+  <data name="S34.Title" xml:space="preserve">
+    <value>3.4 ได้รับเชิญเป็นผู้ทรงคุณวุฒิพิจารณาผลงานวิชาการ
+(บุคลากรเป็นผู้กรอกข้อมูลโดยคณะ/วิทยาลัย เป็นผู้ตรวจสอบและยืนยันคะแนน)</value>
+  </data>
+  <data name="S34.Headers.JournalName" xml:space="preserve">
+    <value>ชื่อวารสาร/การประชุม</value>
+  </data>
+  <data name="S34.Headers.ArticleName" xml:space="preserve">
+    <value>ชื่อบทความ</value>
+  </data>
+  <data name="S34.Headers.Agency" xml:space="preserve">
+    <value>ผู้ขอรับบริการ</value>
+  </data>
+  <data name="S34.Headers.StartDate" xml:space="preserve">
+    <value>วันที่เริ่มโครงการ</value>
+  </data>
+  <data name="S34.ModalTitle" xml:space="preserve">
+    <value>เพิ่มกิจกรรมผู้ทรงคุณวุฒิ</value>
+  </data>
+  <data name="S34.Type" xml:space="preserve">
+    <value>ภายใน/ภายนอก</value>
+  </data>
+  <data name="S34.EndDate" xml:space="preserve">
+    <value>วันสิ้นสุด</value>
+  </data>
+  <data name="S34.SaveBtn" xml:space="preserve">
+    <value>บันทึกกิจกรรม</value>
+  </data>
+  <data name="S4.Title" xml:space="preserve">
+    <value>งานทำนุบำรุงศิลปวัฒนธรรม</value>
+  </data>
+  <data name="S41.Title" xml:space="preserve">
+    <value>การเข้าร่วมกิจกรรม</value>
+  </data>
+  <data name="S41.Headers.Index" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="S41.Headers.EventName" xml:space="preserve">
+    <value>ชื่อกิจกรรม</value>
+  </data>
+  <data name="S41.Headers.Level" xml:space="preserve">
+    <value>ระดับการมีส่วนร่วม</value>
+  </data>
+  <data name="S41.Headers.TimeSpent" xml:space="preserve">
+    <value>จำนวนเวลาที่ใช้/ภาค</value>
+  </data>
+  <data name="S41.ModalTitle" xml:space="preserve">
+    <value>เพิ่มกิจกรรมศิลปวัฒนธรรม</value>
+  </data>
+  <data name="S41.Level.Committee" xml:space="preserve">
+    <value>คณะทำงาน/กรรมการ</value>
+  </data>
+  <data name="S41.Level.Participate" xml:space="preserve">
+    <value>ผู้เข้าร่วม</value>
+  </data>
+  <data name="S41.SaveBtn" xml:space="preserve">
+    <value>บันทึกกิจกรรม</value>
+  </data>
+  <data name="S5.Title" xml:space="preserve">
+    <value>งานอื่น ๆ</value>
+  </data>
+  <data name="S51.Title" xml:space="preserve">
+    <value>งานหรือกิจกรรมที่ได้รับมอบหมาย(สามารถใช้เกณฑ์ตามแบบประเมินของมหาวิทยาลัย หรือกำหนดเกณฑ์ใหม่เอง)</value>
+  </data>
+  <data name="S51.Headers.Task" xml:space="preserve">
+    <value>งานหรือกิจกรรมที่ได้รับมอบหมาย</value>
+  </data>
+  <data name="S51.Headers.AssignedBy" xml:space="preserve">
+    <value>รับมอบหมายจาก</value>
+  </data>
+  <data name="S51.Headers.TimeSpent" xml:space="preserve">
+    <value>เวลาที่ใช้ในการปฏิบัติ/ภาค
+ (โดยเฉลี่ย)</value>
+  </data>
+  <data name="S51.ModalTitle" xml:space="preserve">
+    <value>เพิ่มงานอื่น ๆ</value>
+  </data>
+  <data name="S51.SaveBtn" xml:space="preserve">
+    <value>บันทึกงาน</value>
+  </data>
+  <data name="S6.Title" xml:space="preserve">
+    <value>งานบริหารโดยตำแหน่ง (อาจารย์ที่ดำรงตำแหน่งบริหารในวิทยาลัย คณะ สถาบัน)</value>
+  </data>
+  <data name="S61.Title" xml:space="preserve">
+    <value>ภาระงานบริหารที่ได้รับมอบหมายในรอบปีการศึกษา</value>
+  </data>
+  <data name="S61.Headers.Task" xml:space="preserve">
+    <value>ภาระงานบริหารที่ได้รับมอบหมายในรอบปีการศึกษา</value>
+  </data>
+  <data name="S61.ModalTitle" xml:space="preserve">
+    <value>เพิ่มงานบริหาร</value>
+  </data>
+  <data name="S61.SaveBtn" xml:space="preserve">
+    <value>บันทึกงาน</value>
+  </data>
+  <data name="S7.Title" xml:space="preserve">
+    <value>ภาระงานที่สนับสนุนการดำเนินงานของหน่วยงานในมหาวิทยาลัย</value>
+  </data>
+  <data name="S71.Title" xml:space="preserve">
+    <value>งานสนับสนุน(แนบเอกสารการแต่งตั้งคณะกรรมการ/คณะทำงาน โดยได้รับการรับรองจากหัวหน้าหน่วยงานต้นสังกัดของภารกิจนั้นๆ)</value>
+  </data>
+  <data name="S81.Headers.Topic" xml:space="preserve">
+    <value>หัวข้อ</value>
+  </data>
+  <data name="S81.Headers.Type" xml:space="preserve">
+    <value>ประเภท</value>
+  </data>
+  <data name="S81.Headers.StartDateTime" xml:space="preserve">
+    <value>วันที่เริ่มโครงการ</value>
+  </data>
+  <data name="S81.Headers.EndDateTime" xml:space="preserve">
+    <value>วันสิ้นสุด</value>
+  </data>
+  <data name="S81.Headers.Organizer" xml:space="preserve">
+    <value>ชื่อผู้จัด</value>
+  </data>
+  <data name="S81.Headers.Benefits" xml:space="preserve">
+    <value>ประโยชน์ที่ได้รับ</value>
+  </data>
+  <data name="S71.Headers.Task" xml:space="preserve">
+    <value>ภาระงาน</value>
+  </data>
+  <data name="S71.ModalTitle" xml:space="preserve">
+    <value>เพิ่มงานสนับสนุน</value>
+  </data>
+  <data name="S71.SaveBtn" xml:space="preserve">
+    <value>บันทึกงาน</value>
+  </data>
+  <data name="S8.Title" xml:space="preserve">
+    <value>การพัฒนาบุคลากร</value>
+  </data>
+  <data name="S81.Title" xml:space="preserve">
+    <value>กิจกรรมพัฒนา</value>
+  </data>
+  <data name="S81.ModalTitle" xml:space="preserve">
+    <value>เพิ่มกิจกรรมพัฒนาบุคลากร</value>
+  </data>
+  <data name="S81.Type.Training" xml:space="preserve">
+    <value>อบรม</value>
+  </data>
+  <data name="S81.Type.Seminar" xml:space="preserve">
+    <value>สัมมนา</value>
+  </data>
+  <data name="S81.Type.StudyTour" xml:space="preserve">
+    <value>ดูงาน</value>
+  </data>
+  <data name="S81.Type.Internship" xml:space="preserve">
+    <value>ฝึกงาน</value>
+  </data>
+  <data name="S81.Type.Meeting" xml:space="preserve">
+    <value>ประชุม</value>
+  </data>
+  <data name="S81.Type.Other" xml:space="preserve">
+    <value>อื่น ๆ</value>
+  </data>
+  <data name="S81.SaveBtn" xml:space="preserve">
+    <value>บันทึกกิจกรรม</value>
+  </data>
+  <data name="Summary.Title" xml:space="preserve">
+    <value>สรุปการปฏิบัติงานและความเห็นของผู้รับการประเมิน</value>
+  </data>
+  <data name="Summary.Label" xml:space="preserve">
+    <value>โปรดระบุสรุปหรือข้อคิดเห็นเพิ่มเติมสำหรับหมวดนี้</value>
+  </data>
+  <data name="JS.SelectRowsPrompt" xml:space="preserve">
+    <value>โปรดเลือกแถวที่จะลบ</value>
+  </data>
+  <data name="JS.ConfirmDelete" xml:space="preserve">
+    <value>ยืนยันการลบ {0} รายการที่เลือกหรือไม่?</value>
+  </data>
+  <data name="JS.DeleteError" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดในการลบ ID {0}</value>
+  </data>
+  <data name="JS.DeleteErrorGeneric" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดระหว่างการลบ</value>
+  </data>
+  <data name="JS.SaveFailed" xml:space="preserve">
+    <value>บันทึกรายการไม่สำเร็จ: {0}</value>
+  </data>
+  <data name="JS.SaveErrorGeneric" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดระหว่างการบันทึก</value>
+  </data>
+  <data name="DropDown1" xml:space="preserve">
+    <value>งานสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="DropDown2" xml:space="preserve">
+    <value>เอกสารประกอบการสอน ผลงานวิชาการ งานวิจัย และผลงานสร้างสรรค์</value>
+  </data>
+  <data name="DropDown3" xml:space="preserve">
+    <value>งานบริการทางวิชาการ</value>
+  </data>
+  <data name="DropDown4" xml:space="preserve">
+    <value>งานทำนุบำรุงศิลปวัฒนธรรม และ งานอื่นๆ</value>
+  </data>
+  <data name="DropDown5" xml:space="preserve">
+    <value>คุณลักษณะและพฤติกรรมการปฏิบัติงาน</value>
+  </data>
+  <data name="DropDown6" xml:space="preserve">
+    <value>สนับสนุนงานมหาวิทยาลัย</value>
+  </data>
+  <data name="S41.Headers.EndDate" xml:space="preserve">
+    <value>วันสิ้นสุด</value>
+  </data>
+  <data name="S41.Headers.StartDate" xml:space="preserve">
+    <value>วันที่เริ่มโครงการ</value>
+  </data>
+  <data name="S51.Headers.EndDate" xml:space="preserve">
+    <value>วันสิ้นสุด</value>
+  </data>
+  <data name="S51.Headers.StartDate" xml:space="preserve">
+    <value>วันที่เริ่มโครงการ</value>
+  </data>
+  <data name="Nav_S1" xml:space="preserve">
+    <value>ข้อมูลส่วนบุคคล</value>
+  </data>
+  <data name="Nav_S2" xml:space="preserve">
+    <value>งานสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="Nav_S3" xml:space="preserve">
+    <value>บริการและหน้าที่</value>
+  </data>
+  <data name="Nav_S4" xml:space="preserve">
+    <value>ส่วนที่ 4: การวิจัย</value>
+  </data>
+  <data name="Menu_Summary" xml:space="preserve">
+    <value>สรุปรวม</value>
+  </data>
+  <data name="Menu_EvaluationSections" xml:space="preserve">
+    <value>ส่วนการประเมิน</value>
+  </data>
+  <data name="Btn_BackToDashboard" xml:space="preserve">
+    <value>กลับสู่แดชบอร์ด</value>
+  </data>
+  <data name="Progress_S3" xml:space="preserve">
+    <value>ความคืบหน้าส่วนที่ 3</value>
+  </data>
+  <data name="Label_Term" xml:space="preserve">
+    <value>ภาคการศึกษา</value>
+  </data>
+  <data name="Label_LastUpdated" xml:space="preserve">
+    <value>อัปเดตล่าสุด</value>
+  </data>
+  <data name="Footer_Rights" xml:space="preserve">
+    <value>© 2024 มหาวิทยาลัยรังสิต สงวนลิขสิทธิ์ทางวิชาการ</value>
+  </data>
+  <data name="Link_Support" xml:space="preserve">
+    <value>ศูนย์สนับสนุน</value>
+  </data>
+  <data name="Link_Docs" xml:space="preserve">
+    <value>คู่มือการใช้งาน</value>
+  </data>
+  <data name="Link_Policy" xml:space="preserve">
+    <value>ระเบียบการทางวิชาการ</value>
+  </data>
+  <data name="FacultyMember" xml:space="preserve">
+    <value>อาจารย์ประจำคณะ</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>เมนู</value>
+  </data>
+  <data name="Form_Title" xml:space="preserve">
+    <value>บริการและหน้าที่</value>
+  </data>
+</root>

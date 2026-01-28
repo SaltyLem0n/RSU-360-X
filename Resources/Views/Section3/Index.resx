@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Title.AcademicServicesSection3" xml:space="preserve">
+    <value>Section 3: Evaluation Form</value>
+  </data>
+  <data name="Nav.Personal" xml:space="preserve">
+    <value>Personal Info</value>
+  </data>
+  <data name="Nav.TeachingSoon" xml:space="preserve">
+    <value>Teaching &amp; Graduate Production</value>
+  </data>
+  <data name="Nav.ServicesDuties" xml:space="preserve">
+    <value>Services &amp; Duties</value>
+  </data>
+  <data name="Nav.PerformanceEvaluation" xml:space="preserve">
+    <value>Performance Evaluation</value>
+  </data>
+  <data name="Nav.Part1Teaching" xml:space="preserve">
+    <value>Section 1: Teaching</value>
+  </data>
+  <data name="Nav.Part2Advisor" xml:space="preserve">
+    <value>Section 2: Advisor</value>
+  </data>
+  <data name="Nav.Part3Responsibilities" xml:space="preserve">
+    <value>Section 3: Responsibilities</value>
+  </data>
+  <data name="Nav.Part4Ethics" xml:space="preserve">
+    <value>Section 4: Professional Ethics</value>
+  </data>
+  <data name="Nav.Part5CoreCompetencies" xml:space="preserve">
+    <value>Section 5: Core Competencies</value>
+  </data>
+  <data name="Nav.Part6Managerial" xml:space="preserve">
+    <value>Section 6: Managerial Competencies</value>
+  </data>
+  <data name="Nav.OverallSummary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Page.ReportEvalForm" xml:space="preserve">
+    <value>Performance Evaluation</value>
+  </data>
+  <data name="Page.Section3Subtitle" xml:space="preserve">
+    <value>Section 3 — Academic Services and Other Duties</value>
+  </data>
+  <data name="Common.Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Common.AddNew" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="Common.DeleteSelected" xml:space="preserve">
+    <value>Delete Selected</value>
+  </data>
+  <data name="Common.NoData" xml:space="preserve">
+    <value>No data available</value>
+  </data>
+  <data name="Common.SaveAllChanges" xml:space="preserve">
+    <value>Save All Changes</value>
+  </data>
+  <data name="Common.Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Common.Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="S31.Title" xml:space="preserve">
+    <value>3.1 Academic Service Projects with Income</value>
+  </data>
+  <data name="S31.ProjectName" xml:space="preserve">
+    <value>Project Name / Service Unit</value>
+  </data>
+  <data name="S31.RecipientAgency" xml:space="preserve">
+    <value>Recipient / Agency</value>
+  </data>
+  <data name="S31.ServiceType" xml:space="preserve">
+    <value>Service Type</value>
+  </data>
+  <data name="S31.StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="S31.Allocation" xml:space="preserve">
+    <value>University Allocation</value>
+  </data>
+  <data name="S31.Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="S31.ModalTitle" xml:space="preserve">
+    <value>Add Income Project</value>
+  </data>
+  <data name="S31.UnitNameLabel" xml:space="preserve">
+    <value>Project Name / Service Unit</value>
+  </data>
+  <data name="S31.RoleInProject" xml:space="preserve">
+    <value>Role in Project</value>
+  </data>
+  <data name="S31.UniversityAllocation" xml:space="preserve">
+    <value>Allocated Budget (THB)</value>
+  </data>
+  <data name="S31.PaymentDate" xml:space="preserve">
+    <value>Payment Date</value>
+  </data>
+  <data name="S31.SaveBtn" xml:space="preserve">
+    <value>Save Project</value>
+  </data>
+  <data name="S32.Title" xml:space="preserve">
+    <value>3.2 Quality Assurance Projects</value>
+  </data>
+  <data name="S32.Headers.Summary" xml:space="preserve">
+    <value>Performance Summary</value>
+  </data>
+  <data name="S32.ModalTitle" xml:space="preserve">
+    <value>Add QA Project</value>
+  </data>
+  <data name="S32.RoleInProject" xml:space="preserve">
+    <value>Role in Project</value>
+  </data>
+  <data name="S32.Duty" xml:space="preserve">
+    <value>Duty</value>
+  </data>
+  <data name="S32.EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="S32.SaveBtn" xml:space="preserve">
+    <value>Save Project</value>
+  </data>
+  <data name="S33.Title" xml:space="preserve">
+    <value>3.3 Guest Speaker / Special Lecturer / Committee Member</value>
+  </data>
+  <data name="S33.Headers.ActivityName" xml:space="preserve">
+    <value>Activity / Project Name</value>
+  </data>
+  <data name="S33.Headers.Role" xml:space="preserve">
+    <value>Role / Duty</value>
+  </data>
+  <data name="S33.Headers.Agency" xml:space="preserve">
+    <value>Recipient Agency</value>
+  </data>
+  <data name="S33.Headers.StartDate" xml:space="preserve">
+    <value>Date Started</value>
+  </data>
+  <data name="S33.ModalTitle" xml:space="preserve">
+    <value>Add Speaker/Committee Activity</value>
+  </data>
+  <data name="S33.Type" xml:space="preserve">
+    <value>Internal / External</value>
+  </data>
+  <data name="S33.EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="S33.SaveBtn" xml:space="preserve">
+    <value>Save Activity</value>
+  </data>
+  <data name="S34.Title" xml:space="preserve">
+    <value>3.4 Academic Expert / Reviewer</value>
+  </data>
+  <data name="S34.Headers.JournalName" xml:space="preserve">
+    <value>Journal / Conference Name</value>
+  </data>
+  <data name="S34.Headers.ArticleName" xml:space="preserve">
+    <value>Article Name</value>
+  </data>
+  <data name="S34.Headers.Agency" xml:space="preserve">
+    <value>Applicant</value>
+  </data>
+  <data name="S34.Headers.StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="S34.ModalTitle" xml:space="preserve">
+    <value>Add Expert Activity</value>
+  </data>
+  <data name="S34.Type" xml:space="preserve">
+    <value>Internal / External</value>
+  </data>
+  <data name="S34.EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="S34.SaveBtn" xml:space="preserve">
+    <value>Save Activity</value>
+  </data>
+  <data name="S4.Title" xml:space="preserve">
+    <value>Arts and Culture Activities</value>
+  </data>
+  <data name="S41.Title" xml:space="preserve">
+    <value>Participation</value>
+  </data>
+  <data name="S41.Headers.Index" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="S41.Headers.EventName" xml:space="preserve">
+    <value>Event Name</value>
+  </data>
+  <data name="S41.Headers.Level" xml:space="preserve">
+    <value>Participation Level</value>
+  </data>
+  <data name="S41.Headers.TimeSpent" xml:space="preserve">
+    <value>Time Spent / Term</value>
+  </data>
+  <data name="S41.ModalTitle" xml:space="preserve">
+    <value>Add Arts &amp; Culture Activity</value>
+  </data>
+  <data name="S41.Level.Committee" xml:space="preserve">
+    <value>Committee / Working Group</value>
+  </data>
+  <data name="S41.Level.Participate" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="S41.SaveBtn" xml:space="preserve">
+    <value>Save Activity</value>
+  </data>
+  <data name="S5.Title" xml:space="preserve">
+    <value>Other Tasks</value>
+  </data>
+  <data name="S51.Title" xml:space="preserve">
+    <value>Assigned Tasks or Activities</value>
+  </data>
+  <data name="S51.Headers.Task" xml:space="preserve">
+    <value>Assigned Task / Activity</value>
+  </data>
+  <data name="S51.Headers.AssignedBy" xml:space="preserve">
+    <value>Assigned By</value>
+  </data>
+  <data name="S51.Headers.TimeSpent" xml:space="preserve">
+    <value>Time Spent / Term (Avg)</value>
+  </data>
+  <data name="S51.ModalTitle" xml:space="preserve">
+    <value>Add Other Task</value>
+  </data>
+  <data name="S51.SaveBtn" xml:space="preserve">
+    <value>Save Task</value>
+  </data>
+  <data name="S6.Title" xml:space="preserve">
+    <value>Administrative Positions</value>
+  </data>
+  <data name="S61.Title" xml:space="preserve">
+    <value>Administrative workload for the academic year</value>
+  </data>
+  <data name="S61.Headers.Task" xml:space="preserve">
+    <value>Administrative Workload</value>
+  </data>
+  <data name="S61.ModalTitle" xml:space="preserve">
+    <value>Add Administrative Work</value>
+  </data>
+  <data name="S61.SaveBtn" xml:space="preserve">
+    <value>Save Work</value>
+  </data>
+  <data name="S7.Title" xml:space="preserve">
+    <value>Support Tasks for University Units</value>
+  </data>
+  <data name="S71.Title" xml:space="preserve">
+    <value>Support Work</value>
+  </data>
+  <data name="S81.Headers.Topic" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="S81.Headers.Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="S81.Headers.StartDateTime" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="S81.Headers.EndDateTime" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="S81.Headers.Organizer" xml:space="preserve">
+    <value>Organizer</value>
+  </data>
+  <data name="S81.Headers.Benefits" xml:space="preserve">
+    <value>Benefits</value>
+  </data>
+  <data name="S71.Headers.Task" xml:space="preserve">
+    <value>Workload</value>
+  </data>
+  <data name="S71.ModalTitle" xml:space="preserve">
+    <value>Add Support Work</value>
+  </data>
+  <data name="S71.SaveBtn" xml:space="preserve">
+    <value>Save Work</value>
+  </data>
+  <data name="S8.Title" xml:space="preserve">
+    <value>Personnel Development</value>
+  </data>
+  <data name="S81.Title" xml:space="preserve">
+    <value>Development Activities</value>
+  </data>
+  <data name="S81.ModalTitle" xml:space="preserve">
+    <value>Add Development Activity</value>
+  </data>
+  <data name="S81.Type.Training" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="S81.Type.Seminar" xml:space="preserve">
+    <value>Seminar</value>
+  </data>
+  <data name="S81.Type.StudyTour" xml:space="preserve">
+    <value>Study Tour</value>
+  </data>
+  <data name="S81.Type.Internship" xml:space="preserve">
+    <value>Internship</value>
+  </data>
+  <data name="S81.Type.Meeting" xml:space="preserve">
+    <value>Meeting</value>
+  </data>
+  <data name="S81.Type.Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="S81.SaveBtn" xml:space="preserve">
+    <value>Save Activity</value>
+  </data>
+  <data name="Summary.Title" xml:space="preserve">
+    <value>Summary &amp; Comments</value>
+  </data>
+  <data name="Summary.Label" xml:space="preserve">
+    <value>Additional Comments / Notes</value>
+  </data>
+  <data name="JS.SelectRowsPrompt" xml:space="preserve">
+    <value>Please select rows to delete</value>
+  </data>
+  <data name="JS.ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you want to delete {0} selected items?</value>
+  </data>
+  <data name="JS.DeleteError" xml:space="preserve">
+    <value>Error deleting ID {0}</value>
+  </data>
+  <data name="JS.DeleteErrorGeneric" xml:space="preserve">
+    <value>Error occurred during deletion</value>
+  </data>
+  <data name="JS.SaveFailed" xml:space="preserve">
+    <value>Save failed: {0}</value>
+  </data>
+  <data name="JS.SaveErrorGeneric" xml:space="preserve">
+    <value>Error occurred during save</value>
+  </data>
+  <data name="DropDown1" xml:space="preserve">
+    <value>Teaching and Graduate Production</value>
+  </data>
+  <data name="DropDown2" xml:space="preserve">
+    <value>Teaching Materials, Academic Works, Research, and Creative Works</value>
+  </data>
+  <data name="DropDown3" xml:space="preserve">
+    <value>Academic Services</value>
+  </data>
+  <data name="DropDown4" xml:space="preserve">
+    <value>Art and Culture Maintenance and Other Tasks</value>
+  </data>
+  <data name="DropDown5" xml:space="preserve">
+    <value>Performance Characteristics and Behavior</value>
+  </data>
+  <data name="DropDown6" xml:space="preserve">
+    <value>University Support Tasks</value>
+  </data>
+  <data name="S41.Headers.EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="S41.Headers.StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="S51.Headers.EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="S51.Headers.StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+
+  <!-- Added missing keys from previous file to prevent errors -->
+  <data name="AppTitle" xml:space="preserve">
+    <value>Section 3: Evaluation Form</value>
+  </data>
+  <data name="Btn_BackToDashboard" xml:space="preserve">
+    <value>Back to Dashboard</value>
+  </data>
+  <data name="Menu_EvaluationSections" xml:space="preserve">
+    <value>Evaluation Sections</value>
+  </data>
+  <data name="Nav_S1" xml:space="preserve">
+    <value>Section 1: General Info</value>
+  </data>
+  <data name="Nav_S2" xml:space="preserve">
+    <value>Section 2: Teaching</value>
+  </data>
+  <data name="Nav_S3" xml:space="preserve">
+    <value>Section 3: Services &amp; Duties</value>
+  </data>
+  <data name="Nav_S4" xml:space="preserve">
+    <value>Section 4: Research</value>
+  </data>
+  <data name="Menu_Summary" xml:space="preserve">
+    <value>Summary &amp; Submit</value>
+  </data>
+  <data name="Progress_S3" xml:space="preserve">
+    <value>Section 3 Progress</value>
+  </data>
+  <data name="Label_Term" xml:space="preserve">
+    <value>TERM</value>
+  </data>
+  <data name="Label_LastUpdated" xml:space="preserve">
+    <value>LAST UPDATED</value>
+  </data>
+  <data name="Footer_Rights" xml:space="preserve">
+    <value>© 2024 Rangsit University. All academic rights reserved.</value>
+  </data>
+  <data name="Link_Support" xml:space="preserve">
+    <value>Support Desk</value>
+  </data>
+  <data name="Link_Docs" xml:space="preserve">
+    <value>User Documentation</value>
+  </data>
+  <data name="Link_Policy" xml:space="preserve">
+    <value>Academic Policy</value>
+  </data>
+  <data name="FacultyMember" xml:space="preserve">
+    <value>Faculty Member</value>
+  </data>
+  <data name="Form_Title" xml:space="preserve">
+    <value>Staff Evaluation System</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+
+</root>

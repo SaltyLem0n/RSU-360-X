@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common_Actions" xml:space="preserve">
+    <value>การดำเนินการ</value>
+  </data>
+  <data name="Common_Add" xml:space="preserve">
+    <value>เพิ่ม</value>
+  </data>
+  <data name="Common_AddNew" xml:space="preserve">
+    <value>เพิ่มใหม่</value>
+  </data>
+  <data name="Common_AttachmentOptional" xml:space="preserve">
+    <value>ไฟล์แนบ (ถ้ามี)</value>
+  </data>
+  <data name="Common_Author" xml:space="preserve">
+    <value>ผู้เขียน</value>
+  </data>
+  <data name="Common_AutoCalculated" xml:space="preserve">
+    <value>คำนวณอัตโนมัติ</value>
+  </data>
+  <data name="Common_Close" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="Common_Country" xml:space="preserve">
+    <value>ประเทศ</value>
+  </data>
+  <data name="Common_Course" xml:space="preserve">
+    <value>รายวิชา</value>
+  </data>
+  <data name="Common_Credits" xml:space="preserve">
+    <value>หน่วยกิต</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>ลบไม่สำเร็จ</value>
+  </data>
+  <data name="Common_DeleteSelected" xml:space="preserve">
+    <value>ลบที่เลือก</value>
+  </data>
+  <data name="Common_Description" xml:space="preserve">
+    <value>คำอธิบาย</value>
+  </data>
+  <data name="Common_Details" xml:space="preserve">
+    <value>รายละเอียด</value>
+  </data>
+  <data name="Common_DocType" xml:space="preserve">
+    <value>ประเภทเอกสาร</value>
+  </data>
+  <data name="Common_Edit" xml:space="preserve">
+    <value>แก้ไข</value>
+  </data>
+  <data name="Common_Max50" xml:space="preserve">
+    <value>ไม่เกิน 50 คน</value>
+  </data>
+  <data name="Common_NoData" xml:space="preserve">
+    <value>ไม่มีข้อมูล</value>
+  </data>
+  <data name="Common_Percentage" xml:space="preserve">
+    <value>ร้อยละ</value>
+  </data>
+  <data name="Common_Point" xml:space="preserve">
+    <value>คะแนน</value>
+  </data>
+  <data name="Common_Position" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>บันทึก</value>
+  </data>
+  <data name="Common_SaveChanges" xml:space="preserve">
+    <value>บันทึกการเปลี่ยนแปลง</value>
+  </data>
+  <data name="Common_SaveFailed" xml:space="preserve">
+    <value>บันทึกไม่สำเร็จ</value>
+  </data>
+  <data name="Common_SavingEllipsis" xml:space="preserve">
+    <value>กำลังบันทึก...</value>
+  </data>
+  <data name="Common_Select" xml:space="preserve">
+    <value>เลือก</value>
+  </data>
+  <data name="Common_SelectAll" xml:space="preserve">
+    <value>เลือกทั้งหมด</value>
+  </data>
+  <data name="Common_SelectItems" xml:space="preserve">
+    <value>โปรดเลือกข้อมูลที่จะลบ</value>
+  </data>
+  <data name="Common_SelectItemsToDelete" xml:space="preserve">
+    <value>โปรดเลือกข้อมูลที่จะลบ</value>
+  </data>
+  <data name="Common_Semester" xml:space="preserve">
+    <value>ภาคการศึกษา</value>
+  </data>
+  <data name="Common_Students" xml:space="preserve">
+    <value>จำนวนนักศึกษา</value>
+  </data>
+  <data name="Common_Subject" xml:space="preserve">
+    <value>ประกอบการสอนวิชา</value>
+  </data>
+  <data name="Common_Title" xml:space="preserve">
+    <value>ชื่อผลงาน</value>
+  </data>
+  <data name="Common_Title1" xml:space="preserve">
+    <value>เรื่อง</value>
+  </data>
+  <data name="Common_Title2" xml:space="preserve">
+    <value>ชื่อเรื่อง</value>
+  </data>
+  <data name="Common_Title3" xml:space="preserve">
+    <value>ชื่อผลงาน</value>
+  </data>
+  <data name="Common_Title4" xml:space="preserve">
+    <value>ระดับคุณภาพ</value>
+  </data>
+  <data name="Common_Topic" xml:space="preserve">
+    <value>หัวข้อวิจัย</value>
+  </data>
+  <data name="Common_Type" xml:space="preserve">
+    <value>ประเภท</value>
+  </data>
+  <data name="Common_Year" xml:space="preserve">
+    <value>วัน/เดือน/ปี</value>
+  </data>
+  <data name="Confirm_Delete" xml:space="preserve">
+    <value>ยืนยันการลบข้อมูลนี้หรือไม่?</value>
+  </data>
+  <data name="Form_Section2_Subtitle" xml:space="preserve">
+    <value>ส่วนที่ 2 — งานวิชาการและงานวิชาชีพ</value>
+  </data>
+  <data name="Form_Subtitle_S2" xml:space="preserve">
+    <value>ส่วนที่ 2 — งานวิชาการและงานวิชาชีพ</value>
+  </data>
+  <data name="Form_Title" xml:space="preserve">
+    <value>ข้อมูลเกี่ยวกับการปฏิบัติงาน</value>
+  </data>
+  <data name="Nav_PerfEval" xml:space="preserve">
+    <value>การประเมินผลงาน</value>
+  </data>
+  <data name="Nav_Personal" xml:space="preserve">
+    <value>ข้อมูลส่วนบุคคล</value>
+  </data>
+  <data name="Nav_ServicesDuties" xml:space="preserve">
+    <value>บริการและหน้าที่</value>
+  </data>
+  <data name="Nav_TeachingSoon" xml:space="preserve">
+    <value>งานสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="PH_AgreementDuration" xml:space="preserve">
+    <value>เช่น 2024-01-01 ถึง 2025-12-31</value>
+  </data>
+  <data name="PH_BookSubject" xml:space="preserve">
+    <value>เช่น วิทยาการคอมพิวเตอร์</value>
+  </data>
+  <data name="PH_BookTitle" xml:space="preserve">
+    <value>ชื่อหนังสือหรือแบบเรียน</value>
+  </data>
+  <data name="PH_CoAuthor" xml:space="preserve">
+    <value>ผู้ร่วมเขียน</value>
+  </data>
+  <data name="PH_CoAuthor1" xml:space="preserve">
+    <value>ผู้ร่วมเขียน 1 (ถ้ามี)</value>
+  </data>
+  <data name="PH_Course" xml:space="preserve">
+    <value>ชื่อรายวิชา</value>
+  </data>
+  <data name="PH_DurationMonths" xml:space="preserve">
+    <value>เช่น 24</value>
+  </data>
+  <data name="PH_Grantor" xml:space="preserve">
+    <value>เช่น หน่วยงานผู้ให้ทุน</value>
+  </data>
+  <data name="PH_MaterialTitle" xml:space="preserve">
+    <value>ชื่อสื่อการสอน</value>
+  </data>
+  <data name="PH_Point" xml:space="preserve">
+    <value>0–100</value>
+  </data>
+  <data name="PH_ResearchTopic" xml:space="preserve">
+    <value>เช่น เกษตรกรรมยั่งยืนด้วย AI</value>
+  </data>
+  <data name="PH_Semester" xml:space="preserve">
+    <value>เช่น 1</value>
+  </data>
+  <data name="PH_SubjectEg" xml:space="preserve">
+    <value>เช่น โครงสร้างข้อมูล</value>
+  </data>
+  <data name="PH_Topic" xml:space="preserve">
+    <value>หัวข้อ</value>
+  </data>
+  <data name="PH_Year" xml:space="preserve">
+    <value>เช่น 2025</value>
+  </data>
+  <data name="PH_YearEg" xml:space="preserve">
+    <value>เช่น 2025</value>
+  </data>
+  <data name="S2_1_1_Aria" xml:space="preserve">
+    <value>ภาระงานสอน</value>
+  </data>
+  <data name="S2_1_1_Col_Code" xml:space="preserve">
+    <value>รหัสวิชา</value>
+  </data>
+  <data name="S2_1_1_Col_Title" xml:space="preserve">
+    <value>ชื่อวิชา</value>
+  </data>
+  <data name="S2_1_1_Title" xml:space="preserve">
+    <value>1.1 สรุปภาระการสอน ตามประกาศมหาวิทยาลัยรังสิตเรื่อง การกำหนดการคิดภาระงานสอนและค่าตอบแทนการสอนเกินภาระงาน
+พ.ศ.2563</value>
+  </data>
+  <data name="S2_1_2_Aria" xml:space="preserve">
+    <value>ภาระงานเทียบเท่า</value>
+  </data>
+  <data name="S2_1_2_AttachPrompt" xml:space="preserve">
+    <value>(แนบเอกสารการกำหนดภาระงานเทียบเท่าจากวิทยาลัย/คณะ)</value>
+  </data>
+  <data name="S2_1_2_Col_Report" xml:space="preserve">
+    <value>รายละเอียดรายงาน</value>
+  </data>
+  <data name="S2_1_2_Title" xml:space="preserve">
+    <value>1.2 ภาระงานเทียบเท่า(ตามที่คณะ/วิทยาลัยกำหนด)</value>
+  </data>
+  <data name="S2_1_3_Aria" xml:space="preserve">
+    <value>การประเมินโดยนักศึกษา</value>
+  </data>
+  <data name="S2_1_3_Title" xml:space="preserve">
+    <value>1.3 ผลการประเมินการสอนโดยนักศึกษา</value>
+  </data>
+  <data name="S2_1_4_Aria" xml:space="preserve">
+    <value>การประเมินโดยอาจารย์</value>
+  </data>
+  <data name="S2_1_4_Modal_Title" xml:space="preserve">
+    <value>เพิ่มผลการประเมินโดยอาจารย์/ผู้ร่วมสอน</value>
+  </data>
+  <data name="S2_1_4_PointHelp" xml:space="preserve">
+    <value>0–100 (หรือสเกลคะแนนของคุณ)</value>
+  </data>
+  <data name="S2_1_4_Title" xml:space="preserve">
+    <value>1.4 ผลการประเมินการสอนโดยอาจารย์/ผู้ร่วมสอน (ตามแผนการสอนที่กำหนดโดยคณะวิชา)</value>
+  </data>
+  <data name="S2_1_5_Aria" xml:space="preserve">
+    <value>สรุปการติดตามนักศึกษา</value>
+  </data>
+  <data name="S2_1_5_Col_Item" xml:space="preserve">
+    <value>กิจกรรม</value>
+  </data>
+  <data name="S2_1_5_Col_Num" xml:space="preserve">
+    <value>จำนวน นักศึกษาที่ดำเนินการได้ ตามตัวชี้วัด (คน)</value>
+  </data>
+  <data name="S2_1_5_FollowedUpLabel" xml:space="preserve">
+    <value>จำนวน
+นักศึกษาที่ดำเนินการได้
+ตามตัวชี้วัด (คน)</value>
+  </data>
+  <data name="S2_1_5_Footnote" xml:space="preserve">
+    <value>ในการคานวณค่าร้อยละให้คิดค่าตัวหารตามจำนวนจริงแต่สูงสุดไม่เกิน 50 คน</value>
+  </data>
+  <data name="S2_1_5_HelpCalc" xml:space="preserve">
+    <value>* ร้อยละ = (จำนวนนักศึกษาที่ติดตาม ÷ จำนวนนักศึกษาที่รับผิดชอบ) × 100 (จำกัดสูงสุด 50 คน)</value>
+  </data>
+  <data name="S2_1_5_ItemText" xml:space="preserve">
+    <value>ร้อยละของการติดตามนักศึกษา (อย่างน้อย 2 ครั้ง/คน/ภาคการศึกษา)</value>
+  </data>
+  <data name="S2_1_5_Modal_Title" xml:space="preserve">
+    <value>สรุปการติดตามนักศึกษา</value>
+  </data>
+  <data name="S2_1_5_NumAdvisees" xml:space="preserve">
+    <value>จำนวนนักศึกษาที่รับผิดชอบ</value>
+  </data>
+  <data name="S2_1_5_Summary" xml:space="preserve">
+    <value>สรุป</value>
+  </data>
+  <data name="S2_1_5_Title" xml:space="preserve">
+    <value>1.5 อาจารย์ที่ปรึกษา</value>
+  </data>
+  <data name="S2_1_Title" xml:space="preserve">
+    <value>1. การสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="S2_2_1_Aria" xml:space="preserve">
+    <value>สื่อ/เอกสารการสอน</value>
+  </data>
+  <data name="S2_2_1_Modal_Title" xml:space="preserve">
+    <value>เพิ่มสื่อการสอนใหม่</value>
+  </data>
+  <data name="S2_2_1_Title" xml:space="preserve">
+    <value>2.1  เอกสารการสอน (ประเมินผ่านคุณภาพระดับดีขึ้นไปจากคณาจารย์ที่เกี่ยวข้องในหน่วยงานอย่างน้อย 3 คน)</value>
+  </data>
+  <data name="S2_2_2_Aria" xml:space="preserve">
+    <value>หนังสือ</value>
+  </data>
+  <data name="S2_2_2_Modal_Title" xml:space="preserve">
+    <value>เพิ่มหนังสือใหม่</value>
+  </data>
+  <data name="S2_2_2_Title" xml:space="preserve">
+    <value>2.2 ตำรา/ หนังสือ/ งานแปลที่ได้รับการประเมินผ่านเกณฑ์การขอตำแหน่งทางวิชาการแล้ว</value>
+  </data>
+  <data name="S2_2_3_Aria" xml:space="preserve">
+    <value>ทุนวิจัย</value>
+  </data>
+  <data name="S2_2_3_GrantDetails" xml:space="preserve">
+    <value>รายละเอียดทุน</value>
+  </data>
+  <data name="S2_2_3_Modal_Title" xml:space="preserve">
+    <value>เพิ่มทุนวิจัยใหม่</value>
+  </data>
+  <data name="S2_2_3_Title" xml:space="preserve">
+    <value>2.3 ทุนวิจัย (คิดตามสัดส่วนรายปีของสัญญาทุน)</value>
+  </data>
+  <data name="S2_2_4_Aria" xml:space="preserve">
+    <value>การประชุมวิชาการ</value>
+  </data>
+  <data name="S2_2_4_Title" xml:space="preserve">
+    <value>2.4 บทความวิชาการหรือบทความวิจัยที่ตีพิมพ์ในรายงานสืบเนื่องจากการประชุมวิชาการ</value>
+  </data>
+  <data name="S2_2_5_Aria" xml:space="preserve">
+    <value>วารสาร</value>
+  </data>
+  <data name="S2_2_5_Title" xml:space="preserve">
+    <value>2.5 บทความวิชาการหรือบทความวิจัยที่ตีพิมพ์ในวารสารวิชาการ</value>
+  </data>
+  <data name="S2_2_6_Aria" xml:space="preserve">
+    <value>อนุสิทธิบัตรและสิทธิบัตร</value>
+  </data>
+  <data name="S2_2_6_Title" xml:space="preserve">
+    <value>2.6 ผลงานที่ได้รับการจดอนุสิทธิบัตร/สิทธิบัตร</value>
+  </data>
+  <data name="S2_2_7_Aria" xml:space="preserve">
+    <value>งานสร้างสรรค์</value>
+  </data>
+  <data name="S2_2_7_Title" xml:space="preserve">
+    <value>2.7 งานสร้างสรรค์</value>
+  </data>
+  <data name="S2_2_Title" xml:space="preserve">
+    <value>2. เอกสารการสอน งานวิชาการ งานวิจัย และงานสร้างสรรค์</value>
+  </data>
+  <data name="S2_AgreementDuration" xml:space="preserve">
+    <value>ระยะเวลาสัญญา</value>
+  </data>
+  <data name="S2_ArticleTitle" xml:space="preserve">
+    <value>ชื่อบทความ</value>
+  </data>
+  <data name="S2_Book_Type_Book" xml:space="preserve">
+    <value>หนังสือ</value>
+  </data>
+  <data name="S2_Book_Type_Textbook" xml:space="preserve">
+    <value>ตำราเรียน</value>
+  </data>
+  <data name="S2_Book_Type_Translated" xml:space="preserve">
+    <value>งานแปล</value>
+  </data>
+  <data name="S2_CoAuthors" xml:space="preserve">
+    <value>ผู้ร่วมผลิต</value>
+  </data>
+  <data name="S2_CoAuthors_AddBtn" xml:space="preserve">
+    <value>เพิ่มผู้ร่วมเขียน</value>
+  </data>
+  <data name="S2_CoAuthors_Explain" xml:space="preserve">
+    <value>เพิ่มรายชื่อผู้ร่วมเขียนตามลำดับ</value>
+  </data>
+  <data name="S2_CoAuthors_RemoveBtn" xml:space="preserve">
+    <value>ลบผู้ร่วมเขียน</value>
+  </data>
+  <data name="S2_ConferenceDate" xml:space="preserve">
+    <value>วัน/เดือน/ปีที่จัด
+ประชุม</value>
+  </data>
+  <data name="S2_ConferenceName" xml:space="preserve">
+    <value>ชื่อการประชุม</value>
+  </data>
+  <data name="S2_DocType_Modify" xml:space="preserve">
+    <value>ปรับปรุงเกิน
+50%</value>
+  </data>
+  <data name="S2_DocType_New" xml:space="preserve">
+    <value>ใหม่</value>
+  </data>
+  <data name="S2_DOI" xml:space="preserve">
+    <value>DOI</value>
+  </data>
+  <data name="S2_DurationMonths" xml:space="preserve">
+    <value>จำนวนปี</value>
+  </data>
+  <data name="S2_Grantor" xml:space="preserve">
+    <value>ผู้สนับสนุน
+ทุนวิจัย
+(แหล่งทุน)</value>
+  </data>
+  <data name="S2_JournalPublisher" xml:space="preserve">
+    <value>วารสาร / ผู้พิมพ์</value>
+  </data>
+  <data name="S2_PatentDate" xml:space="preserve">
+    <value>วันที่ได้รับอนุสิทธิบัตร/สิทธิบัตร</value>
+  </data>
+  <data name="S2_PatentNumber" xml:space="preserve">
+    <value>เลขอนุสิทธิบัตร/สิทธิบัตร</value>
+  </data>
+  <data name="S2_PublicationMonth" xml:space="preserve">
+    <value>เดือนที่ตีพิมพ์</value>
+  </data>
+  <data name="S2_PublicationYear" xml:space="preserve">
+    <value>ปีที่ตีพิมพ์</value>
+  </data>
+  <data name="S2_PublisherType" xml:space="preserve">
+    <value>ฐานข้อมูลที่ตีพิมพ์ (√)</value>
+  </data>
+  <data name="S2_ResearchPos_Coworker" xml:space="preserve">
+    <value>ผู้ร่วมวิจัย</value>
+  </data>
+  <data name="S2_ResearchPos_Leader" xml:space="preserve">
+    <value>หัวหน้าโครงการ</value>
+  </data>
+  <data name="S2_TitleOfPaper" xml:space="preserve">
+    <value>ชื่อบทความ</value>
+  </data>
+  <data name="S2_TypeOfConference" xml:space="preserve">
+    <value>รูปแบบ/ระดับ (√)</value>
+  </data>
+  <data name="DropDown1" xml:space="preserve">
+    <value>งานสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="DropDown2" xml:space="preserve">
+    <value>งานสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="DropDown3" xml:space="preserve">
+    <value>งานบริการทางวิชาการ</value>
+  </data>
+  <data name="DropDown4" xml:space="preserve">
+    <value>งานทำนุบำรุงศิลปวัฒนธรรม และ งานอื่นๆ</value>
+  </data>
+  <data name="DropDown5" xml:space="preserve">
+    <value>คุณลักษณะและพฤติกรรมการปฏิบัติงาน</value>
+  </data>
+  <data name="DropDown6" xml:space="preserve">
+    <value>สนับสนุนงานมหาวิทยาลัย</value>
+  </data>
+  <data name="Common_ViewEvidence" xml:space="preserve">
+    <value>ดูหลักฐาน</value>
+  </data>
+  <data name="Evidence_Missing" xml:space="preserve">
+    <value>ไม่พบไฟล์หลักฐาน</value>
+  </data>
+  <data name="Evidence_Modal_Title" xml:space="preserve">
+    <value>ดูตัวอย่างหลักฐาน</value>
+  </data>
+  <data name="Evidence_Frame_Title" xml:space="preserve">
+    <value>เอกสารหลักฐาน</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>ระบบประเมินบุคลากร</value>
+  </data>
+  <data name="FacultyMember" xml:space="preserve">
+    <value>อาจารย์ประจำคณะ</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>เมนู</value>
+  </data>
+  <data name="Btn_BackToDashboard" xml:space="preserve">
+    <value>กลับสู่แดชบอร์ด</value>
+  </data>
+  <data name="Footer_Rights" xml:space="preserve">
+    <value>© 2024 มหาวิทยาลัยรังสิต สงวนลิขสิทธิ์ทางวิชาการ</value>
+  </data>
+  <data name="Progress_Section2" xml:space="preserve">
+    <value>ความคืบหน้าส่วนที่ 2</value>
+  </data>
+  <data name="Menu_EvaluationSections" xml:space="preserve">
+    <value>ส่วนการประเมิน</value>
+  </data>
+  <data name="Menu_Summary" xml:space="preserve">
+    <value>สรุปและส่ง</value>
+  </data>
+  <data name="Label_AcadYear" xml:space="preserve">
+    <value>ปีการศึกษา</value>
+  </data>
+  <data name="Label_Updated" xml:space="preserve">
+    <value>อัปเดตเมื่อ</value>
+  </data>
+</root>
