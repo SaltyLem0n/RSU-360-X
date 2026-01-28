@@ -1,355 +1,498 @@
 @model RSU_360_X.Models.VisaIndexVm
 @{
-    ViewData["Title"] = "Visa Application";
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
-    var isEditable = (bool)ViewBag.AllowEdit;
-
-    // Helper functions to filter files
-    var passportFiles = Model.Files.Where(f => f.Category == "passport" || f.Category == "general").ToList();
-    var stampFiles = Model.Files.Where(f => f.Category == "stamp").ToList();
-    var tm30Files = Model.Files.Where(f => f.Category == "tm30").ToList();
-    var receiptFiles = Model.Files.Where(f => f.Category == "receipt").ToList();
+    Layout = null;
+    var hasActiveApplication = Model.Status != "draft" && Model.Status != "needs_fix";
+    var latestSubmission = Model.HistoryList.FirstOrDefault();
 }
 
-<div class="container mx-auto p-6 max-w-4xl pt-28">
-    <h2 class="text-3xl font-bold mb-8 text-slate-800 dark:text-white">Visa Application</h2>
-
-
-
-    <div class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-white/10 p-6 mb-8">
-        <h3 class="text-lg font-semibold mb-4 text-slate-700 dark:text-slate-300">Application Status</h3>
-        
-        <div class="mb-5 position-relative">
-            <div class="position-absolute top-50 start-0 translate-middle-y w-100" style="z-index: 0;">
-                <div class="progress" style="height: 4px;">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: @((Model.CurrentStep - 1) * 25)%;"></div>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-between position-relative w-100" style="z-index: 1;">
-                
-                <div class="d-flex flex-column align-items-center bg-body px-2">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 1 ? "bg-primary" : "bg-secondary")" 
-                         style="width: 40px; height: 40px; transition: all 0.3s;">
-                        1
-                    </div>
-                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 1 ? "text-primary" : "text-muted")">Submitted</span>
-                </div>
-
-                <div class="d-flex flex-column align-items-center bg-body px-2">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 2 ? "bg-primary" : "bg-secondary")" 
-                         style="width: 40px; height: 40px; transition: all 0.3s;">
-                        2
-                    </div>
-                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 2 ? "text-primary" : "text-muted")">Under Review</span>
-                </div>
-
-                <div class="d-flex flex-column align-items-center bg-body px-2">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 3 ? "bg-primary" : "bg-secondary")" 
-                         style="width: 40px; height: 40px; transition: all 0.3s;">
-                        3
-                    </div>
-                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 3 ? "text-primary" : "text-muted")">Approved</span>
-                </div>
-
-                <div class="d-flex flex-column align-items-center bg-body px-2">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 4 ? "bg-primary" : "bg-secondary")" 
-                         style="width: 40px; height: 40px; transition: all 0.3s;">
-                        4
-                    </div>
-                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 4 ? "text-primary" : "text-muted")">Pickup</span>
-                </div>
-
-                <div class="d-flex flex-column align-items-center bg-body px-2">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold @(Model.CurrentStep >= 5 ? "bg-success" : "bg-secondary")" 
-                         style="width: 40px; height: 40px; transition: all 0.3s;">
-                        <i class="bi bi-flag-fill"></i>
-                    </div>
-                    <span class="small fw-bold mt-2 @(Model.CurrentStep >= 5 ? "text-success" : "text-muted")">Completed</span>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="flex items-center gap-4">
-            @if(!string.IsNullOrEmpty(Model.StaffNotes)) {
-                <div class="text-red-500 text-sm mt-2 p-3 bg-red-50 rounded-lg">
-                    <strong>Note:</strong> @Model.StaffNotes
-                </div>
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RSUX - Student Visa Portal</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Prompt:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#38bdf8", 
+                        secondary: "#ec4899",
+                        "background-light": "#f1f5f9",
+                        "background-dark": "#0f172a", 
+                        "surface-dark": "#1e293b",
+                        "surface-light": "#ffffff",
+                        "card-header": "#172554",
+                        "status-green": "#10b981",
+                        "status-red": "#ef4444",
+                        "status-yellow": "#f59e0b",
+                        "status-purple": "#a855f7",
+                    },
+                    fontFamily: {
+                        display: ["Prompt", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%)',
+                        'btn-gradient': 'linear-gradient(90deg, #22d3ee 0%, #3b82f6 100%)',
+                    }
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        @@layer utilities {
+            .table-row-hover {
+                @@apply hover:bg-slate-50 dark:hover:bg-white/5 transition-colors duration-200;
             }
-        </div>
-    </div>
-
-    @if (isEditable)
-    {
-        <form action="/visa" method="post" enctype="multipart/form-data" class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-white/10 p-8">
-            @Html.AntiForgeryToken()
-            
-            <h4 class="text-xl font-bold text-primary mb-4 border-b pb-2">1. Visa Information</h4>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                        Passport Number <span class="text-xs text-slate-400">(Auto-filled)</span>
-                    </label>
-                    <div class="relative">
-                        <input type="text" name="passportNumber" value="@Model.Passport" 
-                               class="w-full rounded-lg border-slate-200 bg-slate-100 text-slate-500 cursor-not-allowed focus:border-slate-200 focus:ring-0 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" 
-                               readonly required />
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
-                            <span class="material-symbols-outlined text-sm">lock</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                        Nationality <span class="text-xs text-slate-400">(Auto-filled)</span>
-                    </label>
-                    <div class="relative">
-                        <input type="text" name="country" value="@Model.Country" 
-                               class="w-full rounded-lg border-slate-200 bg-slate-100 text-slate-500 cursor-not-allowed focus:border-slate-200 focus:ring-0 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" 
-                               readonly required />
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
-                            <span class="material-symbols-outlined text-sm">lock</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div>
-                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Current Visa Type</label>
-                    <select name="visaType" class="form-select rounded-lg">
-                        <option value="Non-Ed">Non-Immigrant ED</option>
-                        <option value="Non-B">Non-Immigrant B</option>
-                        <option value="Tourist">Tourist (TR)</option>
-                    </select>
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Issue Date</label>
-                        <input type="date" name="issueDate" class="form-control rounded-lg" required />
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Expiry Date</label>
-                        <input type="date" name="expiryDate" class="form-control rounded-lg" required />
-                    </div>
-                </div>
-            </div>
-
-            <h4 class="text-xl font-bold text-primary mb-4 border-b pb-2">2. Required Documents</h4>
-            
-            <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
-                <label class="block font-semibold text-slate-700 dark:text-slate-200 mb-2">
-                    A. Passport Pages <span class="text-red-500">*</span>
-                    <span class="text-xs font-normal text-slate-500 block">(Upload photo page and current visa page)</span>
-                </label>
-                <input type="file" name="passportPages" multiple class="form-control" />
-                @if(passportFiles.Any()) { <div class="mt-2 text-sm text-green-600">✓ @passportFiles.Count files uploaded</div> }
-            </div>
-
-            <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
-                <label class="block font-semibold text-slate-700 dark:text-slate-200 mb-2">
-                    B. Visa Stamp Pages <span class="text-red-500">*</span>
-                    <span class="text-xs font-normal text-slate-500 block">(Upload all pages with previous Thai immigration stamps)</span>
-                </label>
-                <input type="file" name="visaStamps" multiple class="form-control" />
-                @if(stampFiles.Any()) { <div class="mt-2 text-sm text-green-600">✓ @stampFiles.Count files uploaded</div> }
-            </div>
-
-            <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
-                <label class="block font-semibold text-slate-700 dark:text-slate-200 mb-2">
-                    C. TM.30 Document <span class="text-red-500">*</span>
-                    <span class="text-xs font-normal text-slate-500 block">(Notification of Residence for Foreigners)</span>
-                </label>
-                <input type="file" name="tm30" class="form-control" />
-                @if(tm30Files.Any()) { <div class="mt-2 text-sm text-green-600">✓ File uploaded</div> }
-            </div>
-
-            <div class="mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
-                <label class="block font-semibold text-slate-700 dark:text-slate-200 mb-2">
-                    D. Tuition Fee Receipt <span class="text-red-500">*</span>
-                    <span class="text-xs font-normal text-slate-500 block">(Proof of registration for the current semester)</span>
-                </label>
-                <input type="file" name="tuitionReceipt" class="form-control" />
-                @if(receiptFiles.Any()) { <div class="mt-2 text-sm text-green-600">✓ File uploaded</div> }
-            </div>
-
-            <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-cyan-500/30 transition-all transform hover:-translate-y-1">
-                Submit Complete Application
-            </button>
-        </form>
-    }
-    else
-    {
-        <div class="bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-slate-200 dark:border-white/10 p-8">
-            <h4 class="font-bold mb-4">Submitted Documents:</h4>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="p-4 border rounded-lg">
-                    <h5 class="font-semibold text-blue-600 mb-2">Passport Pages</h5>
-                    <ul class="list-disc pl-5 text-sm">
-                        @foreach(var f in passportFiles) { <li><a href="@f.Url" target="_blank" class="hover:underline">@f.Name</a></li> }
-                    </ul>
-                </div>
-                <div class="p-4 border rounded-lg">
-                    <h5 class="font-semibold text-blue-600 mb-2">Visa Stamps</h5>
-                    <ul class="list-disc pl-5 text-sm">
-                        @foreach(var f in stampFiles) { <li><a href="@f.Url" target="_blank" class="hover:underline">@f.Name</a></li> }
-                    </ul>
-                </div>
-                <div class="p-4 border rounded-lg">
-                    <h5 class="font-semibold text-blue-600 mb-2">TM.30</h5>
-                    <ul class="list-disc pl-5 text-sm">
-                        @foreach(var f in tm30Files) { <li><a href="@f.Url" target="_blank" class="hover:underline">@f.Name</a></li> }
-                    </ul>
-                </div>
-                <div class="p-4 border rounded-lg">
-                    <h5 class="font-semibold text-blue-600 mb-2">Tuition Receipt</h5>
-                    <ul class="list-disc pl-5 text-sm">
-                        @foreach(var f in receiptFiles) { <li><a href="@f.Url" target="_blank" class="hover:underline">@f.Name</a></li> }
-                    </ul>
-                </div>
-            </div>
-        </div>
-    }
-</div>
-    
-    <div class="mt-12">
-        <h3 class="text-xl font-bold mb-4 text-slate-700 dark:text-slate-300 border-l-4 border-blue-500 pl-3">
-            Visa History
-        </h3>
-        
-        <div class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-slate-200 dark:border-white/10 overflow-hidden">
-            <table class="w-full text-left border-collapse">
-                <thead class="bg-slate-50 dark:bg-white/5">
-                    <tr>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase">Submission Date</th>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase">Visa Type</th>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase">Expiry Date</th>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase">Status</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100 dark:divide-white/10">
-                    @if (Model.HistoryList.Any())
-                    {
-                        @foreach (var item in Model.HistoryList)
-                        {
-                            <tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
-                                <td class="p-4 text-sm">@item.SubmittedAt.ToString("dd MMM yyyy")</td>
-                                <td class="p-4 text-sm font-medium">@item.VisaType</td>
-                                <td class="p-4 text-sm">
-                                    @(item.ExpiryDate.HasValue ? item.ExpiryDate.Value.ToString("dd MMM yyyy") : "-")
-                                </td>
-                                <td class="p-4">
-                                    <span class="px-2 py-1 rounded text-xs font-bold
-                                        @(item.Status == "approved" ? "bg-green-100 text-green-700" : 
-                                          item.Status == "rejected" ? "bg-red-100 text-red-700" : 
-                                          "bg-gray-100 text-gray-700")">
-                                        @item.Status.ToUpper()
-                                    </span>
-                                </td>
-                            </tr>
-                        }
+            .step-line {
+                @@apply absolute top-5 left-0 w-full h-0.5 bg-slate-200 dark:bg-white/10 -z-10;
+            }
+            .step-line-active {
+                @@apply absolute top-5 left-0 h-0.5 bg-primary -z-10 shadow-[0_0_8px_rgba(56,189,248,0.5)];
+            }
+            .upload-card-outline {
+                @@apply border-2 border-dashed border-slate-200 dark:border-white/10 hover:border-primary/50 transition-all cursor-pointer;
+            }
+        }
+    </style>
+    <script>
+        // File Upload Feedback Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const files = e.target.files;
+                    const container = e.target.closest('.group');
+                    const textContainer = container.querySelector('div');
+                    
+                    if (files.length > 0) {
+                        let names = Array.from(files).map(f => f.name).join(', ');
+                        if (names.length > 30) names = names.substring(0, 27) + '...';
+                        
+                        textContainer.innerHTML = `
+                            <span class="material-symbols-outlined text-3xl text-primary transition-colors">check_circle</span>
+                            <p class="text-xs font-bold text-slate-800 dark:text-white">${files.length} File(s) Selected</p>
+                            <p class="text-[10px] text-slate-500 break-all">${names}</p>
+                        `;
+                        container.classList.add('border-primary', 'bg-primary/5');
+                        container.classList.remove('border-slate-200', 'dark:border-white/10');
+                    } else {
+                        // Reset
+                        textContainer.innerHTML = `
+                            <span class="material-symbols-outlined text-3xl text-slate-300 group-hover:text-primary transition-colors">cloud_upload</span>
+                            <p class="text-xs font-medium text-slate-600 dark:text-slate-400">Drag file or click to upload</p>
+                            <p class="text-[10px] text-slate-400 uppercase">PDF, JPG up to 5MB</p>
+                        `;
+                        container.classList.remove('border-primary', 'bg-primary/5');
+                        container.classList.add('border-slate-200', 'dark:border-white/10');
                     }
-                    else
-                    {
-                        <tr>
-                            <td colspan="4" class="p-8 text-center text-slate-400 text-sm">
-                                No history available.
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div> 
+                });
+            });
+        });
+
+        function showConfirmModal(e) {
+            e.preventDefault();
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+        }
+
+        function submitRealForm() {
+            document.getElementById('visaForm').submit();
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-sans transition-colors duration-500 overflow-x-hidden min-h-screen flex flex-col">
 
 @if (ViewBag.ShowEmailModal == true)
 {
-    <div class="modal fade" id="emailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg rounded-4">
-                
-                <div class="modal-header border-bottom-0 pb-0">
-                    <h5 class="modal-title fw-bold text-primary" id="emailModalLabel">
-                        <i class="bi bi-person-lines-fill me-2"></i>Contact Information
-                    </h5>
-                </div>
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+<div class="bg-white dark:bg-surface-dark w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-white/10">
+<div class="p-8 text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-primary text-4xl">mail</span>
+</div>
+<h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-3">Keep your contact up to date</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-8">
+                Please provide your personal email so we can contact you about important visa and academic matters.
+            </p>
+<form action="/visa/update-email" method="post" class="space-y-4 text-left">
+    @Html.AntiForgeryToken()
+<div class="space-y-2">
+<label class="text-[11px] font-bold uppercase text-slate-500 tracking-wider">Personal Email</label>
+<div class="relative">
+<input name="email" class="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-white/20 rounded-xl text-sm py-3 px-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="you@example.com" type="email" required/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-[20px]">alternate_email</span>
+</div>
+</div>
+<button type="submit" class="w-full py-3.5 bg-btn-gradient text-white rounded-xl text-sm font-bold shadow-[0_10px_20px_rgba(34,211,238,0.3)] hover:shadow-[0_15px_30px_rgba(34,211,238,0.4)] hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">save</span>
+                    Save Information
+                </button>
+</form>
+</div>
+<div class="bg-slate-50/50 dark:bg-white/5 py-3 px-8 text-center">
+<p class="text-[10px] text-slate-400 font-medium uppercase tracking-widest">Mandatory Profile Update</p>
+</div>
+</div>
+</div>
+}
 
-                <div class="modal-body p-4 pt-3">
-                    <p class="text-muted mb-4">
-                        Please provide your email address for important visa status updates. 
-                        <br><small class="text-secondary">(We will ask for this confirmation only once a year)</small>
-                    </p>
-
-                    <form action="@Url.Action("UpdateEmail", "Visa")" method="post" id="emailForm">
-                        @Html.AntiForgeryToken()
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="studentEmail" name="email" placeholder="name@rsu.ac.th" required>
-                            <label for="studentEmail">Email address</label>
-                        </div>
-
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg rounded-3 fw-bold shadow-sm">
-                                Save & Continue
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
+<!-- Confirmation Modal -->
+<div id="confirmModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+    <div class="bg-white dark:bg-surface-dark w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-white/10">
+        <div class="p-8 text-center">
+            <div class="w-16 h-16 bg-status-yellow/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="material-symbols-outlined text-status-yellow text-4xl">warning</span>
+            </div>
+            <h2 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-3">Confirm Submission</h2>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                Once submitted, you cannot edit until staff respond.
+            </p>
+            <div class="flex gap-3">
+                 <button type="button" onclick="closeConfirmModal()" class="flex-1 py-3 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 rounded-xl text-sm font-bold hover:bg-slate-200 dark:hover:bg-white/10 transition-all">
+                    Cancel
+                </button>
+                <button type="button" onclick="submitRealForm()" class="flex-1 py-3 bg-btn-gradient text-white rounded-xl text-sm font-bold shadow-lg hover:brightness-110 transition-all">
+                    OK
+                </button>
             </div>
         </div>
     </div>
+</div>
+<nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-white/10 shadow-sm transition-colors duration-500">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <div class="flex items-center gap-4">
+            <a href="/Home/Dashboard" class="group flex items-center gap-2 pr-4 border-r border-slate-200 dark:border-white/10">
+                <div class="p-2 rounded-lg bg-slate-100 dark:bg-white/5 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </div>
+                <span class="font-bold text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors hidden sm:block">Dashboard</span>
+            </a>
+            <div class="hidden md:block">
+                <span class="text-xs font-semibold uppercase tracking-widest text-primary">Intelligent Experience</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 md:gap-6">
+            <div class="hidden md:flex flex-col items-end">
+                <span class="text-sm font-display font-medium text-slate-900 dark:text-white">@Context.Session.GetString("DisplayName")</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">ID: @Model.StudentId</span>
+            </div>
+        </div>
+    </div>
+</nav>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if Bootstrap is loaded
-            if (typeof bootstrap !== 'undefined') {
-                var myModal = new bootstrap.Modal(document.getElementById('emailModal'));
-                myModal.show();
-            } else {
-                console.error("Bootstrap JS is not loaded. Please ensure bootstrap.bundle.min.js is included in _Layout.cshtml");
-            }
-        });
-    </script>
-}
+<main class="flex-grow pt-28 pb-12 px-6 lg:px-12 w-full">
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        @if (!hasActiveApplication)
+        {
+            <!-- ========================= FORM MODE ========================= -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-display font-bold text-slate-900 dark:text-white mb-2">
+                        Student Visa Portal
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400">Complete the form to request a visa document.</p>
+                </div>
+                <div class="flex gap-3">
+                     <span class="text-xs font-bold text-slate-500">New Application</span>
+                </div>
+            </div>
 
-@section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form[action="/visa"]');
+            <form id="visaForm" action="/visa" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10 flex items-center justify-between bg-white dark:bg-slate-900/40">
+                        <div class="flex items-center gap-3">
+                            <div class="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">description</span>
+                            </div>
+                            <h3 class="text-lg font-display font-semibold text-slate-900 dark:text-white">Visa Application Documents</h3>
+                        </div>
+                        @if(Model.Status == "needs_fix") { 
+                             <span class="text-xs font-bold text-status-red bg-status-red/10 px-3 py-1 rounded-full">Requires Correction</span> 
+                        }
+                    </div>
+
+                    <div class="p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                            <div class="space-y-2">
+                                <label class="text-[11px] font-bold uppercase text-slate-500 tracking-wider flex items-center gap-2">
+                                    Passport Number <span class="material-symbols-outlined text-[14px]">lock</span>
+                                </label>
+                                <div class="relative">
+                                    <input name="passportNumber" value="@Model.Passport" class="w-full bg-slate-50 dark:bg-background-dark/30 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-500 font-mono py-3 px-4 outline-none cursor-not-allowed" readonly type="text"/>
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-300 text-[18px]">verified_user</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[11px] font-bold uppercase text-slate-500 tracking-wider flex items-center gap-2">
+                                    Country of Origin <span class="material-symbols-outlined text-[14px]">lock</span>
+                                </label>
+                                <div class="relative">
+                                    <input name="country" value="@Model.Country" class="w-full bg-slate-50 dark:bg-background-dark/30 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-500 py-3 px-4 outline-none cursor-not-allowed" readonly type="text"/>
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-300 text-[18px]">public</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 pb-10 border-b border-slate-100 dark:border-white/5">
+                            <div class="space-y-2">
+                                <label class="text-[11px] font-bold uppercase text-slate-500 tracking-wider">Visa Type</label>
+                                <select name="visaType" class="w-full bg-white dark:bg-background-dark border border-slate-200 dark:border-white/20 rounded-xl text-sm py-3 px-4 focus:ring-primary focus:border-primary transition-all appearance-none">
+                                    <option value="Non-Ed">Student Visa (ED) Extension</option>
+                                    <option value="Non-B">Non-Immigrant B</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[11px] font-bold uppercase text-slate-500 tracking-wider">Issue Date</label>
+                                <input name="issueDate" required class="w-full bg-white dark:bg-background-dark border border-slate-200 dark:border-white/20 rounded-xl text-sm py-3 px-4 focus:ring-primary focus:border-primary transition-all" type="date"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[11px] font-bold uppercase text-slate-500 tracking-wider">Expiry Date</label>
+                                <input name="expiryDate" required class="w-full bg-white dark:bg-background-dark border border-slate-200 dark:border-white/20 rounded-xl text-sm py-3 px-4 focus:ring-primary focus:border-primary transition-all" type="date"/>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                            <!-- 1. Passport Copy -->
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-secondary text-2xl">account_box</span>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Passport Copy</h4>
+                                        <p class="text-[11px] text-slate-500">Main page with photo and information</p>
+                                    </div>
+                                </div>
+                                <div class="upload-card-outline p-6 rounded-2xl bg-slate-50/50 dark:bg-white/5 group relative">
+                                    <input type="file" name="passportPages" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                                    <div class="flex flex-col items-center justify-center text-center space-y-2">
+                                        <span class="material-symbols-outlined text-3xl text-slate-300 group-hover:text-primary transition-colors">cloud_upload</span>
+                                        <p class="text-xs font-medium text-slate-600 dark:text-slate-400">Drag file or click to upload</p>
+                                        <p class="text-[10px] text-slate-400 uppercase">PDF, JPG up to 5MB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 2. Visa Stamp Pages -->
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary text-2xl">fact_check</span>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Visa Stamp Pages</h4>
+                                        <p class="text-[11px] text-slate-500">Latest entry stamp and extension stamps</p>
+                                    </div>
+                                </div>
+                                <div class="upload-card-outline p-6 rounded-2xl bg-slate-50/50 dark:bg-white/5 group relative">
+                                    <input type="file" name="visaStamps" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                                    <div class="flex flex-col items-center justify-center text-center space-y-2">
+                                        <span class="material-symbols-outlined text-3xl text-slate-300 group-hover:text-primary transition-colors">cloud_upload</span>
+                                        <p class="text-xs font-medium text-slate-600 dark:text-slate-400">Drag file or click to upload</p>
+                                        <p class="text-[10px] text-slate-400 uppercase">Combined PDF only</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. TM30 -->
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-secondary text-2xl">location_on</span>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">TM30 Notification</h4>
+                                        <p class="text-[11px] text-slate-500">Current residence notification receipt</p>
+                                    </div>
+                                </div>
+                                <div class="upload-card-outline p-6 rounded-2xl bg-slate-50/50 dark:bg-white/5 group relative">
+                                    <input type="file" name="tm30" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                                    <div class="flex flex-col items-center justify-center text-center space-y-2">
+                                        <span class="material-symbols-outlined text-3xl text-slate-300 group-hover:text-primary transition-colors">cloud_upload</span>
+                                        <p class="text-xs font-medium text-slate-600 dark:text-slate-400">Drag file or click to upload</p>
+                                        <p class="text-[10px] text-slate-400 uppercase">Clear photo or scan</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. Receipt -->
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary text-2xl">receipt_long</span>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Processing Fee Receipt</h4>
+                                        <p class="text-[11px] text-slate-500">Payment proof from Finance Office</p>
+                                    </div>
+                                </div>
+                                <div class="upload-card-outline p-6 rounded-2xl bg-slate-50/50 dark:bg-white/5 group relative">
+                                    <input type="file" name="tuitionReceipt" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                                    <div class="flex flex-col items-center justify-center text-center space-y-2">
+                                        <span class="material-symbols-outlined text-3xl text-slate-300 group-hover:text-primary transition-colors">cloud_upload</span>
+                                        <p class="text-xs font-medium text-slate-600 dark:text-slate-400">Drag file or click to upload</p>
+                                        <p class="text-[10px] text-slate-400 uppercase">JPG or PDF</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center pt-6 border-t border-slate-100 dark:border-white/5">
+                            <button type="button" onclick="showConfirmModal(event)" class="w-full md:w-auto px-12 py-4 bg-btn-gradient text-white rounded-xl text-base font-bold shadow-[0_10px_30px_rgba(34,211,238,0.3)] hover:shadow-[0_15px_40px_rgba(34,211,238,0.4)] hover:brightness-110 transition-all flex items-center justify-center gap-3">
+                                <span class="material-symbols-outlined">send</span>
+                                Submit Application
+                            </button>
+                            <p class="mt-4 text-[11px] text-slate-500 font-medium">By submitting, you certify that all information provided is accurate and truthful.</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
+        else
+        {
+            <!-- ========================= DASHBOARD MODE ========================= -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-display font-bold text-slate-900 dark:text-white mb-2">
+                        Student Visa Portal
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400">Manage your visa extension and documentation status.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button class="px-4 py-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-white/5 transition-all">
+                        <span class="material-symbols-outlined text-lg">help_outline</span> Guidelines
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-2xl shadow-xl p-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 rounded-xl bg-status-yellow/10">
+                            <span class="material-symbols-outlined text-status-yellow text-3xl">hourglass_empty</span>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-slate-500 font-semibold mb-1">Current Status</p>
+                            <span class="px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider bg-status-yellow/10 text-status-yellow border border-status-yellow/20">
+                                @(Model.Status == "submitted" ? "Pending" : Model.Status.Replace("_", " "))
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs text-slate-500 uppercase font-semibold">Last Updated</p>
+                        <p class="text-sm font-medium text-slate-900 dark:text-white">@latestSubmission?.SubmittedAt.ToString("MMM dd, yyyy - HH:mm")</p>
+                    </div>
+                </div>
+                
+                @if(!string.IsNullOrEmpty(Model.StaffNotes)) {
+                    <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/30 rounded-xl p-4 flex gap-4">
+                        <span class="material-symbols-outlined text-blue-500 mt-0.5">info</span>
+                        <div>
+                            <p class="text-sm font-semibold text-blue-900 dark:text-blue-200">Staff Note</p>
+                            <p class="text-sm text-blue-700 dark:text-blue-300/80">@Model.StaffNotes</p>
+                        </div>
+                    </div>
+                }
+
+                <div class="mt-10 relative">
+                    <div class="flex justify-between items-start relative z-10">
+                        <div class="step-line"></div>
+                        <div class="step-line-active" style="width: @((Model.CurrentStep - 1) * 25)%"></div>
+                        
+                         @foreach(var step in new[] { "Pending", "Review", "Approved", "Pickup", "Completed" }) {
+                            var stepIndex = Array.IndexOf(new[] { "Pending", "Review", "Approved", "Pickup", "Completed" }, step) + 1;
+                            var isActive = Model.CurrentStep >= stepIndex;
+                            var isCurrent = Model.CurrentStep == stepIndex;
+                            var icon = isActive ? "check" : "circle";
+                            if (isCurrent) icon = "search"; // just an example for active
+
+                            <div class="flex flex-col items-center text-center w-24">
+                                <div class="w-10 h-10 rounded-full @(isActive ? "bg-primary text-white ring-4 ring-primary/20" : "bg-slate-200 dark:bg-white/10 text-slate-400") flex items-center justify-center mb-3 transition-all">
+                                    <span class="material-symbols-outlined text-lg">@icon</span>
+                                </div>
+                                <span class="text-[11px] font-bold uppercase @(isActive ? "text-primary" : "text-slate-500")">@step</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
             
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    let isValid = true;
-                    let errorMsg = [];
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                 <!-- PICKUP -->
+                 <div class="bg-card-header rounded-2xl p-6 border border-white/5 shadow-xl flex flex-col h-fit">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary">calendar_month</span>
+                        <h3 class="font-display font-semibold text-white">Pickup Schedule</h3>
+                    </div>
+                    <div class="space-y-4 flex-grow">
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                            <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-2">Appointment</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-white font-medium">@(latestSubmission?.PickupAppointmentAt?.ToString("dd MMM yyyy") ?? "-- --")</span>
+                                <span class="text-slate-500 italic text-xs">@(latestSubmission?.PickupAppointmentAt == null ? "Pending" : "Confirmed")</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    // 1. Validate Passport Pages
-                    const passportInput = document.querySelector('input[name="passportPages"]');
-                    const hasPassportFiles = @(passportFiles.Any() ? "true" : "false");
-                    
-                    if (!hasPassportFiles && (!passportInput.files || passportInput.files.length === 0)) {
-                        isValid = false;
-                        errorMsg.push("Please upload your Passport info page.");
-                    }
+                <!-- HISTORY TABLE -->
+                <div class="lg:col-span-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden flex flex-col h-fit">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h3 class="text-lg font-display font-semibold text-slate-900 dark:text-white">Visa History</h3>
+                    </div>
+                    <div class="flex-grow overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-slate-50 dark:bg-background-dark/50 text-slate-500 dark:text-slate-400 text-[10px] uppercase tracking-wider font-bold">
+                                <tr>
+                                    <th class="px-6 py-3">Visa Type</th>
+                                    <th class="px-6 py-3">Submission Date</th>
+                                    <th class="px-6 py-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-white/10 text-sm">
+                                @foreach(var h in Model.HistoryList) {
+                                    <tr class="table-row-hover">
+                                        <td class="px-6 py-4">
+                                            <div class="font-medium text-slate-900 dark:text-white">@h.VisaType</div>
+                                            <div class="text-[10px] text-slate-500">ID: @h.Id.Substring(0, 8)</div>
+                                        </td>
+                                        <td class="px-6 py-4 font-mono text-slate-500">
+                                            @h.SubmittedAt.ToString("dd MMM yyyy")
+                                        </td>
+                                        <td class="px-6 py-4">
+                                             <span class="@(h.Status == "completed" ? "text-status-green" : "text-status-yellow") font-bold text-xs uppercase">@(h.Status == "submitted" ? "Pending" : h.Status)</span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
 
-                    // 2. Validate Visa Stamps (if applicable, but let's enforce at least one)
-                    const stampsInput = document.querySelector('input[name="visaStamps"]');
-                    const hasStampFiles = @(stampFiles.Any() ? "true" : "false");
-
-                    if (!hasStampFiles && (!stampsInput.files || stampsInput.files.length === 0)) {
-                        isValid = false;
-                        errorMsg.push("Please upload at least one Visa Stamp page.");
-                    }
-
-                    if (!isValid) {
-                        e.preventDefault();
-                        alert("Please fix the following errors:\n\n- " + errorMsg.join("\n- "));
-                    }
-                });
-            }
-        });
-    </script>
-}
+    </div>
+</main>
+<footer class="py-8 px-6 text-center border-t border-slate-200 dark:border-white/10 bg-white dark:bg-background-dark mt-auto">
+    <div class="flex flex-col items-center justify-center gap-2">
+        <p class="text-slate-500 dark:text-slate-400 text-sm">
+            © 2024 Rangsit University. Intelligent Experience.
+        </p>
+        <div class="flex gap-4 text-xs text-slate-400 dark:text-slate-500">
+            <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+            <span>|</span>
+            <a class="hover:text-primary transition-colors" href="#">IT Support</a>
+            <span>|</span>
+            <a class="hover:text-primary transition-colors" href="#">System Status</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

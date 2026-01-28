@@ -70,6 +70,8 @@ namespace RSU_360_X.Controllers
                 Country = !string.IsNullOrEmpty(latest?.Country) ? latest.Country : (profile?.Nationality ?? "")
             };
 
+            // Allow edit if no submission, or if status is 'draft'/'needs_fix'.
+            // If status is 'rejected' or 'completed', user should be able to start a *new* one (handled by Submit logic + View)
             ViewBag.AllowEdit = latest == null || latest.Status == "draft" || latest.Status == "needs_fix";
             
             return View("~/Views/Visa/Index.cshtml", vm);
@@ -108,12 +110,31 @@ namespace RSU_360_X.Controllers
         {
             if (string.IsNullOrEmpty(StudentId)) return RedirectToAction("Index", "Login");
 
-            var profile = await _studentRepo.GetProfileAsync(StudentId);
-            var sub = await _visaRepo.GetByStudentAsync(StudentId) ?? new VisaSubmission 
-            { 
-                StudentId = StudentId,
-                StudentName = profile?.DisplayName ?? HttpContext.Session.GetString("DisplayName")
-            };
+            // 1. Get ALL submissions to determine if we update existing or create new
+            var allSubmissions = await _visaRepo.GetAllAsync();
+            var mySubmissions = allSubmissions.Where(x => x.StudentId == StudentId).OrderByDescending(x => x.SubmittedAt).ToList();
+            var latest = mySubmissions.FirstOrDefault();
+
+            VisaSubmission sub;
+
+            // Define "Final" states where we should start a NEW application
+            var finalStates = new[] { "rejected", "completed", "cancelled" };
+
+            if (latest != null && !finalStates.Contains(latest.Status))
+            {
+                // Update EXISTING (Draft, NeedsFix, Submitted, etc.)
+                sub = latest;
+            }
+            else
+            {
+                // Create NEW
+                var profile = await _studentRepo.GetProfileAsync(StudentId);
+                sub = new VisaSubmission 
+                { 
+                    StudentId = StudentId,
+                    StudentName = profile?.DisplayName ?? HttpContext.Session.GetString("DisplayName")
+                };
+            }
 
             // Update basic info
             sub.Passport = passportNumber;
@@ -121,7 +142,8 @@ namespace RSU_360_X.Controllers
             sub.VisaType = visaType;
             sub.IssueDate = issueDate;
             sub.ExpiryDate = expiryDate;
-            sub.Status = "submitted";
+            sub.Status = "submitted"; 
+            sub.SubmittedAt = DateTime.UtcNow; // Update submitted time for fresh sort
             
             sub.History.Add(new HistoryEvent { At = DateTime.UtcNow, Event = "submitted", Note = "Submitted via Dashboard" });
 
