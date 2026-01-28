@@ -1,194 +1,153 @@
-﻿@using Microsoft.AspNetCore.Http
-@{
+﻿@{
     Layout = null;
-    ViewData["Title"] = "RSU Management";
+    ViewData["Title"] = "Rangsit University";
 }
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@(ViewData["Title"])</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
 
-    <link href="~/assets/img/favicon.png" rel="icon">
-    <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Kalnia+Glaze:wght@100..700&display=swap" rel="stylesheet">
 
-    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="~/assets/css/main.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
 
     <style type="text/css">
-        .ibm-plex-sans-thai-thin {
+        .text-rsu-blue {
+            color: #2B3380;
+        }
+
+        .ibm {
             font-family: "IBM Plex Sans Thai", sans-serif;
-            font-weight: 300;
-            font-style: normal;
+            font-size: 30px;
         }
     </style>
 </head>
+<body>
 
-<body class="index-page">
-
-    <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-            <a asp-controller="Home" asp-action="Index" class="logo d-flex align-items-center me-auto">
-                <h1 class="sitename">
-                    <img src="~/assets/img/rsu_logo.png" alt="RSU Logo">
-                    <span class="ibm-plex-sans-thai-thin"> ฝ่ายบริหาร</span>
-                </h1>
+    <header>
+        <div class="navbar">
+            <a href="#">
+                <img src="~/assets/img/rsu_logo.png" width="80px" height="40px" alt="RSU Logo">
             </a>
-
-            @* <a asp-controller="Home" asp-action="Dashboard" class="btn-get-started ms-auto" style="margin-left: 20px;">Log In / Dashboard</a> *@
-
+            <h1 class="ibm text-white mb-0">ฝ่ายบริหาร</h1>
         </div>
     </header>
 
-    <main class="main">
+    <section class="hero">
+        <div class="hero-text">
+            <img src="~/assets/img/rsux_logo1.png" alt="RSUX Logo" class="mb-3 hero-logo">
+            <p>The Experience of Intelligent Solution</p>
+            <a href="#unit" class="btn btn-primary" style="background-color: #0a3cff; border: none;">Get Started</a>
+        </div>
 
-        <section id="hero" class="hero section dark-background">
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-                        <h1>RSUX</h1>
-                        <p>The Intelligent Experience of Digital RSU</p>
-                        <div class="d-flex">
-                            <a href="#about" class="btn-get-started">Get Started</a>
-                            <a href="https://www.youtube.com/watch?v=vwCO12esOwk" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch VDO</span></a>
+        <div class="hero-image">
+            <img src="~/assets/img/hero-img.png" alt="Business Image">
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h1 id="unit" class="ibm text-center mb-2">หน่วยงาน</h1>
+        <p class="text-muted mb-5">OFFICES & SERVICE UNITS</p>
+
+        <div class="image-container d-flex flex-wrap justify-content-center gap-4 mb-4">
+            <div class="image-box">
+                <div class="container-img position-relative">
+                    <img src="~/assets/rsu_bg1.jpg" alt="Human Resources">
+                    <a asp-controller="Home" asp-action="Hr" class="text-decoration-none">
+                        <div class="overlay">
+                            <div class="text">สำนักงานบุคคล</div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
-                        <img src="~/assets/img/hero-img.png" class="img-fluid animated" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="recent-blog-postst section light-background">
-            <div class="container section-title" data-aos="fade-up">
-                <h2>ฝ่ายบริหาร</h2>
-            </div>
-
-            <div class="container">
-                <div class="row gy-5">
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="post-item position-relative" data-aos="fade-up" data-aos-delay="100">
-                            <a asp-controller="Home" asp-action="Hr">
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="~/assets/rsu_bg.jpg" class="img-fluid" alt="">
-                                    <span class="post-date">สำนักงานบุคคล</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="post-item position-relative" data-aos="fade-up" data-aos-delay="200">
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="~/assets/rsu_bg1.jpg" class="img-fluid" alt="">
-                                    <span class="post-date">สำนักงานจัดซื้อและพัสดุ</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="post-item position-relative">
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="~/assets/rsu_bg2.jpg" class="img-fluid" alt="">
-                                <span class="post-date">สำนักงานพัฒนาบุคคล</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <br><br>
-
-                <div class="row gy-5">
-                    <div class="col-xl-4 col-md-6">
-                        <div class="post-item position-relative" data-aos="fade-up" data-aos-delay="100">
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="~/assets/rsu_bg3.jpg" class="img-fluid" alt="">
-                                <span class="post-date">สำนักงานอาคารและสิ่งแวดล้อม</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="post-item position-relative" data-aos="fade-up" data-aos-delay="200">
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="~/assets/rsu_bg4.jpg" class="img-fluid" alt="">
-                                <span class="post-date">สำนักงานตำรวจมหาวิทยาลัยรังสิต</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="post-item position-relative">
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="~/assets/rsu_bg5.jpg" class="img-fluid" alt="">
-                                <span class="post-date">แผนกยานพาหนะ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <footer id="footer" class="footer">
-        <div class="container footer-top">
-            <div class="row gy-4">
-                <div class="col-lg-4 col-md-6 footer-about">
-                    <a asp-controller="Home" asp-action="Index" class="d-flex align-items-center">
-                        <span class="sitename">Rangsit University</span>
                     </a>
-                    <div class="footer-contact pt-3">
-                        <p>52/347 Muang-Ake Phaholyothin Road Lak-Hok Muang </p>
-                        <p>Pathumthani 12000 , Thailand</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>02-791-6000</span></p>
+                </div>
+                <h3>สำนักงานบุคคล</h3>
+            </div>
+
+            <div class="image-box">
+                <div class="container-img position-relative">
+                    <img src="~/assets/rsu_bg2.jpg" alt="Academic Standards">
+                    <div class="overlay">
+                        <div class="text">สำนักงานมาตรฐานวิชาการ</div>
                     </div>
                 </div>
+                <h3>สำนักงานมาตรฐานวิชาการ</h3>
+            </div>
 
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <div class="image-box">
+                <div class="container-img position-relative">
+                    <img src="~/assets/rsu_bg3.jpg" alt="International Office">
+                    <div class="overlay">
+                        <div class="text">สำนักงานนานาชาติ</div>
+                    </div>
+                </div>
+                <h3>สำนักงานนานาชาติ</h3>
+            </div>
+        </div>
+
+        <div class="image-container d-flex flex-wrap justify-content-center gap-4 mb-5">
+            <div class="image-box">
+                <div class="container-img position-relative">
+                    <img src="~/assets/rsu_bg4.jpg" alt="Personnel Development">
+                    <div class="overlay">
+                        <div class="text">สำนักงานพัฒนาบุคคล</div>
+                    </div>
+                </div>
+                <h3>สำนักงานพัฒนาบุคคล</h3>
+            </div>
+
+            <div class="image-box">
+                <div class="container-img position-relative">
+                    <img src="~/assets/rsu_bg5.jpg" alt="Quality Assurance">
+                    <div class="overlay">
+                        <div class="text">สำนักงานประกันคุณภาพ</div>
+                    </div>
+                </div>
+                <h3>สำนักงานประกันคุณภาพ</h3>
+            </div>
+
+            <div class="image-box">
+                <div class="container-img position-relative">
+                    <img src="~/assets/rsu_bg.jpg" alt="Research Office">
+                    <div class="overlay">
+                        <div class="text">สำนักงานวิจัย</div>
+                    </div>
+                </div>
+                <h3>สำนักงานวิจัย</h3>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row bg-light rounded p-4 text-start">
+                <div class="col-md-6 p-4">
+                    <h2 class="text-rsu-blue">Rangsit University</h2>
+                    <p class="mb-1">52/347 Muang-Ake Phaholyothin Road Lak-Hok</p>
+                    <p class="mb-1">Muang</p>
+                    <p class="mb-3">Pathumthani 12000, Thailand</p>
+                    <p class="mb-1"><b>Phone:</b> 02-791-6000</p>
+                    <p><b>Email:</b> contact@rsu.ac.th</p>
+                </div>
+
+                <div class="col-md-6 p-4">
+                    <h2>Useful Links</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 1</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 2</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 3</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">ICT @@ RIC </strong> <span>All Rights Reserved</span></p>
-        </div>
+    </section>
+
+    <footer>
+        © 2026 Rangsit University
     </footer>
 
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <div id="preloader"></div>
-
-    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/assets/vendor/php-email-form/validate.js"></script>
-    <script src="~/assets/vendor/aos/aos.js"></script>
-    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="~/assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="~/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-    <script src="~/assets/js/main.js"></script>
-
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

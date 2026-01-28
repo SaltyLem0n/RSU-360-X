@@ -66,6 +66,7 @@ namespace RSU_360_X.Services
                 EmpType = sqlProfile.EmpType ?? "S",
                 FirstName = sqlProfile.EmpFname ?? "",
                 LastName = sqlProfile.EmpLname ?? "",
+                Department = sqlProfile.EmpDepartment ?? "",
                 Role = (sqlProfile.EmpType == "L") ? "Lecturer" : "Staff"
             };
         }
