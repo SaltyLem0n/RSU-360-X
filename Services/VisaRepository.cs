@@ -37,7 +37,7 @@ namespace RSU_360_X.Services
         public async Task SaveAsync(VisaSubmission sub)
         {
             var all = await GetAllAsync();
-            var idx = all.FindIndex(x => x.StudentId == sub.StudentId);
+            var idx = all.FindIndex(x => x.Id == sub.Id);
             
             if (idx >= 0) all[idx] = sub;
             else all.Add(sub);

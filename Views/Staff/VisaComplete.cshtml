@@ -51,16 +51,7 @@
             }
         }
     </style>
-<script>
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-            } else {
-                html.classList.add('dark');
-            }
-        }
-    </script>
+
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-sans transition-colors duration-500 overflow-x-hidden min-h-screen flex flex-col">
 <nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-white/10 shadow-sm transition-colors duration-500">
@@ -82,9 +73,6 @@
 <div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-sm shadow-md">
                     DS
                 </div>
-<button class="p-2 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white hover:bg-slate-200 dark:hover:bg-white/20 transition-all" onclick="toggleDarkMode()">
-<span class="material-symbols-outlined text-[20px]">dark_mode</span>
-</button>
 </div>
 </div>
 </nav>
