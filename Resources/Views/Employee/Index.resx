@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+
+	<data name="Welcome" xml:space="preserve"><value>Welcome</value></data>
+	<data name="Logout" xml:space="preserve"><value>Logout</value></data>
+	<data name="DashboardTitle" xml:space="preserve"><value>Staff Dashboard</value></data>
+	<data name="DashboardSubtitle" xml:space="preserve"><value>Manage your academic and administrative tasks efficiently.</value></data>
+	<data name="AcademicYear" xml:space="preserve"><value>Academic Year</value></data>
+	<data name="Semester" xml:space="preserve"><value>Semester</value></data>
+	<data name="Go" xml:space="preserve"><value>Go</value></data>
+	<data name="ComingSoon" xml:space="preserve"><value>Coming Soon</value></data>
+	<data name="EvalReviewTitle" xml:space="preserve"><value>Evaluation Review</value></data>
+	<data name="EvalReviewDesc" xml:space="preserve"><value>Review staff performance metrics, approve evaluation forms, and manage departmental KPIs.</value></data>
+	<data name="PerformanceEvalTitle" xml:space="preserve"><value>Performance Eval</value></data>
+	<data name="PerformanceEvalDesc" xml:space="preserve"><value>Submit your self-assessment report, teaching portfolio, and research contributions for the year.</value></data>
+	<data name="ArtsCultureTitle" xml:space="preserve"><value>Arts &amp; Culture</value></data>
+	<data name="ArtsCultureDesc" xml:space="preserve"><value>Register for university cultural events, submit activity logs, and view upcoming art exhibitions.</value></data>
+	<data name="AssignedTasksTitle" xml:space="preserve"><value>Assigned Tasks</value></data>
+	<data name="AssignedTasksDesc" xml:space="preserve"><value>Track special assignments, committee responsibilities, and ad-hoc projects assigned by the dean.</value></data>
+	<data name="AdminWorkTitle" xml:space="preserve"><value>Administrative Work</value></data>
+	<data name="AdminWorkDesc" xml:space="preserve"><value>Access e-Document systems, leave requests, room booking, and general administrative forms.</value></data>
+	<data name="SupportTasksTitle" xml:space="preserve"><value>Support Tasks</value></data>
+	<data name="SupportTasksDesc" xml:space="preserve"><value>Report facility issues, request IT support, and access campus maintenance services.</value></data>
+	<data name="AcademicResourcesTitle" xml:space="preserve"><value>Academic Resources</value></data>
+	<data name="AcademicResourcesDesc" xml:space="preserve"><value>Quick access to digital libraries, research databases, LMS, and teaching materials.</value></data>
+	<data name="VisaReviewTitle" xml:space="preserve"><value>Visa Review</value></data>
+	<data name="VisaReviewDesc" xml:space="preserve"><value>Manage document processing for international staff work permits and student visas.</value></data>
+	<data name="FooterCopyright" xml:space="preserve"><value>© 2024 Rangsit University. Intelligent Experience.</value></data>
+</root>

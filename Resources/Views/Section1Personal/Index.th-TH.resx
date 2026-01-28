@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcademicPolicy" xml:space="preserve">
+    <value>ระเบียบการทางวิชาการ</value>
+  </data>
+  <data name="AdministrationFocusedDesc" xml:space="preserve">
+    <value>หน้าที่หลักคือการบริหารจัดการภาควิชาหรือมหาวิทยาลัย</value>
+  </data>
+  <data name="BackToDashboard" xml:space="preserve">
+    <value>กลับสู่แดชบอร์ด</value>
+  </data>
+  <data name="Button_SaveSection1" xml:space="preserve">
+    <value>บันทึก ส่วนที่ 1</value>
+  </data>
+  <data name="DropDown1" xml:space="preserve">
+    <value>งานสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="DropDown2" xml:space="preserve">
+    <value>เอกสารประกอบการสอน ผลงานวิชาการ งานวิจัย และผลงานสร้างสรรค์</value>
+  </data>
+  <data name="DropDown3" xml:space="preserve">
+    <value>งานบริการทางวิชาการ</value>
+  </data>
+  <data name="DropDown4" xml:space="preserve">
+    <value>งานทำนุบำรุงศิลปวัฒนธรรม และ งานอื่นๆ</value>
+  </data>
+  <data name="DropDown5" xml:space="preserve">
+    <value>คุณลักษณะและพฤติกรรมการปฏิบัติงาน</value>
+  </data>
+  <data name="DropDown6" xml:space="preserve">
+    <value>สนับสนุนงานมหาวิทยาลัย</value>
+  </data>
+  <data name="EmployeeID" xml:space="preserve">
+    <value>รหัสพนักงาน</value>
+  </data>
+  <data name="EvaluationSections" xml:space="preserve">
+    <value>ส่วนการประเมิน</value>
+  </data>
+  <data name="FacultyMember" xml:space="preserve">
+    <value>อาจารย์ประจำคณะ</value>
+  </data>
+  <data name="Focus_Admin" xml:space="preserve">
+    <value>อาจารย์ที่เน้นการบริหาร</value>
+  </data>
+  <data name="Focus_Research" xml:space="preserve">
+    <value>อาจารย์ที่เน้นการวิจัย </value>
+  </data>
+  <data name="Focus_Teaching" xml:space="preserve">
+    <value>อาจารย์ที่เน้นการสอน</value>
+  </data>
+  <data name="FooterCopyright" xml:space="preserve">
+    <value>© 2024 มหาวิทยาลัยรังสิต สงวนลิขสิทธิ์ทางวิชาการ</value>
+  </data>
+  <data name="Form_Subtitle" xml:space="preserve">
+    <value>ส่วนที่ 1 — ข้อมูลส่วนตัวและประวัติการทำงาน</value>
+  </data>
+  <data name="Form_Title" xml:space="preserve">
+    <value>แบบรายงานและประเมินผลการปฏิบัติงานของอาจารย์ประจำ
+มหาวิทยาลัยรังสิต</value>
+  </data>
+  <data name="Instructions_Label" xml:space="preserve">
+    <value>คำแนะนำ:</value>
+  </data>
+  <data name="Instructions_Text" xml:space="preserve">
+    <value>ข้อมูลส่วนตัวของคุณถูกกรอกล่วงหน้าจากฐานข้อมูลของมหาวิทยาลัยและไม่สามารถแก้ไขได้ที่นี่ โปรดกรอกส่วน "สายงานของอาจารย์" ด้านล่าง</value>
+  </data>
+  <data name="Label_AcademicRank" xml:space="preserve">
+    <value>ตำแหน่งทางวิชาการ</value>
+  </data>
+  <data name="Label_AdminPosition" xml:space="preserve">
+    <value>ตำแหน่งบริหาร</value>
+  </data>
+  <data name="Label_AgeYears" xml:space="preserve">
+    <value>อายุ (ปี)</value>
+  </data>
+  <data name="Label_ApprovedAcademicYear" xml:space="preserve">
+    <value>ปีการศึกษาที่ได้รับอนุมัติ (สำหรับสายวิจัย)</value>
+  </data>
+  <data name="Label_Department" xml:space="preserve">
+    <value>ภาควิชา/สาขาวิชา/แผนก</value>
+  </data>
+  <data name="Label_FacultyOrCenter" xml:space="preserve">
+    <value>คณะ / ศูนย์ / สำนักงาน</value>
+  </data>
+  <data name="Label_FirstName" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="Label_HighestDegree" xml:space="preserve">
+    <value>วุฒิการศึกษาสูงสุด</value>
+  </data>
+  <data name="Label_LastName" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="Label_Position" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+  </data>
+  <data name="Label_StartDate" xml:space="preserve">
+    <value>วันที่เริ่มงาน</value>
+  </data>
+  <data name="Legend_LecturerFocus" xml:space="preserve">
+    <value>สายงานของอาจารย์</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>เมนู</value>
+  </data>
+  <data name="Nav_PerfEval" xml:space="preserve">
+    <value> การประเมินผลงาน</value>
+  </data>
+  <data name="Nav_Personal" xml:space="preserve">
+    <value> ข้อมูลส่วนบุคคล</value>
+  </data>
+  <data name="Nav_S4_Overall" xml:space="preserve">
+    <value>สรุปรวม</value>
+  </data>
+  <data name="Nav_S4_Part1_Teaching" xml:space="preserve">
+    <value>ส่วนที่ 1: การประเมินการสอน</value>
+  </data>
+  <data name="Nav_S4_Part2_Advisor" xml:space="preserve">
+    <value>ส่วนที่ 2: การประเมินอาจารย์ที่ปรึกษา</value>
+  </data>
+  <data name="Nav_S4_Part3_Responsibilities" xml:space="preserve">
+    <value>ส่วนที่ 3: ความรับผิดชอบ</value>
+  </data>
+  <data name="Nav_S4_Part4_Ethics" xml:space="preserve">
+    <value>ส่วนที่ 4: จริยธรรมวิชาชีพ</value>
+  </data>
+  <data name="Nav_S4_Part5_CoreComp" xml:space="preserve">
+    <value>ส่วนที่ 5: สมรรถนะหลัก</value>
+  </data>
+  <data name="Nav_S4_Part6_ManagerialComp" xml:space="preserve">
+    <value>ส่วนที่ 6: สมรรถนะด้านการบริหาร</value>
+  </data>
+  <data name="Nav_ServicesDuties" xml:space="preserve">
+    <value> บริการและหน้าที่</value>
+  </data>
+  <data name="Nav_TeachingSoon" xml:space="preserve">
+    <value>งานสอนและการผลิตบัณฑิต</value>
+  </data>
+  <data name="Placeholder_ApprovedAcademicYear" xml:space="preserve">
+    <value>เช่น 2025 / 2568</value>
+  </data>
+  <data name="ResearchFocusedDesc" xml:space="preserve">
+    <value>หน้าที่หลักคือการวิจัยทางวิชาการและการตีพิมพ์</value>
+  </data>
+  <data name="Save_Confirmation_Message" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าต้องการบันทึก?</value>
+  </data>
+  <data name="Section4Research" xml:space="preserve">
+    <value>ส่วนที่ 4: การวิจัย</value>
+  </data>
+  <data name="SupportDesk" xml:space="preserve">
+    <value>ศูนย์สนับสนุน</value>
+  </data>
+  <data name="TeachingFocusedDesc" xml:space="preserve">
+    <value>หน้าที่หลักคือการสอนและการให้คำปรึกษานักศึกษา</value>
+  </data>
+  <data name="TotalProgress" xml:space="preserve">
+    <value>ความคืบหน้าทั้งหมด</value>
+  </data>
+  <data name="UserDocumentation" xml:space="preserve">
+    <value>คู่มือการใช้งาน</value>
+  </data>
+</root>

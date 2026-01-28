@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcademicPolicy" xml:space="preserve">
+    <value>Academic Policy</value>
+  </data>
+  <data name="AdministrationFocusedDesc" xml:space="preserve">
+    <value>Primary responsibility is departmental or university management.</value>
+  </data>
+  <data name="BackToDashboard" xml:space="preserve">
+    <value>Back to Dashboard</value>
+  </data>
+  <data name="Button_SaveSection1" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="DropDown1" xml:space="preserve">
+    <value>Teaching and Graduate Production</value>
+  </data>
+  <data name="DropDown2" xml:space="preserve">
+    <value>Teaching Materials, Academic Works, Research, and Creative Works</value>
+  </data>
+  <data name="DropDown3" xml:space="preserve">
+    <value>Academic Services</value>
+  </data>
+  <data name="DropDown4" xml:space="preserve">
+    <value>Arts and Culture Maintenance and Others</value>
+  </data>
+  <data name="DropDown5" xml:space="preserve">
+    <value>Characteristics and Work Behavior</value>
+  </data>
+  <data name="DropDown6" xml:space="preserve">
+    <value>University Support</value>
+  </data>
+  <data name="EmployeeID" xml:space="preserve">
+    <value>Employee ID</value>
+  </data>
+  <data name="EvaluationSections" xml:space="preserve">
+    <value>Evaluation Sections</value>
+  </data>
+  <data name="FacultyMember" xml:space="preserve">
+    <value>Faculty Member</value>
+  </data>
+  <data name="Focus_Admin" xml:space="preserve">
+    <value>Administration Focused</value>
+  </data>
+  <data name="Focus_Research" xml:space="preserve">
+    <value>Research Focused</value>
+  </data>
+  <data name="Focus_Teaching" xml:space="preserve">
+    <value>Teaching Focused</value>
+  </data>
+  <data name="FooterCopyright" xml:space="preserve">
+    <value>© 2024 Rangsit University. All academic rights reserved.</value>
+  </data>
+  <data name="Form_Subtitle" xml:space="preserve">
+    <value>Section 1: General Info</value>
+  </data>
+  <data name="Form_Title" xml:space="preserve">
+    <value>Staff Evaluation System</value>
+  </data>
+  <data name="Instructions_Label" xml:space="preserve">
+    <value>Instructions:</value>
+  </data>
+  <data name="Instructions_Text" xml:space="preserve">
+    <value>Personal information and work focus configuration.</value>
+  </data>
+  <data name="Label_AcademicRank" xml:space="preserve">
+    <value>Academic Rank</value>
+  </data>
+  <data name="Label_AdminPosition" xml:space="preserve">
+    <value>Administration Position</value>
+  </data>
+  <data name="Label_AgeYears" xml:space="preserve">
+    <value>Age (Years)</value>
+  </data>
+  <data name="Label_ApprovedAcademicYear" xml:space="preserve">
+    <value>Approved Academic Year for Research Track</value>
+  </data>
+  <data name="Label_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Label_FacultyOrCenter" xml:space="preserve">
+    <value>Faculty</value>
+  </data>
+  <data name="Label_FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Label_HighestDegree" xml:space="preserve">
+    <value>Highest Degree</value>
+  </data>
+  <data name="Label_LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Label_Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Label_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Legend_LecturerFocus" xml:space="preserve">
+    <value>Work Focus Configuration</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Nav_PerfEval" xml:space="preserve">
+    <value>Performance Evaluation</value>
+  </data>
+  <data name="Nav_Personal" xml:space="preserve">
+    <value>Section 1: General Info</value>
+  </data>
+  <data name="Nav_S4_Overall" xml:space="preserve">
+    <value>Summary &amp; Submit</value>
+  </data>
+  <data name="Nav_S4_Part1_Teaching" xml:space="preserve">
+    <value>Part 1: Teaching Assessment</value>
+  </data>
+  <data name="Nav_S4_Part2_Advisor" xml:space="preserve">
+    <value>Part 2: Advisor Assessment</value>
+  </data>
+  <data name="Nav_S4_Part3_Responsibilities" xml:space="preserve">
+    <value>Part 3: Responsibilities</value>
+  </data>
+  <data name="Nav_S4_Part4_Ethics" xml:space="preserve">
+    <value>Part 4: Ethics</value>
+  </data>
+  <data name="Nav_S4_Part5_CoreComp" xml:space="preserve">
+    <value>Part 5: Core Competencies</value>
+  </data>
+  <data name="Nav_S4_Part6_ManagerialComp" xml:space="preserve">
+    <value>Part 6: Managerial Competencies</value>
+  </data>
+  <data name="Nav_ServicesDuties" xml:space="preserve">
+    <value>Section 3: Services &amp; Duties</value>
+  </data>
+  <data name="Nav_TeachingSoon" xml:space="preserve">
+    <value>Section 2: Teaching</value>
+  </data>
+  <data name="Placeholder_ApprovedAcademicYear" xml:space="preserve">
+    <value>e.g. 2567</value>
+  </data>
+  <data name="ResearchFocusedDesc" xml:space="preserve">
+    <value>Primary responsibility is academic research and publication.</value>
+  </data>
+  <data name="Save_Confirmation_Message" xml:space="preserve">
+    <value>Are you sure you want to save?</value>
+  </data>
+  <data name="Section4Research" xml:space="preserve">
+    <value>Section 4: Research</value>
+  </data>
+  <data name="SupportDesk" xml:space="preserve">
+    <value>Support Desk</value>
+  </data>
+  <data name="TeachingFocusedDesc" xml:space="preserve">
+    <value>Primary responsibility is instruction and student mentorship.</value>
+  </data>
+  <data name="TotalProgress" xml:space="preserve">
+    <value>Total Progress</value>
+  </data>
+  <data name="UserDocumentation" xml:space="preserve">
+    <value>User Documentation</value>
+  </data>
+</root>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+
+	<data name="Welcome" xml:space="preserve"><value>ยินดีต้อนรับ</value></data>
+	<data name="Logout" xml:space="preserve"><value>ออกจากระบบ</value></data>
+    
+    <!-- Mapped from Heading_Dashboard -->
+	<data name="DashboardTitle" xml:space="preserve"><value>หน้าแรก</value></data>
+	
+    <data name="DashboardSubtitle" xml:space="preserve"><value>จัดการภารกิจด้านวิชาการและงานบริหารจัดการของคุณอย่างมีประสิทธิภาพ</value></data>
+	<data name="AcademicYear" xml:space="preserve"><value>ปีการศึกษา</value></data>
+	<data name="Semester" xml:space="preserve"><value>ภาคการศึกษา</value></data>
+    
+    <!-- Mapped from Card_Go -->
+	<data name="Go" xml:space="preserve"><value>คลิก</value></data>
+	<data name="ComingSoon" xml:space="preserve"><value>เร็วๆ นี้</value></data>
+
+    <!-- Mapped from Card_Eval_Staff_Title/Desc or kept separate if for HR -->
+	<data name="EvalReviewTitle" xml:space="preserve"><value>แบบรายงานและประเมินผลการปฏิบัติงานของเจ้าหน้าที่</value></data>
+	<data name="EvalReviewDesc" xml:space="preserve"><value>ส่งแบบประเมินผลการปฏิบัติงานประจำปี (สำหรับบุคลากรเจ้าหน้าที่มหาวิทยาลัยรังสิต)</value></data>
+
+    <!-- Mapped from Card_Eval_Title -->
+	<data name="PerformanceEvalTitle" xml:space="preserve"><value>แบบประเมินผล</value></data>
+    <!-- Mapped from Card_Eval_Desc -->
+	<data name="PerformanceEvalDesc" xml:space="preserve"><value>กรอกแบบประเมินประจำปี ระบบดึงข้อมูลจากฐานข้อมูลมหาวิทยาลัย และสามารถแก้ไขได้</value></data>
+
+    <!-- Mapped from Card_Eval_S4_Title -->
+	<data name="ArtsCultureTitle" xml:space="preserve"><value>กิจกรรมศิลปวัฒนธรรม</value></data>
+    <!-- Mapped from Card_Eval_S4_Desc -->
+	<data name="ArtsCultureDesc" xml:space="preserve"><value>บันทึกการเข้าร่วมกิจกรรมด้านศิลปะ วัฒนธรรม และสังคม (ตาราง 4)</value></data>
+
+    <!-- Mapped from Card_Eval_S5_Title -->
+	<data name="AssignedTasksTitle" xml:space="preserve"><value>งานที่ได้รับมอบหมายอื่น ๆ</value></data>
+    <!-- Mapped from Card_Eval_S5_Desc -->
+	<data name="AssignedTasksDesc" xml:space="preserve"><value>บันทึกงานเบ็ดเตล็ดอื่น ๆ และเวลาที่ใช้ไป (ตาราง 5)</value></data>
+
+    <!-- Mapped from Card_Eval_S6_Title -->
+	<data name="AdminWorkTitle" xml:space="preserve"><value>งานบริหาร</value></data>
+    <!-- Mapped from Card_Eval_S6_Desc -->
+	<data name="AdminWorkDesc" xml:space="preserve"><value>รายละเอียดความรับผิดชอบและหน้าที่ด้านงานบริหาร (ตาราง 6)</value></data>
+
+    <!-- Mapped from Card_Eval_S7_Title -->
+	<data name="SupportTasksTitle" xml:space="preserve"><value>งานสนับสนุน</value></data>
+    <!-- Mapped from Card_Eval_S7_Desc -->
+	<data name="SupportTasksDesc" xml:space="preserve"><value>บันทึกงานสนับสนุนหรือช่วยเหลืองานที่ได้ดำเนินการ (ตาราง 7)</value></data>
+
+    <!-- Mapped from Card_Academic_Title -->
+	<data name="AcademicResourcesTitle" xml:space="preserve"><value>ทรัพยากรทางวิชาการ</value></data>
+    <!-- Mapped from Card_Academic_Desc -->
+	<data name="AcademicResourcesDesc" xml:space="preserve"><value>ทรัพยากรสำหรับการสอน การวิจัย และสิ่งพิมพ์</value></data>
+
+    <!-- Mapped from Card_Visa_Title -->
+	<data name="VisaReviewTitle" xml:space="preserve"><value>ตรวจสอบวีซ่า</value></data>
+    <!-- Mapped from Card_Visa_Desc -->
+	<data name="VisaReviewDesc" xml:space="preserve"><value>ตรวจสอบคำขอและการอนุมัติวีซ่าของนักศึกษา</value></data>
+
+	<data name="FooterCopyright" xml:space="preserve"><value>© 2024 มหาวิทยาลัยรังสิต ประสบการณ์อัจฉริยะ</value></data>
+</root>
