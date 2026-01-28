@@ -1,0 +1,89 @@
+@model RSU_360_X.Models.VisaSubmission
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RSUX - Visa Mark Pickup Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#38bdf8", "background-dark": "#0f172a", "surface-dark": "#1e293b", "card-header": "#172554",
+                    },
+                    backgroundImage: { 'btn-gradient': 'linear-gradient(90deg, #22d3ee 0%, #3b82f6 100%)' }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-slate-100 dark:bg-background-dark text-slate-800 dark:text-white font-sans min-h-screen">
+
+<nav class="fixed top-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-white/10">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <span class="text-xl font-bold text-primary">RSUX Visa Admin</span>
+    </div>
+</nav>
+
+<main class="pt-28 pb-12 px-6 max-w-3xl mx-auto w-full">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold">Mark Visa Pickup</h1>
+        <p class="text-slate-500">Recording for: <span class="text-primary">@Model.StudentName</span> (@Model.StudentId)</p>
+    </div>
+
+    <div class="bg-white dark:bg-surface-dark rounded-2xl border border-white/10 shadow-xl overflow-hidden">
+        <div class="p-6 bg-slate-50 dark:bg-card-header flex items-center gap-3 border-b border-white/10">
+            <span class="material-symbols-outlined text-primary">box</span>
+            <h3 class="font-semibold">Pickup Details</h3>
+        </div>
+
+        <div class="p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="text-sm font-medium text-slate-400 block mb-2">Appointment Date</label>
+                    <div class="px-4 py-3 bg-slate-900/40 border border-white/5 rounded-xl text-slate-300">
+                        @(Model.PickupAppointmentAt?.ToString("dd MMM yyyy, HH:mm") ?? "No appointment set")
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm font-medium text-slate-400 block mb-2">Current Status</label>
+                    <div class="px-4 py-3 bg-slate-900/40 border border-white/5 rounded-xl text-slate-300">
+                        @Model.Status.ToUpper()
+                    </div>
+                </div>
+            </div>
+
+            <form action="/staff/visa/pickup/@Model.StudentId" method="post" class="space-y-6 pt-6 border-t border-white/5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium">Actual Pickup Time</label>
+                        <input type="datetime-local" name="pickupTime" required 
+                               class="w-full px-4 py-3 bg-background-dark/50 border border-white/10 rounded-xl focus:ring-primary"
+                               value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium">Reference / Note</label>
+                        <input type="text" name="reference" placeholder="e.g. Signature serial" 
+                               class="w-full px-4 py-3 bg-background-dark/50 border border-white/10 rounded-xl focus:ring-primary"/>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-4 pt-4">
+                    <a href="/staff/visa/detail/@Model.StudentId" class="px-8 py-3 border border-white/20 rounded-xl text-sm font-semibold">Cancel</a>
+                    <button type="submit" class="px-10 py-3 bg-btn-gradient text-white rounded-xl text-sm font-semibold shadow-lg shadow-primary/20">
+                        Save Record
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

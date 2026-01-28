@@ -1,0 +1,153 @@
+@model List<RSU_360_X.Models.VisaSubmission>
+@{
+    Layout = null; // Using the standalone Stitch template structure
+}
+
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RSUX - Visa Review Dashboard</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#38bdf8", 
+                        secondary: "#ec4899",
+                        "background-light": "#f1f5f9",
+                        "background-dark": "#0f172a", 
+                        "surface-dark": "#1e293b",
+                        "card-header": "#172554",
+                        "status-green": "#10b981",
+                        "status-red": "#ef4444",
+                        "status-yellow": "#f59e0b",
+                        "status-purple": "#a855f7",
+                    },
+                    fontFamily: {
+                        display: ["Prompt", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-sans min-h-screen flex flex-col transition-colors duration-500">
+
+<nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-white/10 shadow-sm">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <div class="flex items-center gap-4">
+            <img alt="RSU Logo" class="h-10 w-auto invert dark:invert-0" src="/assets/img/rsux_logo.png"/>
+            <div class="h-6 w-px bg-slate-200 dark:bg-white/10 mx-2 hidden md:block"></div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-primary hidden md:block">Visa Administration</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="hidden md:flex flex-col items-end">
+                <span class="text-sm font-medium">@Context.Session.GetString("DisplayName")</span>
+                <span class="text-xs text-slate-500">Administrator</span>
+            </div>
+            <button class="p-2 rounded-full bg-slate-100 dark:bg-white/10" onclick="document.documentElement.classList.toggle('dark')">
+                <span class="material-symbols-outlined text-[20px]">dark_mode</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main class="flex-grow pt-28 pb-12 px-6 lg:px-12 w-full max-w-7xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-3xl font-display font-bold text-slate-900 dark:text-white mb-2">Visa Review Dashboard</h1>
+        <p class="text-slate-500 dark:text-slate-400">Manage and monitor international student visa applications.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+        <div class="bg-card-header rounded-xl p-5 border border-white/5 shadow-lg">
+            <span class="material-symbols-outlined text-primary text-2xl mb-4">description</span>
+            <div class="text-2xl font-bold text-white">@ViewBag.Total</div>
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Total</div>
+        </div>
+        <div class="bg-card-header rounded-xl p-5 border border-white/5 shadow-lg">
+            <span class="material-symbols-outlined text-status-green text-2xl mb-4">check_circle</span>
+            <div class="text-2xl font-bold text-white">@ViewBag.Approved</div>
+            <div class="text-[10px] text-status-green font-medium uppercase">Approved</div>
+        </div>
+        <div class="bg-card-header rounded-xl p-5 border border-white/5 shadow-lg">
+            <span class="material-symbols-outlined text-status-yellow text-2xl mb-4">schedule</span>
+            <div class="text-2xl font-bold text-white">@ViewBag.Pending</div>
+            <div class="text-[10px] text-status-yellow font-medium uppercase">Pending</div>
+        </div>
+        <div class="bg-card-header rounded-xl p-5 border border-white/5 shadow-lg">
+            <span class="material-symbols-outlined text-status-red text-2xl mb-4">cancel</span>
+            <div class="text-2xl font-bold text-white">@ViewBag.Rejected</div>
+            <div class="text-[10px] text-status-red font-medium uppercase">Rejected</div>
+        </div>
+        <div class="bg-card-header rounded-xl p-5 border border-white/5 shadow-lg">
+            <span class="material-symbols-outlined text-status-purple text-2xl mb-4">task_alt</span>
+            <div class="text-2xl font-bold text-white">@ViewBag.Completed</div>
+            <div class="text-[10px] text-status-purple font-medium uppercase">Completed</div>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden">
+        <div class="p-6 border-b border-slate-200 dark:border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <h3 class="text-lg font-semibold">Recent Applications</h3>
+            <div class="relative max-w-sm w-full">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                <input class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-white/10 rounded-lg text-sm" placeholder="Search by ID or Name..." type="text"/>
+            </div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-50 dark:bg-background-dark/50 text-slate-500 text-xs uppercase tracking-wider">
+                    <tr>
+                        <th class="px-6 py-4 font-semibold">Student ID</th>
+                        <th class="px-6 py-4 font-semibold">Name / Nationality</th>
+                        <th class="px-6 py-4 font-semibold">Submitted Date</th>
+                        <th class="px-6 py-4 text-center font-semibold">Status</th>
+                        <th class="px-6 py-4 text-right font-semibold">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-white/10 text-sm">
+                    @foreach(var item in Model) {
+                        <tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                            <td class="px-6 py-4 font-mono text-primary font-medium">@item.StudentId</td>
+                            <td class="px-6 py-4">
+                                <p class="font-medium text-slate-900 dark:text-white">@item.StudentName</p>
+                                <p class="text-xs text-slate-500">@item.Country</p>
+                            </td>
+                            <td class="px-6 py-4 text-slate-500 dark:text-slate-400">@item.SubmittedAt.ToString("dd MMM yyyy")</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider 
+                                    @(item.Status == "approved" ? "bg-status-green/10 text-status-green border border-status-green/20" : 
+                                      item.Status == "completed" ? "bg-status-purple/10 text-status-purple border border-status-purple/20" : 
+                                      item.Status == "rejected" ? "bg-status-red/10 text-status-red border border-status-red/20" : 
+                                      "bg-status-yellow/10 text-status-yellow border border-status-yellow/20")">
+                                    @item.Status
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <a href="/staff/visa/detail/@item.StudentId" class="text-slate-400 hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined">visibility</span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer class="py-8 text-center border-t border-slate-200 dark:border-white/10 bg-white dark:bg-background-dark mt-auto">
+    <p class="text-slate-500 text-sm">© 2024 Rangsit University. Intelligent Experience.</p>
+</footer>
+
+</body>
+</html>

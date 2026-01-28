@@ -1,0 +1,90 @@
+@model RSU_360_X.Models.VisaSubmission
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RSUX - Visa Approval Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Prompt:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#38bdf8", "background-dark": "#0f172a", "surface-dark": "#1e293b", "card-header": "#172554", "status-green": "#10b981", "status-yellow": "#f59e0b",
+                    },
+                    backgroundImage: { 'btn-gradient': 'linear-gradient(90deg, #22d3ee 0%, #3b82f6 100%)' }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-slate-100 dark:bg-background-dark text-slate-800 dark:text-white font-sans min-h-screen">
+
+<nav class="fixed top-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-white/10 shadow-sm">
+    <div class="flex items-center justify-between max-w-7xl mx-auto text-primary font-bold">RSUX Visa Admin</div>
+</nav>
+
+<main class="pt-28 pb-12 px-6 max-w-4xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold">Approve — @Model.StudentId (@Model.StudentName)</h1>
+    </div>
+
+    <div class="space-y-6">
+        <div class="bg-white dark:bg-surface-dark border border-white/10 rounded-2xl shadow-xl overflow-hidden">
+            <div class="bg-card-header p-4 border-b border-white/5 font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">analytics</span> Overview
+            </div>
+            <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div>
+                    <p class="text-xs text-slate-500 uppercase font-bold">Status</p>
+                    <span class="text-status-yellow font-bold">@Model.Status.ToUpper()</span>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 uppercase font-bold">Submission Date</p>
+                    <p class="font-medium">@Model.SubmittedAt.ToString("dd MMM yyyy")</p>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 uppercase font-bold">Country</p>
+                    <p class="font-medium">@Model.Country</p>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 uppercase font-bold">Visa Type</p>
+                    <p class="font-medium">@Model.VisaType</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-surface-dark border border-white/10 rounded-2xl shadow-xl overflow-hidden">
+            <div class="bg-card-header p-4 border-b border-white/5 font-bold flex items-center gap-2 text-status-green">
+                <span class="material-symbols-outlined">verified</span> Approval Action
+            </div>
+            <form action="/staff/visa/approve-confirm/@Model.StudentId" method="post" class="p-6 space-y-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Pickup appointment (date & time)</label>
+                    <input type="datetime-local" name="pickupAppointment" required 
+                           class="w-full bg-background-dark/50 border border-white/10 rounded-lg py-2.5 px-4 text-sm focus:ring-primary dark:text-white"
+                           value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-ddTHH:mm")" />
+                    <p class="mt-2 text-xs text-slate-500 italic">Select a time for the student to collect their documents.</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Note (Optional)</label>
+                    <textarea name="note" class="w-full bg-background-dark/50 border border-white/10 rounded-lg py-2.5 px-4 text-sm h-32 focus:ring-primary dark:text-white" placeholder="Special instructions for the student..."></textarea>
+                </div>
+                <div class="flex justify-end gap-3 pt-6 border-t border-white/10">
+                    <a href="/staff/visa/detail/@Model.StudentId" class="px-8 py-2.5 border border-white/10 rounded-lg text-sm hover:bg-white/5">Cancel</a>
+                    <button type="submit" class="px-10 py-2.5 bg-btn-gradient text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:brightness-110">
+                        Approve
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

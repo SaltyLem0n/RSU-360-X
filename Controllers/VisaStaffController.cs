@@ -16,26 +16,6 @@ namespace RSU_360_X.Controllers
             _visaRepo = visaRepo;
         }
 
-        [HttpGet]
-        [Route("")]
-        [Route("review")] // Maps to both /staff/visa and /staff/visa/review
-        public async Task<IActionResult> Index()
-        {
-            // 1. Get all data
-            var allData = await _visaRepo.GetAllAsync();
 
-            // 2. Prepare ViewModel
-            var vm = new VisaReviewIndexVm
-            {
-                Applications = allData.OrderByDescending(x => x.SubmittedAt).ToList(),
-                PendingCount = allData.Count(x => x.Status == "submitted"),
-                ApprovedCount = allData.Count(x => x.Status == "approved"),
-                RejectedCount = allData.Count(x => x.Status == "rejected" || x.Status == "needs_fix"),
-                TotalCount = allData.Count,
-                CompletedCount = allData.Count(x => x.Status == "completed" || x.Status == "pickup")
-            };
-
-            return View("~/Views/VisaStaff/Index.cshtml", vm);
-        }
     }
 }

@@ -1,0 +1,82 @@
+@model RSU_360_X.Models.VisaSubmission
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RSUX - Visa Rejection Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Prompt:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#38bdf8", "background-dark": "#0f172a", "surface-dark": "#1e293b", "status-red": "#ef4444",
+                    }
+                }
+            }
+        };
+
+        function insertReason(text) {
+            document.getElementById('reason').value = text;
+        }
+    </script>
+</head>
+<body class="bg-slate-100 dark:bg-background-dark text-slate-800 dark:text-white font-sans min-h-screen">
+
+<nav class="fixed top-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-white/10">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <span class="text-xl font-bold text-primary">RSUX Visa Admin</span>
+    </div>
+</nav>
+
+<main class="pt-28 pb-12 px-6 max-w-3xl mx-auto">
+    <div class="mb-8 flex items-center gap-3">
+        <span class="material-symbols-outlined text-status-red text-4xl">block</span>
+        <h1 class="text-3xl font-bold">Reject — @Model.StudentId (@Model.StudentName)</h1>
+    </div>
+
+    <div class="bg-white dark:bg-surface-dark border border-white/10 rounded-2xl shadow-xl overflow-hidden">
+        <div class="px-6 py-4 bg-red-50 dark:bg-status-red/10 border-b border-red-100 dark:border-status-red/20 flex items-center gap-3">
+            <span class="material-symbols-outlined text-status-red">error</span>
+            <h3 class="font-semibold text-slate-900 dark:text-white">Rejection Details</h3>
+        </div>
+
+        <form action="/staff/visa/reject-confirm/@Model.StudentId" method="post" class="p-8">
+            <div class="mb-8 p-4 bg-amber-900/20 border border-amber-900/30 rounded-xl flex gap-4">
+                <span class="material-symbols-outlined text-amber-500 mt-0.5">info</span>
+                <p class="text-sm text-amber-500/80 leading-relaxed">
+                    Submitting this rejection will immediately close the application. The student will be notified and required to resubmit a new application.
+                </p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold">Reason for Rejection</label>
+                    <textarea id="reason" name="reason" required class="w-full h-48 bg-background-dark/50 border border-white/10 rounded-xl text-sm focus:ring-status-red focus:border-status-red resize-none dark:text-white" placeholder="Provide a detailed explanation..."></textarea>
+                </div>
+
+                <div class="space-y-3">
+                    <p class="text-xs font-semibold text-slate-400 uppercase">Quick insert common issues</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" onclick="insertReason('TM30 document is missing or expired.')" class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs hover:bg-white/10 transition-all">TM30 missing</button>
+                        <button type="button" onclick="insertReason('The uploaded Passport photo is not clear.')" class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs hover:bg-white/10 transition-all">Passport photo</button>
+                        <button type="button" onclick="insertReason('Visa dates are inconsistent with the system record.')" class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs hover:bg-white/10 transition-all">Dates inconsistent</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-4 mt-8 pt-6 border-t border-white/10">
+                <a href="/staff/visa/detail/@Model.StudentId" class="px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-white/5">Cancel</a>
+                <button type="submit" class="px-8 py-2.5 bg-status-red text-white rounded-xl text-sm font-bold shadow-lg shadow-status-red/20 hover:brightness-110 transition-all">Reject Application</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

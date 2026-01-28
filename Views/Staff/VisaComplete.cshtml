@@ -1,0 +1,160 @@
+@model RSU_360_X.Models.VisaSubmission
+@{ Layout = null; }
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RSUX - Visa Completion Form</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Prompt:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#38bdf8", 
+                        secondary: "#ec4899",
+                        "background-light": "#f1f5f9",
+                        "background-dark": "#0f172a", 
+                        "surface-dark": "#1e293b",
+                        "surface-light": "#ffffff",
+                        "card-header": "#172554",
+                        "status-green": "#10b981",
+                        "status-red": "#ef4444",
+                        "status-yellow": "#f59e0b",
+                        "status-purple": "#a855f7",
+                    },
+                    fontFamily: {
+                        display: ["Prompt", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%)',
+                        'btn-gradient': 'linear-gradient(90deg, #22d3ee 0%, #3b82f6 100%)',
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @@layer utilities {
+            .form-input-dark {
+                @@apply w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-primary focus:border-primary transition-all placeholder:text-slate-600;
+            }
+        }
+    </style>
+<script>
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+            } else {
+                html.classList.add('dark');
+            }
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-sans transition-colors duration-500 overflow-x-hidden min-h-screen flex flex-col">
+<nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-200 dark:border-white/10 shadow-sm transition-colors duration-500">
+<div class="flex items-center justify-between max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="flex items-center">
+<img alt="RSU Logo" class="h-10 w-auto object-contain brightness-0 dark:brightness-100 dark:invert-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCILjuvv7ETI4W7EZOmChHhbwOGIxsInYLMPMS7upR1_xGpQNU2QzI5U241L0xfVgkwy9w6rPShKHauYR-ZhuipnzHnS9mabS1vZVlsgtDEll1SbCpOroY5USAMkAG2biEA12ricLZ60dW5goOCnhE9sjRp4FshXjRR2N2s5hWLqyVT_GuOVmE1ZAQIiR1ZIWmJqz9XX5d8_lECOGKU43IXdK_1g_rEVx0m_v28xxUp6gAYKetGPwF7lxJGWS3rDaRVrSfDy38omr6s"/>
+</div>
+<div class="h-6 w-px bg-slate-200 dark:bg-white/10 mx-2 hidden md:block"></div>
+<div class="hidden md:block">
+<span class="text-xs font-semibold uppercase tracking-widest text-primary">Intelligent Experience</span>
+</div>
+</div>
+<div class="flex items-center gap-4 md:gap-6">
+<div class="hidden md:flex flex-col items-end">
+<span class="text-sm font-display font-medium text-slate-900 dark:text-white">Welcome, Dr. Somchai</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Visa Administrator</span>
+</div>
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-sm shadow-md">
+                    DS
+                </div>
+<button class="p-2 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white hover:bg-slate-200 dark:hover:bg-white/20 transition-all" onclick="toggleDarkMode()">
+<span class="material-symbols-outlined text-[20px]">dark_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow pt-32 pb-16 px-6 flex items-center justify-center">
+<div class="max-w-2xl w-full">
+<div class="mb-8 text-center md:text-left">
+<nav class="flex justify-center md:justify-start gap-2 text-xs text-slate-500 mb-2 uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="/staff/visa/review">Dashboard</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="/staff/visa/review">Visa Review</a>
+<span>/</span>
+<span class="text-primary font-semibold">Complete</span>
+</nav>
+<h1 class="text-2xl md:text-3xl font-display font-bold text-slate-900 dark:text-white">
+                    Complete — @Model.StudentId (@Model.StudentName)
+                </h1>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+<div class="bg-card-header px-8 py-5 border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<h2 class="text-xl font-display font-semibold text-white tracking-wide">New Visa Info</h2>
+</div>
+</div>
+<form action="/staff/visa/complete-confirm/@Model.StudentId" method="post" class="p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1" for="issue-date">
+                                New Visa Issue Date
+                            </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl pointer-events-none">calendar_today</span>
+<input class="form-input-dark pl-12" id="issue-date" name="issueDate" type="date" required/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1" for="expiry-date">
+                                New Visa Expiry Date
+                            </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl pointer-events-none">event_busy</span>
+<input class="form-input-dark pl-12" id="expiry-date" name="expiryDate" type="date" required/>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row-reverse items-center gap-4">
+<button type="submit" class="w-full md:w-auto px-8 py-3.5 bg-btn-gradient text-white rounded-xl font-bold text-sm shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">task_alt</span>
+                            Save &amp; Complete
+                        </button>
+<a href="/staff/visa/detail/@Model.StudentId" class="w-full md:w-auto px-8 py-3.5 bg-transparent border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-xl font-semibold text-sm hover:bg-slate-50 dark:hover:bg-white/5 transition-all flex items-center justify-center text-center">
+                            Cancel
+                        </a>
+</div>
+</form>
+</div>
+<div class="mt-6 flex items-start gap-3 p-4 bg-primary/10 border border-primary/20 rounded-xl">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">info</span>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                    By completing this form, the student's record will be updated across the RSUX system. An automated notification will be sent to the student regarding their visa status update.
+                </p>
+</div>
+</div>
+</main>
+<footer class="py-8 px-6 text-center border-t border-slate-200 dark:border-white/10 bg-white dark:bg-background-dark mt-auto">
+<div class="flex flex-col items-center justify-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm">
+                © 2024 Rangsit University. Intelligent Experience.
+            </p>
+</div>
+</footer>
+</body>
+</html>
