@@ -1,10 +1,23 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization();
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    // [FIX 1] Change "en-EN" to "en-US" (Standard browser code)
+    var supportedCultures = new[] { "th-TH", "en-US" };
+    options.SetDefaultCulture(supportedCultures[0])
+           .AddSupportedCultures(supportedCultures)
+           .AddSupportedUICultures(supportedCultures);
+});
 
 // 1. Add Services
 builder.Services.AddDbContext<RSU_360_X.Models_Db.EvDbContext>(options =>
@@ -28,20 +41,22 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// [FIX 2] YOU MUST ADD THIS LINE HERE!
+// This reads the cookie/header and actually switches the language.
+app.UseRequestLocalization();
+
 // 3. Activate Middleware
-app.UseSession(); // <--- Important: Must be before UseRouting
-app.UseRouting();
+app.UseSession();
+app.UseRouting(); // Localization must be BEFORE this
 
 app.UseAuthorization();
 

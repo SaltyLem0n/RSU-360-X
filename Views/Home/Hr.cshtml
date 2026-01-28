@@ -1,91 +1,62 @@
 ﻿@{
-    Layout = null;
+    // 1. Set the Layout
+    Layout = "_LanguageLayout";
+
+    // 2. Page Title for the browser tab
     ViewData["Title"] = "Human Resources";
+
+    // 3. Header Title (This changes the text in the top navbar to "สำนักงานบุคคล")
+    ViewData["HeaderTitle"] = "สำนักงานบุคคล";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
+<section class="hero">
+    <div class="hero-text">
+        <h1><span class="text-pink-custom">สำนักงานบุคคล</span></h1>
+        <p>The Experience of Intelligent Solution</p>
+    </div>
 
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Kalnia+Glaze:wght@100..700&display=swap" rel="stylesheet">
+    <div class="hero-image">
+        <img src="~/assets/img/hero-img.png" alt="Business Image">
+    </div>
+</section>
 
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<section id="services" class="services">
+    <h1 id="unit" class="ibm text-center mb-5">Intelligence Services</h1>
 
-    <link href="~/css/main.css" rel="stylesheet">
+    <div class="container">
+        <div class="row justify-content-center g-5">
 
-    <style>
-        /* Specific override just for this page's pink header text */
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="navbar">
-            <a asp-controller="Home" asp-action="Index">
-                <img src="~/assets/img/rsu_logo.png" width="80px" height="40px" alt="RSU Logo">
-            </a>
-            <h1 class="ibm">สำนักงานบุคคล</h1>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-text">
-            <h1><span class="text-pink-custom">สำนักงานบุคคล</span></h1>
-            <p>The Experience of Intelligent Solution</p>
-        </div>
-
-        <div class="hero-image">
-            <img src="~/assets/img/hero-img.png" alt="Business Image">
-        </div>
-    </section>
-
-    <section id="services" class="services">
-        <h1 id="unit" class="ibm text-center mb-5">Intelligence Services</h1>
-
-        <div class="container">
-            <div class="row justify-content-center g-5">
-
-                <div class="col-md-6">
-                    <nav class="side-menu">
-                        <h2 class="menu-title" style="color: var(--deep-blue);">Application</h2>
-                        <ul>
-                            <li><a href="#">🏠 Lucky Draw System</a></li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="col-md-6">
-                    <nav class="side-menu">
-                        <h2 class="menu-title">AI System</h2>
-                        <ul>
-                            <li><a href="#">📊 AI HR-Planning</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-6">
-                    <nav class="side-menu">
-                        <h2 class="menu-title" style="color: var(--deep-blue);">Management</h2>
-                        <ul>
-                            <li>
-                                <a asp-controller="Home" asp-action="Dashboard">
-                                    📈 Go to Dashboard
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
+            <div class="col-md-6">
+                <nav class="side-menu">
+                    <h2 class="menu-title" style="color: var(--deep-blue);">Application</h2>
+                    <ul>
+                        <li><a href="#">🏠 Lucky Draw System</a></li>
+                    </ul>
+                </nav>
             </div>
+
+            <div class="col-md-6">
+                <nav class="side-menu">
+                    <h2 class="menu-title">AI System</h2>
+                    <ul>
+                        <li><a href="#">📊 AI HR-Planning</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-md-6">
+                <nav class="side-menu">
+                    <h2 class="menu-title" style="color: var(--deep-blue);">Management</h2>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Dashboard">
+                                📈 Go to Dashboard
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
         </div>
-    </section>
-
-    <footer>
-        © 2026 Rangsit University
-    </footer>
-
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    </div>
+</section>

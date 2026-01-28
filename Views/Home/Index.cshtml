@@ -1,153 +1,122 @@
 ﻿@{
-    Layout = null;
+    // 1. Set the Layout (if not already set in _ViewStart)
+    Layout = "_LanguageLayout";
+
+    // 2. Page Title for the browser tab
     ViewData["Title"] = "Rangsit University";
+
+    // 3. Header Title (This text appears next to the RSU logo in the top bar)
+    ViewData["HeaderTitle"] = "ฝ่ายบริหาร";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
+<style>
+    .text-rsu-blue {
+        color: #2B3380;
+    }
+</style>
 
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Kalnia+Glaze:wght@100..700&display=swap" rel="stylesheet">
+<section class="hero">
+    <div class="hero-text">
+        <img src="~/assets/img/rsux_logo1.png" alt="RSUX Logo" class="mb-3 hero-logo">
+        <p>The Experience of Intelligent Solution</p>
+        <a href="#unit" class="btn btn-primary" style="background-color: #0a3cff; border: none;">Get Started</a>
+    </div>
 
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <div class="hero-image">
+        <img src="~/assets/img/hero-img.png" alt="Business Image">
+    </div>
+</section>
 
-    <link href="~/css/main.css" rel="stylesheet">
+<section id="services" class="services">
+    <h1 id="unit" class="ibm text-center mb-2">หน่วยงาน</h1>
+    <p class="text-muted mb-5">OFFICES & SERVICE UNITS</p>
 
-    <style type="text/css">
-        .text-rsu-blue {
-            color: #2B3380;
-        }
-
-        .ibm {
-            font-family: "IBM Plex Sans Thai", sans-serif;
-            font-size: 30px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="navbar">
-            <a href="#">
-                <img src="~/assets/img/rsu_logo.png" width="80px" height="40px" alt="RSU Logo">
-            </a>
-            <h1 class="ibm text-white mb-0">ฝ่ายบริหาร</h1>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-text">
-            <img src="~/assets/img/rsux_logo1.png" alt="RSUX Logo" class="mb-3 hero-logo">
-            <p>The Experience of Intelligent Solution</p>
-            <a href="#unit" class="btn btn-primary" style="background-color: #0a3cff; border: none;">Get Started</a>
-        </div>
-
-        <div class="hero-image">
-            <img src="~/assets/img/hero-img.png" alt="Business Image">
-        </div>
-    </section>
-
-    <section id="services" class="services">
-        <h1 id="unit" class="ibm text-center mb-2">หน่วยงาน</h1>
-        <p class="text-muted mb-5">OFFICES & SERVICE UNITS</p>
-
-        <div class="image-container d-flex flex-wrap justify-content-center gap-4 mb-4">
-            <div class="image-box">
-                <div class="container-img position-relative">
-                    <img src="~/assets/rsu_bg1.jpg" alt="Human Resources">
-                    <a asp-controller="Home" asp-action="Hr" class="text-decoration-none">
-                        <div class="overlay">
-                            <div class="text">สำนักงานบุคคล</div>
-                        </div>
-                    </a>
-                </div>
-                <h3>สำนักงานบุคคล</h3>
-            </div>
-
-            <div class="image-box">
-                <div class="container-img position-relative">
-                    <img src="~/assets/rsu_bg2.jpg" alt="Academic Standards">
+    <div class="image-container d-flex flex-wrap justify-content-center gap-4 mb-4">
+        <div class="image-box">
+            <div class="container-img position-relative">
+                <img src="~/assets/rsu_bg1.jpg" alt="Human Resources">
+                <a asp-controller="Home" asp-action="Hr" class="text-decoration-none">
                     <div class="overlay">
-                        <div class="text">สำนักงานมาตรฐานวิชาการ</div>
+                        <div class="text">สำนักงานบุคคล</div>
                     </div>
-                </div>
-                <h3>สำนักงานมาตรฐานวิชาการ</h3>
+                </a>
             </div>
-
-            <div class="image-box">
-                <div class="container-img position-relative">
-                    <img src="~/assets/rsu_bg3.jpg" alt="International Office">
-                    <div class="overlay">
-                        <div class="text">สำนักงานนานาชาติ</div>
-                    </div>
-                </div>
-                <h3>สำนักงานนานาชาติ</h3>
-            </div>
+            <h3>สำนักงานบุคคล</h3>
         </div>
 
-        <div class="image-container d-flex flex-wrap justify-content-center gap-4 mb-5">
-            <div class="image-box">
-                <div class="container-img position-relative">
-                    <img src="~/assets/rsu_bg4.jpg" alt="Personnel Development">
-                    <div class="overlay">
-                        <div class="text">สำนักงานพัฒนาบุคคล</div>
-                    </div>
+        <div class="image-box">
+            <div class="container-img position-relative">
+                <img src="~/assets/rsu_bg2.jpg" alt="Academic Standards">
+                <div class="overlay">
+                    <div class="text">สำนักงานมาตรฐานวิชาการ</div>
                 </div>
-                <h3>สำนักงานพัฒนาบุคคล</h3>
             </div>
-
-            <div class="image-box">
-                <div class="container-img position-relative">
-                    <img src="~/assets/rsu_bg5.jpg" alt="Quality Assurance">
-                    <div class="overlay">
-                        <div class="text">สำนักงานประกันคุณภาพ</div>
-                    </div>
-                </div>
-                <h3>สำนักงานประกันคุณภาพ</h3>
-            </div>
-
-            <div class="image-box">
-                <div class="container-img position-relative">
-                    <img src="~/assets/rsu_bg.jpg" alt="Research Office">
-                    <div class="overlay">
-                        <div class="text">สำนักงานวิจัย</div>
-                    </div>
-                </div>
-                <h3>สำนักงานวิจัย</h3>
-            </div>
+            <h3>สำนักงานมาตรฐานวิชาการ</h3>
         </div>
 
-        <div class="container mt-5">
-            <div class="row bg-light rounded p-4 text-start">
-                <div class="col-md-6 p-4">
-                    <h2 class="text-rsu-blue">Rangsit University</h2>
-                    <p class="mb-1">52/347 Muang-Ake Phaholyothin Road Lak-Hok</p>
-                    <p class="mb-1">Muang</p>
-                    <p class="mb-3">Pathumthani 12000, Thailand</p>
-                    <p class="mb-1"><b>Phone:</b> 02-791-6000</p>
-                    <p><b>Email:</b> contact@rsu.ac.th</p>
-                </div>
-
-                <div class="col-md-6 p-4">
-                    <h2>Useful Links</h2>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 1</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 2</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 3</a></li>
-                    </ul>
+        <div class="image-box">
+            <div class="container-img position-relative">
+                <img src="~/assets/rsu_bg3.jpg" alt="International Office">
+                <div class="overlay">
+                    <div class="text">สำนักงานนานาชาติ</div>
                 </div>
             </div>
+            <h3>สำนักงานนานาชาติ</h3>
+        </div>
+    </div>
+
+    <div class="image-container d-flex flex-wrap justify-content-center gap-4 mb-5">
+        <div class="image-box">
+            <div class="container-img position-relative">
+                <img src="~/assets/rsu_bg4.jpg" alt="Personnel Development">
+                <div class="overlay">
+                    <div class="text">สำนักงานพัฒนาบุคคล</div>
+                </div>
+            </div>
+            <h3>สำนักงานพัฒนาบุคคล</h3>
         </div>
 
-    </section>
+        <div class="image-box">
+            <div class="container-img position-relative">
+                <img src="~/assets/rsu_bg5.jpg" alt="Quality Assurance">
+                <div class="overlay">
+                    <div class="text">สำนักงานประกันคุณภาพ</div>
+                </div>
+            </div>
+            <h3>สำนักงานประกันคุณภาพ</h3>
+        </div>
 
-    <footer>
-        © 2026 Rangsit University
-    </footer>
+        <div class="image-box">
+            <div class="container-img position-relative">
+                <img src="~/assets/rsu_bg.jpg" alt="Research Office">
+                <div class="overlay">
+                    <div class="text">สำนักงานวิจัย</div>
+                </div>
+            </div>
+            <h3>สำนักงานวิจัย</h3>
+        </div>
+    </div>
 
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <div class="container mt-5">
+        <div class="row bg-light rounded p-4 text-start">
+            <div class="col-md-6 p-4">
+                <h2 class="text-rsu-blue">Rangsit University</h2>
+                <p class="mb-1">52/347 Muang-Ake Phaholyothin Road Lak-Hok</p>
+                <p class="mb-1">Muang</p>
+                <p class="mb-3">Pathumthani 12000, Thailand</p>
+                <p class="mb-1"><b>Phone:</b> 02-791-6000</p>
+                <p><b>Email:</b> contact@rsu.ac.th</p>
+            </div>
+
+            <div class="col-md-6 p-4">
+                <h2>Useful Links</h2>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 1</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 2</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Link 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</section>

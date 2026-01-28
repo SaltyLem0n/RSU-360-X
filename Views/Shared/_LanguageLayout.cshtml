@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Kalnia+Glaze:wght@100..700&display=swap" rel="stylesheet">
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+
+    <style>
+        /* 1. Global Font */
+        .ibm {
+            font-family: "IBM Plex Sans Thai", sans-serif;
+        }
+
+        /* 2. Custom Navbar Layout */
+        .navbar-custom {
+            padding: 15px 30px; /* More breathing room */
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent; /* Ensure it blends with hero image */
+            position: absolute; /* Sits on top of the hero image */
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* --- 3. MODERN LANGUAGE SWITCHER STYLES --- */
+
+        /* The main button */
+        .btn-modern-lang {
+            background: rgba(255, 255, 255, 0.15); /* Glass effect */
+            backdrop-filter: blur(10px); /* Blur behind it */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 50px; /* Pill shape */
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+            /* Hover effect for the button */
+            .btn-modern-lang:hover {
+                background: rgba(255, 255, 255, 0.3);
+                border-color: rgba(255, 255, 255, 0.8);
+                color: white;
+                transform: translateY(-2px); /* Slight lift */
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
+
+            /* Remove the default ugly dropdown arrow or customize it */
+            .btn-modern-lang::after {
+                margin-left: 10px;
+                vertical-align: middle;
+                border-top-color: rgba(255,255,255,0.7);
+            }
+
+        /* The Dropdown Menu Box */
+        .modern-menu {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border: none;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-top: 10px !important; /* Space between button and menu */
+            min-width: 150px;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+            /* The Individual Items */
+            .modern-menu .dropdown-item {
+                border-radius: 10px;
+                padding: 10px 15px;
+                font-weight: 500;
+                color: #333;
+                transition: all 0.2s;
+            }
+
+                /* Item Hover & Active State */
+                .modern-menu .dropdown-item:hover,
+                .modern-menu .dropdown-item.active {
+                    background-color: #f0f2f5;
+                    color: #0a3cff; /* RSU Blue */
+                    font-weight: bold;
+                }
+
+        /* Simple Fade Animation */
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar navbar-custom">
+
+            <div class="d-flex align-items-center gap-3">
+                <a href="/">
+                    <img src="~/assets/img/rsu_logo.png" width="80px" height="40px" alt="RSU Logo">
+                </a>
+                <h1 class="ibm text-white mb-0">@(ViewData["HeaderTitle"] ?? "ฝ่ายบริหาร")</h1>
+            </div>
+
+            <div>
+                <partial name="_LanguageSwitcher" />
+            </div>
+
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <footer>
+        © 2026 Rangsit University
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

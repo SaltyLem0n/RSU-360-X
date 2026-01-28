@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture.RequestCulture.UICulture;
+    var cultureItems = LocOptions.Value.SupportedUICultures.ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
+}
+
+<form id="selectLanguage" asp-controller="Culture" asp-action="SetLanguage" asp-route-returnUrl="@returnUrl" method="post">
+
+    <div class="dropdown">
+
+        <button class="btn btn-modern-lang dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="me-1">🌐</span>
+            <span class="lang-text">@currentCulture.NativeName.Substring(0, 3).ToUpper()</span>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end modern-menu" aria-labelledby="languageDropdown">
+            @foreach (var culture in cultureItems)
+            {
+                <li>
+                    <button type="submit"
+                            name="culture"
+                            value="@culture.Name"
+                            class="dropdown-item @(culture.Name == currentCulture.Name ? "active" : "")">
+                        @culture.NativeName
+                    </button>
+                </li>
+            }
+        </ul>
+    </div>
+</form>
